@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer base {
+  p,
+  div,
+  article,
+  input,
+  main,
+  form,
+  footer {
+    @apply duration-100 delay-75 ease-in-out transition-all;
+  }
+}
+
+@layer components {
+  .button {
+    @apply uppercase font-semibold text-center;
+  }
+  .sign-button {
+    @apply bg-[#42B9D1] w-full lg:max-w-[420px] mt-5 button text-15px p-2 px-5 tracking-wide text-white rounded-md;
+  }
+  .heading-1 {
+    @apply font-bold  md:text-[text-45px] lg:text-5xl text-[30px] text-center  text-text-dark lg:mb-20 mb-10;
+  }
+}

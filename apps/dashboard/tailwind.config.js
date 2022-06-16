@@ -1,5 +1,11 @@
 module.exports = {
-  content: ['./**/*.{js,ts,jsx,tsx}'],
+  // presets: [require('../../packages/ui/tailwind.config.js')],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    '../../packages/ui/**/*.{js,ts,jsx,tsx}',
+  ],
+
   theme: {
     extend: {
       colors: {
@@ -23,8 +29,11 @@ module.exports = {
       },
     },
   },
+
   plugins: [require('daisyui')],
   daisyui: {
     themes: false,
+    // base: false,
+    // styled: false,
   },
 }

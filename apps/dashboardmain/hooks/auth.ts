@@ -87,7 +87,7 @@ export const useAuth = (config: IUseAuth) => {
     if (!error) {
       await axios
         .post('/logout')
-        .then(() => {
+        .then(response => {
           localStorage.removeItem('AcademicTutorAuthentication')
         })
         .then(() => mutate())

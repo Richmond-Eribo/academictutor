@@ -1,6 +1,12 @@
 import axios from 'lib/axios'
 import {useRouter} from 'next/router'
-import React, {useEffect, useState} from 'react'
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  createContext,
+  ReactNode,
+} from 'react'
 import useSWR from 'swr'
 
 declare type AuthMiddleware = 'auth' | 'guest'
@@ -14,6 +20,10 @@ interface IApiRequest {
   setErrors: React.Dispatch<React.SetStateAction<never[]>>
   setStatus?: React.Dispatch<React.SetStateAction<string | null>>
   [key: string]: any
+}
+
+declare type AuthProps = {
+  children: ReactNode
 }
 
 export const useAuth = (config: IUseAuth) => {
@@ -32,14 +42,11 @@ export const useAuth = (config: IUseAuth) => {
     error,
     mutate,
   } = useSWR('/api/user/', () => {
-    axios
-      .get('api/user/')
-      .then(res => res.data)
-      .catch(error => {
-        if (error.response.status !== 409) throw error
+    axios.get('api/user/').catch(error => {
+      if (error.response.status !== 409) throw error
 
-        router.push('/')
-      })
+      router.push('/')
+    })
   })
 
   // Register new user
@@ -68,14 +75,14 @@ export const useAuth = (config: IUseAuth) => {
     // route
     axios
       .post('/login', props)
-      .then(response => {
+      .then(response =>
         localStorage.setItem(
           'AcademicTutorAuthentication',
-          JSON.stringify({id: response.data.id, role: response.data.role})
+          JSON.stringify(response)
         )
-      })
+      )
       .then(() => mutate())
-      .then(() => router.push(redirectIfAuthenticatedUrl))
+      .then(() => router.push('/DashboardTeacher'))
       .catch(error => {
         if (error.response.status !== 422) throw error
 
@@ -85,12 +92,7 @@ export const useAuth = (config: IUseAuth) => {
 
   const logout = async () => {
     if (!error) {
-      await axios
-        .post('/logout')
-        .then(() => {
-          localStorage.removeItem('AcademicTutorAuthentication')
-        })
-        .then(() => mutate())
+      await axios.post('/logout').then(() => mutate())
     }
     window.location.pathname = '/Login'
   }

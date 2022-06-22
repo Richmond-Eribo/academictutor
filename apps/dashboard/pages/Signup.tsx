@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 import {useAuth} from '../hooks/auth'
 import Input from 'ui/components/Input'
 import axios from 'lib/axios'
+import AuthLayout from 'components/AuthLayout'
 
 const Signup: FC = () => {
   const [activeInput, setActiveInput] = useState(0)
@@ -35,17 +36,10 @@ const Signup: FC = () => {
       profile_picture,
       role,
     })
-    console.log('hi')
-
-    setTimeout(() => {
-      if (user) {
-        console.log(user)
-      }
-    }, 3000)
   }
 
   return (
-    <>
+    <AuthLayout>
       <div>
         {/* <div className=''>{console.log('ji')}</div> */}
         {/* {errors.length > 0 && errors.map(error => console.log(error))} */}
@@ -119,7 +113,7 @@ const Signup: FC = () => {
           </button>
         </form>
       </div>
-    </>
+    </AuthLayout>
   )
 }
 

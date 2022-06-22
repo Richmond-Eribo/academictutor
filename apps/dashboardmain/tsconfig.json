@@ -1,0 +1,15 @@
+{
+  "extends": "tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true
+  },
+  "include": [
+    "../../packages/ui/**/*.{js,jsx,ts,tsx}",
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "styles/global.css",
+    "lib/axios.js"
+  ]
+}

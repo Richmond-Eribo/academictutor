@@ -7,8 +7,6 @@ import SwipeSlider from '../components/SwipeSlider'
 import DaisySlide from '../components/DaisySlide'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
-import Link from 'next/link'
-import {useAuth} from '../hooks/auth'
 
 const teacher = [
   {
@@ -33,53 +31,26 @@ const teacher = [
 
 const Home: NextPage = () => {
   const router = useRouter()
-  // const [loading, setLoading] = useState(true)
-  const {logout} = useAuth({
-    middleware: 'guest',
-    redirectIfAuthenticatedUrl: '/',
-  })
+  const [loading, setLoading] = useState(true)
+  const authCheck = localStorage.getItem('AcademicTutorAuthentication')
+    ? JSON.parse(localStorage.getItem('AcademicTutorAuthentication')!)
+    : null
+  // const [loggedIn, setLoggedIn] = useState(authCheck)
 
-  const [authChecked, setauthChecked] = useState<{
-    role: string
-    id: number
-  } | null>(null)
-
-  useEffect(() => {
-    const authCheck = localStorage.getItem('AcademicTutorAuthentication')
-      ? JSON.parse(localStorage.getItem('AcademicTutorAuthentication')!)
-      : null
-    setauthChecked(authCheck)
-
-    !authCheck && router.push('/Login')
-
-    if (authCheck && authCheck.role == 'teacher') {
-      router.push('/DashboardTeacher')
-    } else if (authCheck && authCheck.role == 'parent') {
-      router.push('/DashboardParent')
-    } else if (authCheck && authCheck.role == 'admin') {
-      router.push('/DashboardAdmin')
-    } else {
-      router.push('/Login')
-    }
-  }, [router])
+  const funcs = () => {}
 
   return (
     <>
-      <div className={`${authChecked ? 'hidden' : ''}`}>loading</div>
+      <div className={`${authCheck ? 'hidden' : ''}`}>loading</div>
 
-      {/* {authChecked && (
+      {authCheck && (
         // (setLoading(false),
 
         <>
-          <Link href='/Login'>
-            <a>Login</a>
-          </Link>
-
-          <button onClick={logout}>logout</button>
           <p>hi</p>
-          {console.log(authChecked)}
+          {console.log(authCheck)}
         </>
-      )} */}
+      )}
     </>
   )
 }

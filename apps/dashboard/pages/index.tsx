@@ -3,8 +3,8 @@ import Head from 'next/head'
 import {Button} from 'ui'
 import Image from 'next/image'
 import Navbar from 'ui/components/Navbar'
-import SwipeSlider from './components/SwipeSlider'
-import DaisySlide from './components/DaisySlide'
+import SwipeSlider from '../components/SwipeSlider'
+import DaisySlide from '../components/DaisySlide'
 
 const teacher = [
   {
@@ -30,6 +30,7 @@ const teacher = [
 const Home: NextPage = () => {
   return (
     <div className=''>
+      {/* {console.log(teacher)} */}
       <Navbar />
       {/* <SwipeSlider TeacherCard={teacher} /> */}
       <DaisySlide />

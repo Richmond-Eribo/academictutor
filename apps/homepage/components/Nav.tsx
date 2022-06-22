@@ -8,23 +8,10 @@ const Nav = (props: Props) => {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <>
-      <div className='flex  lg:flex-row justify-between  items-center pb-4 px-2  md:pb-8 md:px-5 lg:pb-10 lg:px-10'>
-        {/* logo */}
-
-        <figure className='pt-1 '>
-          <Image
-            src='/logo.png'
-            height={42 / 1.2}
-            width={305 / 1.2}
-            alt='logo'
-          />
-        </figure>
-
-        {/* logo end */}
-
+      <div className='flex bg-white lg:h-[70px]  lg:flex-row justify-between   items-center pb-4 px-2  md:mb-8 md:px-5 lg:mb-10 lg:px-10 rounded-md'>
         {/* hamburger menu */}
         <div
-          className='lg:hidden  rounded shadow-md p-1'
+          className='lg:hidden   rounded  p-1'
           onClick={() => setMenuOpen(current => !current)}
         >
           <svg
@@ -60,8 +47,21 @@ const Nav = (props: Props) => {
           </svg>
         </div>
 
+        {/* logo */}
+
+        <figure className=' lg:pt-5'>
+          <Image
+            src='/logo.png'
+            height={42 / 1.2}
+            width={305 / 1.2}
+            alt='logo'
+          />
+        </figure>
+
+        {/* logo end */}
+
         {/* Nav links for laptop */}
-        <div className=' hidden flex-col lg:block'>
+        <div className=' hidden flex-col lg:block lg:pt-5'>
           {['About us', 'Services', 'Teachers'].map(Navlink => (
             <a
               key={Navlink}

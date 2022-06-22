@@ -1,5 +1,6 @@
 import type {NextPage} from 'next'
 import Image from 'next/image'
+import {GetInTouchForm} from 'ui'
 import Footer from '../components/Footer'
 import LandingPageSlide from '../components/LandingPageSlide'
 import Nav from '../components/Nav'
@@ -8,10 +9,13 @@ import TextWrapper from '../components/TextWrapper'
 
 const Home: NextPage = () => {
   return (
-    <div className=''>
-      <section className=' px-6 pt-8 bg-[#D1644D]/5 lg:px-10 lg:pt-10 '>
+    <div className='scroll-smooth'>
+      <section className='bg-gradient-to-b from-primary-light to-white '>
         <Nav />
-        <LandingPageSlide />
+
+        <div className=' px-6 pt-8 lg:px-10 lg:pt-10  '>
+          <LandingPageSlide />
+        </div>
       </section>
 
       <section className='px-6 py-10 lg:px-36 lg:py-20' id='About us'>
@@ -170,7 +174,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className=' h-[260px] px-4 lg:px-36 py-10  bg bg-contain bg-no-repeat lg:h-[408px]  flex flex-col items-center justify-center'>
+      <section className=' h-[260px] px-4 lg:px-36 py-10 lg:my-28 bg-primary-mid rounded-2xl lg:rounded-[85px]  bg-contain bg-no-repeat lg:h-[408px]  flex flex-col items-center justify-center'>
         <h3 className='uppercase  w-[200px] text-white text-center font-semibold'>
           we are hiring
         </h3>
@@ -178,7 +182,7 @@ const Home: NextPage = () => {
           We are currently looking for qualified and unqualified tutors to
           deliver 1:1 online tutoring in Maths, English and Science.
         </p>
-        <button className='bg-[#D1644D] button tracking-wide  button p-2 px-5  text-white rounded-full '>
+        <button className='bg-[#D1644D] capitalize button tracking-wide  button p-2 px-5  text-white rounded-full '>
           Sign up today
         </button>
       </section>
@@ -266,34 +270,8 @@ const Home: NextPage = () => {
           <h2 className='font-bold lg:text-4xl text-[35px]   text-text-dark lg:mb-10'>
             Get in touch
           </h2>
-          <form className=' w-[330px] flex flex-col  lg:grid   lg:grid-cols-2 gap-2 lg:gap-y-4 lg:my-5 lg:w-[580px] lg:h-[200px]'>
-            <input
-              type='text'
-              placeholder='Name'
-              className='border border-[#C4C4C4] rounded-md p-1 px-5 focus:border-blue-500 outline-blue-400'
-            />
-            <input
-              type='email'
-              placeholder='Email'
-              className='border border-[#C4C4C4] rounded-md p-1 px-5 outline-blue-400'
-            />
-            <textarea
-              name='message'
-              placeholder='Message'
-              id=''
-              cols={10}
-              rows={5}
-              className='border border-[#C4C4C4] rounded-md p-1 px-5 lg:col-span-2 outline-blue-400'
-            />
-            <button
-              onClick={e => {
-                e.preventDefault()
-              }}
-              className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'
-            >
-              SEND REQUEST
-            </button>
-          </form>
+          {/* get in touch form */}
+          <GetInTouchForm />
         </div>
       </section>
 

@@ -6,4 +6,13 @@ module.exports = withTM({
   images: {
     domains: ['api.lorem.space'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/Login',
+        permanent: false,
+      },
+    ]
+  },
 })

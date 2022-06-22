@@ -9,6 +9,23 @@ module.exports = {
       colors: {
         'text-dark': '#2F3542',
         'text-light': '#778CA3',
+        primary: {
+          light: '#2bc8ed',
+          mid: '#22b6e7',
+          dark: '#19a4e1',
+        },
+        secondary: {
+          light: '#F58F63',
+          mid: '#F2724F',
+          dark: '#EF553B',
+        },
+        tertiary: {
+          light: '#eceff1',
+          'mid-light': '#d3d9dc',
+          mid: '#a1aaae',
+          'mid-dark': '#74848b',
+          dark: '#414A4E',
+        },
       },
       backgroundImage: {
         SignUpRectangle: "url('/SignUpRectangle.png')",
@@ -18,5 +35,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: false,
+  },
 }

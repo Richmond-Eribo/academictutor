@@ -15,6 +15,7 @@ type TeacherProps = {
 const SwipeSlider: FC<TeacherProps> = ({TeacherCard}) => {
   return (
     <>
+      {console.log('hi')}
       <p>swiper</p>
       {/* <Swiper
         slidesPerView={3.5}

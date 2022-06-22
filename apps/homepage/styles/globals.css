@@ -25,7 +25,7 @@
     @apply uppercase font-semibold text-center;
   }
   .sign-button {
-    @apply bg-[#42B9D1] w-full lg:max-w-[420px] mt-5 button text-15px p-2 px-5 tracking-wide text-white rounded-md;
+    @apply bg-[#42B9D1] w-full lg:max-w-[420px]  button text-15px p-2 px-5 tracking-wide text-white rounded-md;
   }
   .heading-1 {
     @apply font-bold  md:text-[text-45px] lg:text-5xl text-[30px] text-center  text-text-dark lg:mb-20 mb-10;

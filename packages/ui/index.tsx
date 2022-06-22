@@ -1,3 +1,5 @@
 import * as React from 'react'
-export * from './components/Button'
-export * from './components/Navbar'
+export {default as Button} from './components/Button'
+export {default as Navbar} from './components/Navbar'
+export {default as input} from './components/Input'
+export {default as GetInTouchForm} from './components/GetInTouchForm'

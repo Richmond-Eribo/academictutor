@@ -86,8 +86,8 @@ const Nav = (props: Props) => {
 
       {/* nav links for mobile */}
       <div
-        className={`grid absolute translate-y- w-screen h-[1500px] z-50 bg-primary-light  grid-cols-1 gap-2   lg:hidden justify-items-end px-5 ${
-          menuOpen ? 'h-32 ' : 'invisible h-0'
+        className={`grid  translate-y- w-screen  z-50 bg-primary-light  grid-cols-1 gap-2   lg:hidden justify-items-end px-5 ${
+          menuOpen ? 'h-32; h-[1500px]' : 'invisible h-0'
         }`}
       >
         <div

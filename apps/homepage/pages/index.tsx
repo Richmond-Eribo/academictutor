@@ -74,7 +74,7 @@ const Home: NextPage = () => {
 
             <p className='mb-5'>
               Academic tutors are independent educators committed to the
-              actualization of students’ goals.{' '}
+              actualization of students’ goals.
               <strong>
                 Trust us, we do everything possible to ensure your child is
                 getting the best of tuition from our tutors.
@@ -275,13 +275,22 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className='lg:px-36 lg:py-20 relative h-[440px] '>
-        <Image
+      <section className='lg:px-36 mb-10 lg:pt-10 relative h-[440px] '>
+        {/* <Image
           layout='fill'
           src='/map.png'
           alt='Profile Image'
           // className='rounded-full'
-        />
+        /> */}
+        <iframe
+          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2425.5234047045915!2d-0.10751307817614424!3d52.560145316277186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877fba2b8a1b101%3A0xe509ea20ddc82487!2sAcademic%20Tutors%20Limited!5e0!3m2!1sen!2sng!4v1656102803057!5m2!1sen!2sng'
+          width={'100%'}
+          height='400'
+          style={{border: 0}}
+          allowFullScreen={true}
+          loading='lazy'
+          referrerPolicy='no-referrer-when-downgrade'
+        ></iframe>
       </section>
 
       <Footer />

@@ -14,6 +14,7 @@ const AuthLayout = ({children}: Props) => {
       : null
 
     authCheck && router.push('/')
+    !authCheck && router.push('/Login')
   }, [router])
 
   return <div>{children}</div>

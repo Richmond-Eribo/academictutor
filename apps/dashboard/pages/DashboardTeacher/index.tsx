@@ -1,12 +1,13 @@
+import AuthLayout from 'components/auth/AuthLayout'
 import {useAuth} from 'hooks/auth'
 
 const DashboardTeacher = () => {
   const {logout} = useAuth({middleware: 'auth'})
   return (
-    <div>
+    <AuthLayout>
       Teacher Dashboard
       <button onClick={logout}>logout</button>
-    </div>
+    </AuthLayout>
   )
 }
 

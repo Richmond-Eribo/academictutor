@@ -7,6 +7,7 @@ import SwipeSlider from '../components/SwipeSlider'
 import DaisySlide from '../components/DaisySlide'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
+import {useAuth} from 'hooks/auth'
 
 const teacher = [
   {
@@ -31,26 +32,16 @@ const teacher = [
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const [loading, setLoading] = useState(true)
-  const authCheck = localStorage.getItem('AcademicTutorAuthentication')
-    ? JSON.parse(localStorage.getItem('AcademicTutorAuthentication')!)
-    : null
+  // const [loading, setLoading] = useState(true)
+  const {loading, user} = useAuth({
+    middleware: 'auth',
+  })
   // const [loggedIn, setLoggedIn] = useState(authCheck)
-
-  const funcs = () => {}
 
   return (
     <>
-      <div className={`${authCheck ? 'hidden' : ''}`}>loading</div>
-
-      {authCheck && (
-        // (setLoading(false),
-
-        <>
-          <p>hi</p>
-          {console.log(authCheck)}
-        </>
-      )}
+      {console.log(user)}
+      <p>hi</p>
     </>
   )
 }

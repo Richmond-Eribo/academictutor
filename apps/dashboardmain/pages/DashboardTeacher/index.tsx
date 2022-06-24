@@ -1,7 +1,10 @@
 import {useAuth} from 'hooks/auth'
 
 const DashboardTeacher = () => {
-  const {logout} = useAuth({middleware: 'auth'})
+  const {loading, user, logout} = useAuth({
+    middleware: 'auth',
+  })
+
   return (
     <div>
       Teacher Dashboard

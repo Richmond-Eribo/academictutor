@@ -4,7 +4,9 @@ import {useRouter} from 'next/router'
 import {useAuth} from '../hooks/auth'
 import axios from 'lib/axios'
 import Error from 'components/Error'
-import AuthLayout from 'components/AuthLayout'
+import AuthLayout from 'components/auth/AuthLayout'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Login = () => {
   const [activeInput, setActiveInput] = useState(0)
@@ -35,82 +37,87 @@ const Login = () => {
   }
 
   return (
-    <AuthLayout>
-      <div>
-        {/* <Error errors={errors} /> */}
-
-        {/* {user && console.log('user')} */}
-        <form onSubmit={submitForm}>
-          <div className='flex content-around  w-screen lg:flex-row flex-col justify-around items-center'>
-            <section className='lg:w-[400px]  '>
-              {/* <Input
-              type='name'
-              setActiveInput={setActiveInput}
-              activeInput={activeInput}
-              activeNumber={1}
-              placeholder='Full Name'
-              marginTop={5}
-              value
-            /> */}
-
-              <Input
-                type='email'
-                setActiveInput={setActiveInput}
-                activeInput={activeInput}
-                activeNumber={2}
-                placeholder='Email'
-                marginTop={5}
-                value={email}
-                setValue={setEmail}
-              />
-
-              <Input
-                type='password'
-                setActiveInput={setActiveInput}
-                activeInput={activeInput}
-                activeNumber={3}
-                placeholder='password'
-                marginTop={5}
-                value={password}
-                setValue={setPassword}
-              />
-
-              {/* <Input
-              type='text'
-              setActiveInput={setActiveInput}
-              activeInput={activeInput}
-              activeNumber={4}
-              placeholder='Address'
-              marginTop={5}
-            /> */}
-
-              <div className='flex mt-10 mb-2'>
-                <p className='text-text-light'>
-                  Are you currently eligible to work in the Uk?
-                </p>
-              </div>
-
-              <p className='text-text-light'>
-                if yes include work{' '}
-                <a className='text-[#42B9D1] underline'> Permit or ID</a>
-              </p>
-            </section>
-
-            <section className='w-[400px] my-10 lg:my-0 bg-yellow-300'>
-              this is two
-            </section>
-
-            <section className='w-[400px] bg-slate-500'>
-              this just might be
-            </section>
-          </div>
-
-          <button type='submit' className='button sign-button mt-10'>
-            sign up
-          </button>
-        </form>
+    <div className='lg:grid lg:grid-cols-2 px-10 lg:px-0 md:px-10  h-screen'>
+      {/* <Error errors={errors} /> */}
+      <div className='lg:w-[728px] hidden lg:block  relative'>
+        <Image src='/SignUpImage2.png' layout='fill' alt='sign up Image' />
       </div>
-    </AuthLayout>
+      {/* {user && console.log('user')} */}
+      <form
+        onSubmit={submitForm}
+        className='flex flex-col justify-center items-center  h-screen'
+      >
+        <Link href='/'>
+          <>
+            <a className='hidden lg:block'>
+              <Image
+                src='/logo.png'
+                height={42}
+                width={305}
+                alt='logo'
+                className=''
+                priority
+              />
+            </a>
+
+            <a className='block lg:hidden'>
+              <Image
+                src='/logo.png'
+                height={42 / 1.2}
+                width={305 / 1.2}
+                alt='logo'
+                className=''
+                priority
+              />
+            </a>
+          </>
+        </Link>
+
+        {/* <section className='lg:w-[400px]  '> */}
+        <Input
+          type='email'
+          setActiveInput={setActiveInput}
+          activeInput={activeInput}
+          activeNumber={2}
+          placeholder='Email'
+          marginTop={5}
+          value={email}
+          setValue={setEmail}
+        />
+
+        <Input
+          type='password'
+          setActiveInput={setActiveInput}
+          activeInput={activeInput}
+          activeNumber={3}
+          placeholder='password'
+          marginTop={5}
+          value={password}
+          setValue={setPassword}
+        />
+
+        {/* <button type='submit' className='button sign-button mt-10'>
+              Log in
+            </button> */}
+        {/* </section> */}
+        {/* <div className='flex lg:max-w-[420px] w-full justify-between mt-10 text-[#BFC7D3]'>
+          <p className='text-sm lg:text-base'>
+            <input type='checkbox' name='remember' /> Remember me
+          </p>
+
+          <Link href='/'>
+            <a className='text-sm lg:text-base'> Forgot Password? </a>
+          </Link>
+        </div> */}
+        <button className='button sign-button  mt-5'>sign in</button>
+        <p className='mt-5 text-sm lg:text-base'>
+          New on our platform?{' '}
+          <Link href='/Signup'>
+            <a className='text-[#42B9D1] '>Create an account</a>
+          </Link>{' '}
+        </p>
+      </form>
+    </div>
   )
 }
 

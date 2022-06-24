@@ -7,7 +7,7 @@ type Props = {
   setActiveInput: React.Dispatch<React.SetStateAction<number>>
   placeholder: string
   marginTop: number
-  value: string | number
+  value: string | number | undefined
   setValue: React.Dispatch<React.SetStateAction<any>>
 }
 
@@ -34,6 +34,7 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={event => setValue(event.target.value)}
+        autoComplete='false'
       />
     </div>
   )

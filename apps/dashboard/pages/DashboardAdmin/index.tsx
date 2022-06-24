@@ -1,5 +1,7 @@
+import AuthLayout from 'components/auth/AuthLayout'
+
 const index = () => {
-  return <div>Admin</div>
+  return <AuthLayout>Admin</AuthLayout>
 }
 
 export default index

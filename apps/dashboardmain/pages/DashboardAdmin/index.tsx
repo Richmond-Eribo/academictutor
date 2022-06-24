@@ -1,5 +1,10 @@
-const index = () => {
-  return <div>Admin</div>
+import {useAuth} from 'hooks/auth'
+
+const DashboardAdmin = () => {
+  const {loading, user} = useAuth({
+    middleware: 'auth',
+  })
+  return <>{console.log(user)}</>
 }
 
-export default index
+export default DashboardAdmin

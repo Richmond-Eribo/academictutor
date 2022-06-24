@@ -86,12 +86,12 @@ const Nav = (props: Props) => {
 
       {/* nav links for mobile */}
       <div
-        className={`grid absolute translate-y- w-screen h-[100vh] z-50 bg-primary-light  grid-cols-1 gap-2   lg:hidden justify-items-end px-5 ${
+        className={`grid absolute translate-y- w-screen h-[1500px] z-50 bg-primary-light  grid-cols-1 gap-2   lg:hidden justify-items-end px-5 ${
           menuOpen ? 'h-32 ' : 'invisible h-0'
         }`}
       >
         <div
-          className={`grid pt-10 text-lg justify-items-end text-white h-[40%] ${
+          className={`grid pt-10 text-lg justify-items-end text-white h-[20%] ${
             menuOpen ? ' ' : 'invisible'
           }`}
         >

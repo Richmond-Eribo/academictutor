@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Image from 'next/image'
-import SignUpParent from '../components/SignUpParent'
-import SignUpTeacher from '../components/SignUpTeacher'
+import SignUpParent from './SignUpParent'
+import SignUpTeacher from './SignUpTeacher'
 import Link from 'next/link'
 
 type Props = {}

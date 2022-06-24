@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {useState} from 'react'
-import Avatar from '../components/Svg/Avatar'
-import PasswordIcon from '../components/Svg/PasswordIcon'
+import Avatar from './Svg/Avatar'
+import PasswordIcon from './Svg/PasswordIcon'
 
 type Props = {}
 

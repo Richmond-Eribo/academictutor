@@ -8,7 +8,18 @@ const Nav = (props: Props) => {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <>
-      <div className='flex bg-white lg:h-[70px]  lg:flex-row justify-between   items-center pb-4 px-2  md:mb-8 md:px-5 lg:mb-10 lg:px-10 rounded-md'>
+      <div className='flex pt-5 lg:pt-1 bg-white lg:h-[70px]  lg:flex-row justify-between   items-center pb-4 px-2  md:mb-8 md:px-5 lg:mb-10 lg:px-10 rounded-md'>
+        {/* logo */}
+
+        <figure className=' lg:pt-5'>
+          <Image
+            src='/logo.png'
+            height={42 / 1.2}
+            width={305 / 1.2}
+            alt='logo'
+          />
+        </figure>
+
         {/* hamburger menu */}
         <div
           className='lg:hidden   rounded  p-1'
@@ -46,18 +57,6 @@ const Nav = (props: Props) => {
             />
           </svg>
         </div>
-
-        {/* logo */}
-
-        <figure className=' lg:pt-5'>
-          <Image
-            src='/logo.png'
-            height={42 / 1.2}
-            width={305 / 1.2}
-            alt='logo'
-          />
-        </figure>
-
         {/* logo end */}
 
         {/* Nav links for laptop */}
@@ -72,12 +71,12 @@ const Nav = (props: Props) => {
             </a>
           ))}
 
-          <Link href='/SignUp'>
+          <Link href='/'>
             <button className='bg-[#42B9D1] md:w-[120px] md:h-[35px]  button text-15px md:px-4 lg:px-5 tracking-wide text-white rounded-md md:ml-10 md:mr-4 lg:ml-16 lg:mr-6'>
               SignUp
             </button>
           </Link>
-          <Link href='/SignIn'>
+          <Link href='/'>
             <button className='bg-[#42B9D1]/20 md:w-[120px] md:h-[35px]  text-15px text-[#42B9D1] border-2 border-[#42B9D1] button  md:px-4 lg:px-5 tracking-wide  rounded-md'>
               Login
             </button>
@@ -87,27 +86,33 @@ const Nav = (props: Props) => {
 
       {/* nav links for mobile */}
       <div
-        className={`grid  grid-cols-1 gap-2 place-items-center  lg:hidden ${
+        className={`grid absolute translate-y- w-screen h-[100vh] z-50 bg-primary-light  grid-cols-1 gap-2   lg:hidden justify-items-end px-5 ${
           menuOpen ? 'h-32 ' : 'invisible h-0'
         }`}
       >
-        {['About us', 'Services'].map(Navlink => (
-          <Link href='' key={Navlink}>
-            <a className='lg:ml-6 md:ml-3  text-center'>{Navlink} </a>
+        <div
+          className={`grid pt-10 text-lg justify-items-end text-white h-[40%] ${
+            menuOpen ? ' ' : 'invisible'
+          }`}
+        >
+          {['About us', 'teachers', 'Services'].map(Navlink => (
+            <Link href='' key={Navlink}>
+              <a className='  '>{Navlink} </a>
+            </Link>
+          ))}
+
+          <Link href='/'>
+            <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white rounded-md  '>
+              SignUp
+            </button>
           </Link>
-        ))}
 
-        <Link href='/SignUp'>
-          <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white rounded-md  '>
-            SignUp
-          </button>
-        </Link>
-
-        <Link href='/SignIn'>
-          <button className='bg-[#42B9D1]/20 w-[120px] h-[35px]  text-15px text-[#42B9D1] border-2 border-[#42B9D1] button  tracking-wide  rounded-md'>
-            Login
-          </button>
-        </Link>
+          <Link href='/'>
+            <button className='bg-secondary-light w-[120px] h-[35px]  text-15px text-[#42B9D1] border-2 border-[#42B9D1] button  tracking-wide  rounded-md'>
+              Login
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   )

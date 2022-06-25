@@ -1,6 +1,6 @@
 import React, {useState, useEffect, FC} from 'react'
 import {useRouter} from 'next/router'
-import {useAuth} from '../hooks/auth'
+// import {useAuth} from '../hooks/auth'
 import ParentSignUp from 'components/SignUp/ParentSignUp'
 import TeacherSignUp from 'components/SignUp/TeacherSignUp'
 import axios from 'lib/axios'
@@ -13,9 +13,9 @@ const SignUp: FC = () => {
 
   const router = useRouter()
 
-  const {register, user} = useAuth({
-    middleware: 'guest',
-  })
+  // const {register, user} = useAuth({
+  //   middleware: 'guest',
+  // })
 
   // Values from the form are stored here.
   const [name, setName] = useState('')
@@ -51,49 +51,49 @@ const SignUp: FC = () => {
   const submitFormTeacher = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    register({
-      setErrors,
-      name,
-      email,
-      password,
-      phone,
-      subjects,
-      role: 'Teacher',
-      profile,
-      // contains reference info
-      profile_picture,
-      rel_relationship: null,
-      rel_organisation: null,
-      rel_position: null,
-      rel_phone: null,
-      rel_name: null,
-      rel_email: null,
-      // contains all the documents
-      right_to_work,
-      dbs_certificate,
-      educational_qualification,
-      qts,
-      passport_id_or_driver_license,
-      passport_photo,
-      proof_of_address,
-      national_insurance_number,
-      permit_or_id,
-      signature,
-    })
+    // register({
+    //   setErrors,
+    //   name,
+    //   email,
+    //   password,
+    //   phone,
+    //   subjects,
+    //   role: 'Teacher',
+    //   profile,
+    //   // contains reference info
+    //   profile_picture,
+    //   rel_relationship: null,
+    //   rel_organisation: null,
+    //   rel_position: null,
+    //   rel_phone: null,
+    //   rel_name: null,
+    //   rel_email: null,
+    //   // contains all the documents
+    //   right_to_work,
+    //   dbs_certificate,
+    //   educational_qualification,
+    //   qts,
+    //   passport_id_or_driver_license,
+    //   passport_photo,
+    //   proof_of_address,
+    //   national_insurance_number,
+    //   permit_or_id,
+    //   signature,
+    // })
   }
 
   const submitFormParent = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    register({
-      setErrors,
-      name,
-      email,
-      password,
-      phone,
-      profile_picture: null,
-      role: 'parent',
-    })
+    // register({
+    //   setErrors,
+    //   name,
+    //   email,
+    //   password,
+    //   phone,
+    //   profile_picture: null,
+    //   role: 'parent',
+    // })
   }
 
   return (

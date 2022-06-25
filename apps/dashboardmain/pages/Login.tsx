@@ -1,7 +1,7 @@
 import Input from 'ui/components/Input'
 import React, {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-import {useAuth} from '../hooks/auth'
+// import {useAuth} from '../hooks/auth'
 import axios from 'lib/axios'
 import Error from 'components/Error'
 import Link from 'next/link'
@@ -12,9 +12,9 @@ const Login = () => {
 
   const router = useRouter()
 
-  const {login, loading, user} = useAuth({
-    middleware: 'guest',
-  })
+  // const {login, loading, user} = useAuth({
+  //   middleware: 'guest',
+  // })
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -31,7 +31,7 @@ const Login = () => {
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    login({setErrors, email, password, setStatus})
+    // login({setErrors, email, password, setStatus})
   }
 
   return (

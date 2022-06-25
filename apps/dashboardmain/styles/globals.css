@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
+@layer components {
+  .button {
+    @apply uppercase font-semibold text-center;
+  }
+  .sign-button {
+    @apply bg-[#42B9D1] w-full lg:max-w-[420px]  button  p-2 px-5 tracking-wide text-white rounded-md;
+  }
+}
 @tailwind utilities;

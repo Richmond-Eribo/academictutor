@@ -24,8 +24,15 @@ const SignUp: FC = () => {
   const [phone, setPhone] = useState<number>()
   const [errors, setErrors] = useState([])
 
-  // documents or file for teachers
-  const [subjects, setSubjects] = useState(null)
+  // documents and other input for teachers
+  const [rel_name, setRel_name] = useState(null)
+  const [rel_email, setRel_email] = useState(null)
+  const [rel_phone, setRel_phone] = useState(null)
+  const [rel_relationship, setRel_relationship] = useState(null)
+  const [rel_organisation, setRel_organisation] = useState(null)
+  const [rel_position, setRel_position] = useState(null)
+  const [profile_picture, setProfile_picture] = useState(null)
+  const [subjects, setSubjects] = useState('')
   const [profile, setProfile] = useState(null)
   const [right_to_work, setRight_to_work] = useState(null)
   const [passport_id_or_driver_license, setPassport_id_or_driver_license] =
@@ -50,17 +57,23 @@ const SignUp: FC = () => {
       email,
       password,
       phone,
-      profile_picture: null,
+      subjects,
       role: 'Teacher',
-      relationship: null,
-      organisation: null,
-      position: null,
       profile,
+      // contains reference info
+      profile_picture,
+      rel_relationship: null,
+      rel_organisation: null,
+      rel_position: null,
+      rel_phone: null,
+      rel_name: null,
+      rel_email: null,
+      // contains all the documents
       right_to_work,
       dbs_certificate,
       educational_qualification,
-      passport_id_or_driver_license,
       qts,
+      passport_id_or_driver_license,
       passport_photo,
       proof_of_address,
       national_insurance_number,
@@ -147,11 +160,33 @@ const SignUp: FC = () => {
               setPhone={setPhone}
               setEmail={setEmail}
               setPassword={setPassword}
+              subjects={subjects}
+              setSubjects={setSubjects}
               password={password!}
               activeInput={activeInput}
               name={name}
               email={email}
               phone={phone}
+              setProfile_picture={setProfile_picture}
+              profile_picture={profile_picture}
+              right_to_work={right_to_work}
+              dbs_certificate={dbs_certificate}
+              educational_qualification={educational_qualification}
+              qts={qts}
+              passport_id_or_driver_license={passport_id_or_driver_license}
+              passport_photo={passport_photo}
+              proof_of_address={proof_of_address}
+              national_insurance_number={national_insurance_number}
+              setRight_to_work={setRight_to_work}
+              setDbs_certificate={setDbs_certificate}
+              setEducational_qualification={setEducational_qualification}
+              setQts={setQts}
+              setPassport_id_or_driver_license={
+                setPassport_id_or_driver_license
+              }
+              setPassport_photo={setPassport_photo}
+              setProof_of_address={setProfile}
+              setNational_insurance_number={setNational_insurance_number}
             />
           </div>
           <div className={`${tab == 1 ? 'hidden' : 'block'} `}>

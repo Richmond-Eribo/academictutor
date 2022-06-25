@@ -1,6 +1,6 @@
 import Logout from 'components/svg/Logout'
 import Notification from 'components/svg/Notification'
-import {useAuth} from 'hooks/auth'
+// import {useAuth} from 'hooks/auth'
 import Image from 'next/image'
 
 const DashboardTeacher = () => {

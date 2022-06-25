@@ -1,13 +1,13 @@
 import type {NextPage} from 'next'
-import Head from 'next/head'
-import {Button} from 'ui'
+// import Head from 'next/head'
+// import {Button} from 'ui'
 import Image from 'next/image'
 import Navbar from 'ui/components/Navbar'
-import SwipeSlider from '../components/SwipeSlider'
+// import SwipeSlider from '../components/SwipeSlider'
 import DaisySlide from '../components/DaisySlide'
-import {useEffect, useState} from 'react'
+// import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
-import {useAuth} from 'hooks/auth'
+// import {useAuth} from 'hooks/auth'
 import Link from 'next/link'
 
 const teacher = [

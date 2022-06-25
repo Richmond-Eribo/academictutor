@@ -1,7 +1,7 @@
 import type {NextPage} from 'next'
 import Image from 'next/image'
 import {GetInTouchForm} from 'ui'
-import Footer from '../components/Footer'
+import {Footer} from 'ui'
 import LandingPageSlide from '../components/LandingPageSlide'
 import Nav from '../components/Nav'
 import ProfileSlider from '../components/ProfileSlider'
@@ -267,7 +267,7 @@ const Home: NextPage = () => {
         </div>
 
         <div>
-          <h2 className='font-bold lg:text-4xl text-[35px]   text-text-dark lg:mb-10'>
+          <h2 className='font-bold text-center lg:text-left lg:text-4xl text-[35px]   text-text-dark lg:mb-10'>
             Get in touch
           </h2>
           {/* get in touch form */}

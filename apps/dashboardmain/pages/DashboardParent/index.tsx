@@ -1,14 +1,14 @@
 import DaisySlide from 'components/DaisySlide'
 import Logout from 'components/svg/Logout'
 import Notification from 'components/svg/Notification'
-// import TeacherCard from 'components/TeacherCard'
-// import {useAuth} from 'hooks/auth'
+import TeacherCard from 'components/TeacherCard'
+import {useAuth} from 'hooks/auth'
 import Image from 'next/image'
-// import {useEffect} from 'react'
+import {useEffect} from 'react'
 import {GetInTouchForm} from 'ui'
 
-// import useSWR from 'swr'
-// import axios from 'lib/axios'
+import useSWR from 'swr'
+import axios from 'lib/axios'
 
 const DashboardParent = () => {
   // const {loading, user, logout} = useAuth({

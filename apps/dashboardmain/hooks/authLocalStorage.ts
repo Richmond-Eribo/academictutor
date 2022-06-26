@@ -1,16 +1,19 @@
 import axios from 'lib/axios'
 import {useRouter} from 'next/router'
-import React, {useEffect, useState} from 'react'
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  createContext,
+  ReactNode,
+} from 'react'
 import useSWR from 'swr'
 
 declare type AuthMiddleware = 'auth' | 'guest'
 
 interface IUseAuth {
   middleware: AuthMiddleware
-  redirectIfAuthenticatedTeacher?: string
-  redirectIfAuthenticatedParent?: string
-  redirectIfAuthenticatedAdmin?: string
-  parent?: boolean
+  redirectIfAuthenticatedUrl?: string
 }
 
 interface IApiRequest {
@@ -19,41 +22,32 @@ interface IApiRequest {
   [key: string]: any
 }
 
+declare type AuthProps = {
+  children: ReactNode
+}
+
 export const useAuth = (config: IUseAuth) => {
   const router = useRouter()
 
-  const {
-    middleware,
-    redirectIfAuthenticatedTeacher = '/DashboardTeacher',
-    redirectIfAuthenticatedAdmin = '/DashboardAdmin',
-    redirectIfAuthenticatedParent = '/DashboardParent',
-  } = config
+  const {middleware, redirectIfAuthenticatedUrl = '/'} = config
 
   // isLoading
   const [loading, setLoading] = useState(true)
 
   // Getting cookie from sanctum
   const csrf = () => axios.get('/sanctum/csrf-cookie')
-  // gets the varible stored in local storage if it exist, it not sets authCheck to null
-  // const authCheck = localStorage.getItem('AcademicTutorAuthentication')
-  //   ? JSON.parse(localStorage.getItem('AcademicTutorAuthentication')!)
-  //   :
-
   //   user
   const {
     data: user,
     error,
     mutate,
-  } = useSWR('/api/user/', () =>
-    axios
-      .get(`/api/user/`)
-      .then(res => res.data)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-        router.push('/Login')
-      })
-  )
+  } = useSWR('/api/user/', () => {
+    axios.get('api/user/').catch(error => {
+      if (error.response.status !== 409) throw error
+
+      router.push('/')
+    })
+  })
 
   // Register new user
   const register = async ({setErrors, ...props}: IApiRequest) => {
@@ -64,15 +58,6 @@ export const useAuth = (config: IUseAuth) => {
     // route
     axios
       .post('/api/user/register', props)
-      .then(response => {
-        if (response.status == 200) {
-          router.push({
-            pathname: '/Login',
-            query: 'registerRedirect',
-          })
-          // console.log(response.data)
-        }
-      })
       .then(() => mutate())
       .catch(error => {
         if (error.response.status !== 422) throw error
@@ -90,9 +75,17 @@ export const useAuth = (config: IUseAuth) => {
     // route
     axios
       .post('/login', props)
+      .then(response =>
+        localStorage.setItem(
+          'AcademicTutorAuthentication',
+          JSON.stringify(response)
+        )
+      )
       .then(() => mutate())
+      .then(() => router.push('/DashboardTeacher'))
       .catch(error => {
         if (error.response.status !== 422) throw error
+
         setErrors(Object.values(error.response.data.errors).flat() as never[])
       })
   }
@@ -105,23 +98,7 @@ export const useAuth = (config: IUseAuth) => {
   }
 
   useEffect(() => {
-    if (
-      (middleware === 'guest' || middleware === 'auth') &&
-      user?.role === 'parent'
-    ) {
-      router.push(redirectIfAuthenticatedParent)
-    }
-    if (
-      (middleware === 'guest' || middleware === 'auth') &&
-      user?.role === 'teacher'
-    )
-      router.push(redirectIfAuthenticatedTeacher)
-    if (
-      (middleware === 'guest' || middleware === 'auth') &&
-      user?.role === 'admin'
-    )
-      router.push(redirectIfAuthenticatedAdmin)
-
+    if (middleware === 'guest' && user) router.push(redirectIfAuthenticatedUrl!)
     if (middleware === 'auth' && error) logout()
     setLoading(false)
 
@@ -129,7 +106,7 @@ export const useAuth = (config: IUseAuth) => {
       setLoading(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [middleware, router, user, error])
+  }, [middleware, redirectIfAuthenticatedUrl, router, user, error])
 
   return {
     user,
@@ -137,7 +114,6 @@ export const useAuth = (config: IUseAuth) => {
     login,
     logout,
     loading,
-    config,
   }
   // forgot password
   // const forgotPassword = async ({setErrors, setStatus, email}) => {

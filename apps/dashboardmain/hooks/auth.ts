@@ -10,7 +10,6 @@ interface IUseAuth {
   redirectIfAuthenticatedTeacher?: string
   redirectIfAuthenticatedParent?: string
   redirectIfAuthenticatedAdmin?: string
-  parent?: boolean
 }
 
 interface IApiRequest {
@@ -108,9 +107,8 @@ export const useAuth = (config: IUseAuth) => {
     if (
       (middleware === 'guest' || middleware === 'auth') &&
       user?.role === 'parent'
-    ) {
+    )
       router.push(redirectIfAuthenticatedParent)
-    }
     if (
       (middleware === 'guest' || middleware === 'auth') &&
       user?.role === 'teacher'

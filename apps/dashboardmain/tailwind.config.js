@@ -8,9 +8,6 @@ module.exports = {
 
   theme: {
     extend: {
-      boxShadow: {
-        card: '0px 2px 20px 2px rgba(0, 0, 0, 0.15);',
-      },
       colors: {
         primary: {
           light: '#2bc8ed',

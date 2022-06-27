@@ -155,6 +155,11 @@ const Home: NextPage = () => {
             {name: 'Dr. O. Akinyemi', role: 'Manager, Recruitment'},
             {name: 'Mrs R. Wilson', role: 'Finance'},
             {name: 'Mr. T. Taiwo', role: 'Senior Administrator'},
+            {
+              name: 'Mr Oladotun Akinwole',
+              role: 'Project Manager',
+              image: '/teampic/Oladotun.png',
+            },
           ].map(profile => (
             <figure
               key={profile.name}
@@ -163,7 +168,7 @@ const Home: NextPage = () => {
               <Image
                 height={159}
                 width={159}
-                src='/Profile1.png'
+                src={profile.image ? profile.image : '/teampic/Profile1.png'}
                 alt='Profile Image'
                 className='rounded-full'
               />
@@ -188,7 +193,7 @@ const Home: NextPage = () => {
       </section>
 
       <section className=' hidden lg:block py-10 bg-[#42B9D1]/5' id='Teachers'>
-        <h2 className='heading-1'>Some or our experienced teachers</h2>
+        <h2 className='heading-1'>Some of our experienced teachers</h2>
         <ProfileSlider />
       </section>
 

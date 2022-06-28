@@ -1,3 +1,5 @@
+import GoodTick from 'components/Svg/GoodTick'
+import TeacherCard from 'components/TeacherCard'
 import type {NextPage} from 'next'
 import Image from 'next/image'
 import {GetInTouchForm} from 'ui'
@@ -150,9 +152,13 @@ const Home: NextPage = () => {
       <section className='lg:px-36  py-10 bg-[#42B9D1]/5'>
         <h2 className='heading-1'>Our Team</h2>
 
-        <div className='flex  h-[930px] lg:h-[300px]  items-center flex-col lg:flex-row justify-around  mx-auto'>
+        <div className='flex  items-center flex-col lg:flex-row justify-around  mx-auto'>
           {[
-            {name: 'Dr. O. Akinyemi', role: 'Manager, Recruitment'},
+            {
+              name: 'Dr. O. Akinyemi',
+              role: 'Manager, Recruitment',
+              image: '/teampic/Profile1.png',
+            },
             {name: 'Mrs R. Wilson', role: 'Finance'},
             {name: 'Mr. T. Taiwo', role: 'Senior Administrator'},
             {
@@ -163,12 +169,12 @@ const Home: NextPage = () => {
           ].map(profile => (
             <figure
               key={profile.name}
-              className=' w-[287px] h-[295px] bg-white rounded-xl shadow-lg flex flex-col justify-center items-center  text-center '
+              className=' w-[287px] p-2 m-2 h-[295px] bg-white rounded-xl shadow-lg flex flex-col justify-center items-center  text-center '
             >
               <Image
                 height={159}
                 width={159}
-                src={profile.image ? profile.image : '/teampic/Profile1.png'}
+                src={profile.image ? profile.image : '/teampic/grey.png'}
                 alt='Profile Image'
                 className='rounded-full'
               />
@@ -179,7 +185,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className=' h-[260px] px-4 lg:px-36 py-10 lg:my-28 bg-primary-mid rounded-2xl lg:rounded-[85px]  bg-contain bg-no-repeat lg:h-[408px]  flex flex-col items-center justify-center'>
+      <section className=' h-[260px] px-4 lg:px-36 py-10 lg:my-28 bg-primary-mid  bg-contain bg-no-repeat lg:h-[408px]  flex flex-col items-center justify-center'>
         <h3 className='uppercase  w-[200px] text-white text-center font-semibold'>
           we are hiring
         </h3>
@@ -192,9 +198,41 @@ const Home: NextPage = () => {
         </button>
       </section>
 
-      <section className=' hidden lg:block py-10 bg-[#42B9D1]/5' id='Teachers'>
+      <section className='  lg:block py-10 bg-[#42B9D1]/5' id='Teachers'>
         <h2 className='heading-1'>Some of our experienced teachers</h2>
-        <ProfileSlider />
+        {/* <ProfileSlider /> */}
+        <div className='carousel carousel-end  p-4 space-x-4  rounded-box'>
+          {[
+            {
+              name: 'Dr Stephen Adegbite',
+              subjects: 'Maths | Science | English',
+              bio: 'I have the competence and experience to engage and inspire learnersin the teaching and learning of Mathematics so that they can develop confidence and achieve their full potentials. I use good questioning strategies to assess students&apos; understanding and progress. My students make significant progress in understanding Mathematics, evidenced by their increased confidence in answering questions and performance improvements in assessments',
+              image: '/teacherspic/stephen.png',
+            },
+            {
+              name: 'Khamis Mohammed',
+              subjects: 'Science',
+              bio: 'Specialising in Chemistry and Biology, with excellent knowledge in Physics, with proven teaching experience in mainstream school and some voluntary sector. I am creative, and innovative and can demonstrate strong curriculum knowledge.  Able to create engaging lessons and provide a supportive and stimulating environment, I am passionate about teaching independent and imaginative students and guiding them to academic success.',
+              image: '/teacherspic/khamis.png',
+            },
+            {
+              name: 'Mr Michael Madame Chahwanda',
+              subjects: 'Math Teacher',
+              bio: 'I am a qualified teacher of Maths and ICT. I hold teaching qualifications for high school and further education in these subjects. I am a qualified Health and Safety trainer and a member of IOSH and I am registered with GTC-the general teaching council. I am also a part time website developer and software developer and I have tested various software for private educational institutions and public bodies .',
+              image: '/teacherspic/michael.png',
+            },
+            {
+              name: 'David Silman',
+              subjects: 'English tutor',
+              bio: 'I deliver online English tuition to students of all ages and abilities. I specialise in preparing primary school students for their 7+ and 11+ tests, and secondary school students for their GCSE English Language and English Literature examinations. I also tutor adults who have registered for IELTS or the B1 citizenship exam.',
+              image: '/teacherspic/david.png',
+            },
+          ].map(teacher => (
+            <div key={teacher.name}>
+              <TeacherCard {...teacher} />
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className='lg:px-36 py-10 relative h-[180px] lg:h-[440px] '>
@@ -255,7 +293,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className=' bg-[#42B9D1]/5 flex lg:flex-row lg:justify-around flex-col items-start px-6 lg:px-36 py-10'>
+      <section className=' bg-[#42B9D1]/5 flex md:flex-row md:justify-around flex-col items-start px-6 lg:px-36 py-10'>
         <div className='text-text-light w-[248px] mb-10'>
           <h2 className='font-bold lg:text-4xl text-[35px]  text-text-dark lg:mb-10'>
             Reach Us

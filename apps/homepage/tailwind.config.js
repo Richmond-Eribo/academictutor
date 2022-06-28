@@ -27,6 +27,9 @@ module.exports = {
           dark: '#414A4E',
         },
       },
+      boxShadow: {
+        card: '0px 2px 20px 2px rgba(0, 0, 0, 0.15);',
+      },
       backgroundImage: {
         SignUpRectangle: "url('/SignUpRectangle.png')",
       },

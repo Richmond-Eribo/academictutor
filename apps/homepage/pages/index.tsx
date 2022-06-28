@@ -318,7 +318,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className='lg:px-36 mb-10 lg:pt-10 relative h-[440px] '>
+      <section className='lg:px-36 mb-5 lg:pt-10 relative h-[440px] '>
         {/* <Image
           layout='fill'
           src='/map.png'

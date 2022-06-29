@@ -96,9 +96,9 @@ const Nav = (props: Props) => {
           }`}
         >
           {['About us', 'teachers', 'Services'].map(Navlink => (
-            <Link href='' key={Navlink}>
-              <a className='  '>{Navlink} </a>
-            </Link>
+            <a className='  ' key={Navlink} href={`#${Navlink}`}>
+              {Navlink}
+            </a>
           ))}
 
           <Link href='/'>

@@ -12,12 +12,14 @@ const Nav = (props: Props) => {
         {/* logo */}
 
         <figure className=' lg:pt-5'>
-          <Image
-            src='/logo.png'
-            height={42 / 1.1}
-            width={305 / 1.2}
-            alt='logo'
-          />
+          <Link href='/'>
+            <Image
+              src='/logo.png'
+              height={42 / 1.1}
+              width={305 / 1.2}
+              alt='logo'
+            />
+          </Link>
         </figure>
 
         {/* hamburger menu */}
@@ -64,12 +66,15 @@ const Nav = (props: Props) => {
           {['About us', 'Services', 'Teachers'].map(Navlink => (
             <a
               key={Navlink}
-              href={`#${Navlink}`}
+              href={`/#${Navlink}`}
               className='lg:ml-6 md:ml-3 text-15px'
             >
               {Navlink}
             </a>
           ))}
+          <Link href='/UniAssist'>
+            <a className='lg:ml-6 md:ml-3 text-15px'>Uni Assist</a>
+          </Link>
 
           <Link href='/'>
             <button className='bg-[#42B9D1] md:w-[120px] md:h-[35px]  button text-15px md:px-4 lg:px-5 tracking-wide text-white rounded-md md:ml-10 md:mr-4 lg:ml-16 lg:mr-6'>
@@ -96,10 +101,20 @@ const Nav = (props: Props) => {
           }`}
         >
           {['About us', 'teachers', 'Services'].map(Navlink => (
-            <a className='  ' key={Navlink} href={`#${Navlink}`}>
+            <a
+              className='  '
+              onClick={() => setMenuOpen(false)}
+              key={Navlink}
+              href={`/#${Navlink}`}
+            >
               {Navlink}
             </a>
           ))}
+          <Link href='/UniAssist'>
+            <a onClick={() => setMenuOpen(false)} className=''>
+              Uni Assist
+            </a>
+          </Link>
 
           <Link href='/'>
             <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white rounded-md  '>

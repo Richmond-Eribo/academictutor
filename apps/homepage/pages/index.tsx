@@ -239,15 +239,6 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className='lg:px-36 py-10 relative h-[190px] lg:h-[440px] '>
-        <Image
-          layout='fill'
-          src='/uni.png'
-          alt='Profile Image'
-          // className='rounded-full'
-        />
-      </section>
-
       <section className='lg:px-36 px-4 py-10'>
         <h2 className='heading-1'>University Admission Assist</h2>
 

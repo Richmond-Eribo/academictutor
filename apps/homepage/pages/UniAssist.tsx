@@ -8,7 +8,7 @@ const UniAssist = () => {
     <div>
       <Nav />
 
-      <section className='lg:px-36 py-10 relative h-[190px] lg:h-[440px] '>
+      <section className='lg:px-36 py-10 relative h-[160px] md:h-[270px] lg:h-[440px] '>
         <Image
           layout='fill'
           src='/uni.png'

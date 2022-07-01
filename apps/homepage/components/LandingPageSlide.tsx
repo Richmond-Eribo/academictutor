@@ -19,7 +19,7 @@ function LandingPageSlide({}: Props) {
       <Swiper pagination={true} modules={[Pagination]} className=' '>
         <SwiperSlide>
           <div className='flex flex-col  pt-10 md:pt-0 lg:flex-row justify-between  lg:justify-center items-center lg:px-2'>
-            <h1 className='font-bold mb-20 lg:mb-0 text-center lg:text-left text-[30px] md:text-[45px] md:w-[560px] lg:text-[50px] lg:w-[600px]  hies '>
+            <h1 className='font-extrabold mb-20 lg:mb-0 text-center lg:text-left text-[30px] md:text-[45px] md:w-[560px] lg:text-[50px] lg:w-[600px] '>
               The excellent place <br /> to find Academic solutions
             </h1>
             <figure className='hidden md:block'>

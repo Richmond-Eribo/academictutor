@@ -117,13 +117,13 @@ const Nav = (props: Props) => {
           </Link>
 
           <Link href='/'>
-            <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white rounded-md  '>
+            <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white border-none rounded-md  '>
               SignUp
             </button>
           </Link>
 
           <Link href='/'>
-            <button className='bg-secondary-light w-[120px] h-[35px]  text-15px text-[#42B9D1] border-2 border-[#42B9D1] button  tracking-wide  rounded-md'>
+            <button className='bg-secondary-light w-[120px] h-[35px]  text-15px text-[#42B9D1]1 text-white button  tracking-wide  rounded-md'>
               Login
             </button>
           </Link>

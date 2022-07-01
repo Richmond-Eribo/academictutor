@@ -159,7 +159,11 @@ const Home: NextPage = () => {
               role: 'Manager, Recruitment',
               image: '/teampic/Profile1.png',
             },
-            {name: 'Mrs R. Wilson', role: 'Finance'},
+            {
+              name: 'Mrs R. Wilson',
+              role: 'Finance',
+              image: '/teampic/wilson.png',
+            },
             {name: 'Mr. T. Taiwo', role: 'Senior Administrator'},
             {
               name: 'Mr Oladotun Akinwole',
@@ -235,7 +239,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className='lg:px-36 py-10 relative h-[180px] lg:h-[440px] '>
+      <section className='lg:px-36 py-10 relative h-[190px] lg:h-[440px] '>
         <Image
           layout='fill'
           src='/uni.png'
@@ -282,7 +286,7 @@ const Home: NextPage = () => {
               <li>and many more</li>
             </ol>
 
-            <h4 className='font-bold'>Tuition free countries</h4>
+            <h4 className='font-bold'>Tuition fee countries</h4>
             <ol className='list-disc list-inside'>
               <li>UK</li>
               <li>United States of America</li>

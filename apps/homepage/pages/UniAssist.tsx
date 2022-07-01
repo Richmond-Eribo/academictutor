@@ -1,6 +1,7 @@
 import Nav from 'components/Nav'
 import TextWrapper from 'components/TextWrapper'
 import Image from 'next/image'
+import {GetInTouchForm} from 'ui'
 
 const UniAssist = () => {
   return (
@@ -61,6 +62,31 @@ const UniAssist = () => {
               <li>Australia</li>
             </ol>
           </TextWrapper>
+        </div>
+      </section>
+
+      <section className=' bg-[#42B9D1]/5 flex md:flex-row md:justify-around flex-col items-start px-6 lg:px-36 py-10'>
+        <div className='text-text-light w-[248px] mb-10'>
+          <h2 className='font-bold lg:text-4xl text-[35px]  text-text-dark lg:mb-10'>
+            Reach Us
+          </h2>
+          <h4 className='font-bold text-15px'>Address</h4>
+          <p className='text-15px mb-3 '>
+            Academic Tutors Limited Whittlesey, Peterborough PE7, United Kingdom
+          </p>
+          <h4 className='font-bold text-15px'>Contact</h4>
+          <p className='text-15px'>+44 173 377 0106</p>
+          <p className='text-15px mb-3'>admin@academictutors.org.uk</p>
+          <h4 className='font-bold text-15px'>Visit</h4>
+          <h2 className=' text-15px '>07:30 AM - 05:00 PM</h2>
+        </div>
+
+        <div>
+          <h2 className='font-bold text-center lg:text-left lg:text-4xl text-[35px]   text-text-dark lg:mb-10'>
+            Get in touch
+          </h2>
+          {/* get in touch form */}
+          <GetInTouchForm />
         </div>
       </section>
     </div>

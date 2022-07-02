@@ -8,7 +8,7 @@ const Nav = (props: Props) => {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <>
-      <div className='flex pt-5 lg:pt-1 bg-white lg:h-[70px]  lg:flex-row justify-between   items-center pb-4 px-2  md:mb-8 md:px-5 lg:mb-10 lg:px-10 md:rounded-md'>
+      <div className='sticky top-0 z-40 flex pt-5 lg:pt-1 bg-white lg:h-[70px]  lg:flex-row justify-between   items-center pb-4 px-2  md:mb-8 md:px-5 lg:mb-10 lg:px-10 md:rounded-md'>
         {/* logo */}
 
         <figure className=' lg:pt-5'>

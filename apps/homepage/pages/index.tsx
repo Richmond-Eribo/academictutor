@@ -161,7 +161,7 @@ const Home: NextPage = () => {
             },
             {
               name: 'Mrs R. Wilson',
-              role: 'Finance',
+              role: 'Finance Manager',
               image: '/teampic/wilson.png',
             },
             {name: 'Mr. T. Taiwo', role: 'Senior Administrator'},

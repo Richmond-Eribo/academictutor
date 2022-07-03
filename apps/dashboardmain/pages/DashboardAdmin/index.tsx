@@ -5,7 +5,7 @@ import Logout from 'components/svg/Logout'
 import UserCard from 'components/UserCard'
 // import Notification from 'components/svg/Notification'
 import Image from 'next/image'
-// import Link from 'next/link'
+import Link from 'next/link'
 import {Footer} from 'ui'
 
 const DashboardAdmin = () => {
@@ -19,10 +19,14 @@ const DashboardAdmin = () => {
       {user ? (
         <div className=''>
           <nav className='flex flex-col md:flex-row items-center  md:justify-between md:items-center py-5  px-20'>
-            <Image src='/logo.png' width={302} height={47} alt='logo' />
+            <Link href='/'>
+              <Image src='/logo.png' width={302} height={47} alt='logo' />
+            </Link>
 
             <div className='flex justify-between px-4 md:mt-2  w-screen md:w-3/12 mt-10'>
               <button>Dashboard</button>
+              <button>Parents</button>
+              <button>Teachers</button>
               {/* <button onClick={logout}> */}
               <Logout />
               {/* </button> */}

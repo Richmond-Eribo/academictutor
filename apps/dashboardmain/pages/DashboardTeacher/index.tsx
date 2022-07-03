@@ -2,6 +2,7 @@ import Logout from 'components/svg/Logout'
 import Notification from 'components/svg/Notification'
 // import {useAuth} from 'hooks/auth'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const DashboardTeacher = () => {
   // const {loading, user, logout} = useAuth({
@@ -15,7 +16,9 @@ const DashboardTeacher = () => {
       {user ? (
         <div className='pt-10'>
           <nav className='flex flex-col md:flex-row items-center  md:justify-between md:items-center pb-10 px-20'>
-            <Image src='/logo.png' width={302} height={47} alt='logo' />
+            <Link href='/'>
+              <Image src='/logo.png' width={302} height={47} alt='logo' />
+            </Link>
 
             <div className='flex justify-between px-4 md:mt-2  w-screen md:w-3/12 mt-10'>
               <button>

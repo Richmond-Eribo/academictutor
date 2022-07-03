@@ -1,8 +1,8 @@
 import Input from 'ui/components/Input'
 import React, {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-import {useAuth} from '../hooks/auth'
-import axios from 'lib/axios'
+// import {useAuth} from '../hooks/auth'
+// import axios from 'lib/axios'
 import Error from 'components/Error'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -12,26 +12,26 @@ const Login = () => {
 
   const router = useRouter()
 
-  const {login, loading, user} = useAuth({
-    middleware: 'guest',
-  })
+  // const {login, loading, user} = useAuth({
+  //   middleware: 'guest',
+  // })
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState<any>()
   const [status, setStatus] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (router.query.reset?.length! > 0 && errors?.length === 0) {
-      setStatus(window.atob(router.query.reset as string))
-    } else {
-      setStatus(null)
-    }
-  }, [errors, router.query])
+  // useEffect(() => {
+  //   if (router.query.reset?.length! > 0 && errors?.length === 0) {
+  //     setStatus(window.atob(router.query.reset as string))
+  //   } else {
+  //     setStatus(null)
+  //   }
+  // }, [errors, router.query])
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    login({setErrors, email, password, setStatus})
+    // login({setErrors, email, password, setStatus})
   }
 
   return (

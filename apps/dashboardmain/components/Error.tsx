@@ -1,5 +1,5 @@
 type Props = {
-  errors: []
+  errors: [] | undefined
 }
 
 const Error = ({errors = []}: Props) => {
@@ -7,11 +7,11 @@ const Error = ({errors = []}: Props) => {
     <>
       {errors.length > 0 && (
         <div className=''>
-          <p className='text-red-400'>Error</p>
-
           <ul className='mt-2'>
             {errors.map(error => (
-              <li key={error}>error</li>
+              <li key={error} className='text-red-400'>
+                {error}
+              </li>
             ))}
           </ul>
         </div>

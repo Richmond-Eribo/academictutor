@@ -74,7 +74,7 @@ const TeacherSignUp = ({
   setNational_insurance_number,
 }: Props) => {
   return (
-    <form>
+    <form onSubmit={submitFormTeacher}>
       <div className='flex content-around  w-screen lg:flex-row flex-col justify-around items-center'>
         <section className='lg:w-[400px]  '>
           <Input

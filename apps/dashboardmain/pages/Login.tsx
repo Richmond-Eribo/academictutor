@@ -1,26 +1,28 @@
 import Input from 'ui/components/Input'
 import React, {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-// import {useAuth} from '../hooks/auth'
+import {useAuth} from '../hooks/auth'
 import axios from 'lib/axios'
 import Error from 'components/Error'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Login = () => {
   const [activeInput, setActiveInput] = useState(0)
 
   const router = useRouter()
 
-  // const {login, loading, user} = useAuth({
-  //   middleware: 'guest',
-  // })
+  const {login, loading, user} = useAuth({
+    middleware: 'guest',
+  })
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState<[]>()
   const [status, setStatus] = useState<string | null>(null)
 
   useEffect(() => {
-    if (router.query.reset?.length! > 0 && errors.length === 0) {
+    if (router.query.reset?.length! > 0 && errors?.length === 0) {
       setStatus(window.atob(router.query.reset as string))
     } else {
       setStatus(null)
@@ -29,82 +31,91 @@ const Login = () => {
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // login({setErrors, email, password, setStatus})
+    login({setErrors, email, password, setStatus})
   }
 
   return (
-    <div>
-      {/* <Error errors={errors} /> */}
-
+    <div className='lg:grid lg:grid-cols-2 px-10 lg:px-0 md:px-10  h-screen'>
+      <div className='lg:w-[728px] hidden lg:block  relative'>
+        <Image src='/SignUpImage2.png' layout='fill' alt='sign up Image' />
+      </div>
       {/* {user && console.log('user')} */}
-      <form onSubmit={submitForm}>
-        <div className='flex content-around  w-screen lg:flex-row flex-col justify-around items-center'>
-          <section className='lg:w-[400px]  '>
-            {/* <Input
-              type='name'
-              setActiveInput={setActiveInput}
-              activeInput={activeInput}
-              activeNumber={1}
-              placeholder='Full Name'
-              marginTop={5}
-              value
-            /> */}
+      <form
+        onSubmit={submitForm}
+        className='flex flex-col justify-center items-center  h-screen'
+      >
+        <Link href='/'>
+          <>
+            <a className='hidden lg:block'>
+              <Image
+                src='/logo.png'
+                height={42}
+                width={305}
+                alt='logo'
+                className=''
+                priority
+              />
+            </a>
 
-            <Input
-              type='email'
-              setActiveInput={setActiveInput}
-              activeInput={activeInput}
-              activeNumber={2}
-              placeholder='Email'
-              marginTop={5}
-              value={email}
-              setValue={setEmail}
-            />
+            <a className='block lg:hidden'>
+              <Image
+                src='/logo.png'
+                height={42 / 1.2}
+                width={305 / 1.2}
+                alt='logo'
+                className=''
+                priority
+              />
+            </a>
+          </>
+        </Link>
 
-            <Input
-              type='password'
-              setActiveInput={setActiveInput}
-              activeInput={activeInput}
-              activeNumber={3}
-              placeholder='password'
-              marginTop={5}
-              value={password}
-              setValue={setPassword}
-            />
+        {/* <section className='lg:w-[400px]  '> */}
+        <Error errors={errors} />
+        <Input
+          type='email'
+          setActiveInput={setActiveInput}
+          activeInput={activeInput}
+          activeNumber={2}
+          placeholder='Email'
+          marginTop={5}
+          value={email}
+          setValue={setEmail}
+        />
 
-            {/* <Input
-              type='text'
-              setActiveInput={setActiveInput}
-              activeInput={activeInput}
-              activeNumber={4}
-              placeholder='Address'
-              marginTop={5}
-            /> */}
+        <Input
+          type='password'
+          setActiveInput={setActiveInput}
+          activeInput={activeInput}
+          activeNumber={3}
+          placeholder='password'
+          marginTop={5}
+          value={password}
+          setValue={setPassword}
+        />
 
-            <div className='flex mt-10 mb-2'>
-              <p className='text-text-light'>
-                Are you currently eligible to work in the Uk?
-              </p>
-            </div>
+        {/* <button type='submit' className='button sign-button mt-10'>
+              Log in
+            </button> */}
+        {/* </section> */}
+        {/* <div className='flex lg:max-w-[420px] w-full justify-between mt-10 text-[#BFC7D3]'>
+          <p className='text-sm lg:text-base'>
+            <input type='checkbox' name='remember' /> Remember me
+          </p>
 
-            <p className='text-text-light'>
-              if yes include work{' '}
-              <a className='text-[#42B9D1] underline'> Permit or ID</a>
-            </p>
-          </section>
-
-          <section className='w-[400px] my-10 lg:my-0 bg-yellow-300'>
-            this is two
-          </section>
-
-          <section className='w-[400px] bg-slate-500'>
-            this just might be
-          </section>
-        </div>
-
-        <button type='submit' className='button sign-button mt-10'>
-          sign up
+          <Link href='/'>
+            <a className='text-sm lg:text-base'> Forgot Password? </a>
+          </Link>
+        </div> */}
+        <button type='submit' className='button sign-button  mt-5'>
+          sign in
         </button>
+        <p className='mt-5 text-sm lg:text-base'>
+          New on our platform?{' '}
+          <Link href='/Signup'>
+            <a className='text-[#42B9D1] '>Create an account</a>
+          </Link>{' '}
+        </p>
       </form>
     </div>
   )

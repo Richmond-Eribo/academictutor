@@ -13,7 +13,7 @@ interface IUseAuth {
 }
 
 interface IApiRequest {
-  setErrors: React.Dispatch<React.SetStateAction<never[]>>
+  setErrors: React.Dispatch<React.SetStateAction<[] | undefined>>
   setStatus?: React.Dispatch<React.SetStateAction<string | null>>
   [key: string]: any
 }
@@ -58,7 +58,6 @@ export const useAuth = (config: IUseAuth) => {
   const register = async ({setErrors, ...props}: IApiRequest) => {
     await csrf()
     setErrors([])
-    console.log('register')
 
     // route
     axios
@@ -76,7 +75,7 @@ export const useAuth = (config: IUseAuth) => {
       .catch(error => {
         if (error.response.status !== 422) throw error
 
-        setErrors(Object.values(error.response.data.errors).flat() as never[])
+        setErrors(Object.values(error.response.data.errors).flat() as [])
       })
   }
 
@@ -92,7 +91,7 @@ export const useAuth = (config: IUseAuth) => {
       .then(() => mutate())
       .catch(error => {
         if (error.response.status !== 422) throw error
-        setErrors(Object.values(error.response.data.errors).flat() as never[])
+        setErrors(Object.values(error.response.data.errors).flat() as [])
       })
   }
 

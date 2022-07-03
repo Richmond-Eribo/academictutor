@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import TeacherCard from './TeacherCard'
 
+interface teacher {}
+
 const DaisySlide = () => {
   return (
     <div className='carousel carousel-center max-screen p-4 space-x-4  rounded-box'>

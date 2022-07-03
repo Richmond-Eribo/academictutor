@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Input from 'ui/components/Input'
 
 type Props = {
-  submitFormTeacher: (event: React.FormEvent<HTMLFormElement>) => Promise<void>
+  submitFormParent: (event: React.FormEvent<HTMLFormElement>) => Promise<void>
   setActiveInput: React.Dispatch<React.SetStateAction<number>>
   setName: React.Dispatch<React.SetStateAction<any>>
   setEmail: React.Dispatch<React.SetStateAction<any>>
@@ -16,7 +16,7 @@ type Props = {
 }
 
 const ParentSignUp = ({
-  submitFormTeacher,
+  submitFormParent,
   setActiveInput,
   setName,
   setPhone,
@@ -29,7 +29,7 @@ const ParentSignUp = ({
   phone,
 }: Props) => {
   return (
-    <form onSubmit={submitFormTeacher}>
+    <form onSubmit={submitFormParent}>
       {/* <div className='flex content-around  w-screen lg:flex-row flex-col justify-around items-center'> */}
       <section className='lg:w-[400px]  '>
         {/* name */}

@@ -58,16 +58,16 @@ const SignUp: FC = () => {
       password,
       phone,
       subjects,
-      role: 'Teacher',
+      role: 'teacher',
       profile,
       // contains reference info
       profile_picture,
-      rel_relationship: null,
-      rel_organisation: null,
-      rel_position: null,
-      rel_phone: null,
-      rel_name: null,
-      rel_email: null,
+      rel_relationship,
+      rel_organisation,
+      rel_position,
+      rel_phone,
+      rel_name,
+      rel_email,
       // contains all the documents
       right_to_work,
       dbs_certificate,
@@ -154,7 +154,7 @@ const SignUp: FC = () => {
         <main className='flex justify-center'>
           <div className={`${tab == 2 ? 'hidden' : 'block'}`}>
             <TeacherSignUp
-              submitFormTeacher={submitFormParent}
+              submitFormTeacher={submitFormTeacher}
               setActiveInput={setActiveInput}
               setName={setName}
               setPhone={setPhone}
@@ -191,7 +191,7 @@ const SignUp: FC = () => {
           </div>
           <div className={`${tab == 1 ? 'hidden' : 'block'} `}>
             <ParentSignUp
-              submitFormTeacher={submitFormTeacher}
+              submitFormParent={submitFormParent}
               setActiveInput={setActiveInput}
               setName={setName}
               setPhone={setPhone}

@@ -6,7 +6,7 @@ type Props = {
 
 const DocumenCard: FC<Props> = ({documentName}) => {
   return (
-    <div className='my-2 lg:w-[514px] lg:h-[60px] flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'>
+    <div className='my-2 py-3 flex-col lg:flex-row lg:w-[514px] lg:h-[60px] flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'>
       <p>{documentName}</p>
 
       <div>

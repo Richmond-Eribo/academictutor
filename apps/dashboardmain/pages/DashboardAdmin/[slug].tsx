@@ -24,11 +24,11 @@ const Slug = () => {
       <main className='bg-[#F0FBFF] py-5 lg:px-20 px-3'>
         <h1 className='font-bold lg:text-[35px] text-[28px] mb-5'>{slug}</h1>
 
-        <div className='flex justify-between'>
+        <div className='flex justify-between flex-col lg:flex-row'>
           <UserCard title='' />
-          <div className='bg-white lg:px-[30px] lg:w-[800px] py-[30px] '>
+          <div className='bg-white lg:px-[30px] px-5 lg:w-[800px] py-[30px] '>
             <div className=''>
-              <figure className='lg:w-[110px] mb-2   overflow-hidden rounded-full lg:h-[110px] '>
+              <figure className='lg:w-[110px] h-[110px] w-[110px] mb-2   overflow-hidden rounded-full lg:h-[110px] '>
                 <Image
                   src='https://api.lorem.space/image/movie?w=200&h=280'
                   width={200}

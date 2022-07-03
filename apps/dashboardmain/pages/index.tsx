@@ -50,12 +50,14 @@ const Home: NextPage = () => {
           className=''
           priority
         />
-        <p className='mt-10'>
+        <p className='mt-10 text-center'>
           Hi, this is a Demo.It is view on all that is happening in the
           dashboard area of academic tutor
         </p>
 
-        <p>To take you on a tour, there are three dashboards. </p>
+        <p className='text-center'>
+          To take you on a tour, there are three dashboards.{' '}
+        </p>
 
         <div className='flex mt-10 flex-col justify-between i'>
           <Link href='/DashboardParent'>
@@ -73,6 +75,18 @@ const Home: NextPage = () => {
           <Link href='/DashboardAdmin'>
             <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
               Admin Dashboard
+            </button>
+          </Link>
+
+          <Link href='/Login'>
+            <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
+              Login Page
+            </button>
+          </Link>
+
+          <Link href='/SignUp'>
+            <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
+              Sign Up page
             </button>
           </Link>
         </div>

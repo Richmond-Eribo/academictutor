@@ -5,7 +5,7 @@ type Props = {
 const Error = ({errors}: Props) => {
   return (
     <>
-      {errors.length > 0 && (
+      {errors?.length > 0 && (
         <div className=''>
           <ul className='mt-2'>
             {errors.map((error: any) => (

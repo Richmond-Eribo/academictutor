@@ -13,7 +13,7 @@ interface IUseAuth {
 }
 
 interface IApiRequest {
-  setErrors: React.Dispatch<React.SetStateAction<[] | undefined>>
+  setErrors: React.Dispatch<React.SetStateAction<any>>
   setStatus?: React.Dispatch<React.SetStateAction<string | null>>
   [key: string]: any
 }
@@ -75,7 +75,7 @@ export const useAuth = (config: IUseAuth) => {
       .catch(error => {
         if (error.response.status !== 422) throw error
 
-        setErrors(Object.values(error.response.data.errors).flat() as [])
+        setErrors(Object.values(error.response.data.errors).flat())
       })
   }
 
@@ -91,7 +91,7 @@ export const useAuth = (config: IUseAuth) => {
       .then(() => mutate())
       .catch(error => {
         if (error.response.status !== 422) throw error
-        setErrors(Object.values(error.response.data.errors).flat() as [])
+        setErrors(Object.values(error.response.data.errors).flat())
       })
   }
 

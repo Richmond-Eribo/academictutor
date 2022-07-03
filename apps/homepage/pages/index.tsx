@@ -240,7 +240,7 @@ const Home: NextPage = () => {
       </section>
 
       <section className=' bg-[#42B9D1]/5 flex md:flex-row md:justify-around flex-col items-start px-6 lg:px-36 py-10'>
-        <div className='text-text-light w-[248px] mb-10'>
+        <div className='text-text-light mx-auto lg:mx-0 text-center lg:text-left bg-slate-400 w-[248px] mb-10'>
           <h2 className='font-bold lg:text-4xl text-[35px]  text-text-dark lg:mb-10'>
             Reach Us
           </h2>

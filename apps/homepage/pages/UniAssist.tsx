@@ -8,10 +8,18 @@ const UniAssist = () => {
     <div>
       <Nav />
 
-      <section className='lg:px-36 py-10 relative h-[160px] md:h-[270px] lg:h-[440px] '>
+      <section className='lg:px-36 hidden lg:block py-10 relative h-[160px] md:h-[270px] lg:h-[440px] '>
         <Image
           layout='fill'
           src='/uni.png'
+          alt='Profile Image'
+          // className='rounded-full'
+        />
+      </section>
+      <section className='lg:px-36 lg:hidden py-10 relative h-[230px] md:h-[270px] '>
+        <Image
+          layout='fill'
+          src='/uniMobile.png'
           alt='Profile Image'
           // className='rounded-full'
         />

@@ -76,7 +76,7 @@ const Home: NextPage = () => {
               Admin Dashboard
             </button>
           </Link>
-
+          {/* 
           <Link href='/Login'>
             <button className='bg-[#42B9D1] my-5 button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
               Login Page
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
             <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
               Sign Up page
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </>

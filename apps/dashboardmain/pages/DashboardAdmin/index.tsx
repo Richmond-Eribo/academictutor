@@ -24,9 +24,13 @@ const DashboardAdmin = () => {
             </Link>
 
             <div className='flex justify-between px-4 md:mt-2  w-screen md:w-3/12 mt-10'>
-              <button>Dashboard</button>
-              <button>Parents</button>
-              <button>Teachers</button>
+              <Link href='/DashboardAdmin'>
+                <button>Dashboard</button>
+              </Link>
+
+              <Link href='/DashboardAdmin/teacher'>
+                <button>Teachers</button>
+              </Link>
               {/* <button onClick={logout}> */}
               <Logout />
               {/* </button> */}

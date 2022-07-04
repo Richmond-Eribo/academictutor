@@ -2,11 +2,16 @@ import DocumenCard from 'components/DocumenCard'
 import Logout from 'components/svg/Logout'
 import UserCard from 'components/UserCard'
 import Image from 'next/image'
+import Link from 'next/link'
 import {useRouter} from 'next/router'
+// import {useAuth} from 'hooks/auth'
 
 const Slug = () => {
   const router = useRouter()
   const {slug} = router.query
+  // const {loading, user} = useAuth({
+  //   middleware: 'auth',
+  // })
 
   return (
     <div>
@@ -14,7 +19,12 @@ const Slug = () => {
         <Image src='/logo.png' width={302} height={47} alt='logo' />
 
         <div className='flex justify-between px-4 md:mt-2  w-screen md:w-3/12 mt-10'>
-          <button>Dashboard</button>
+          <Link href='/DashboardAdmin'>
+            <button>Dashboard</button>
+          </Link>
+          <Link href='/DashboardAdmin/teacher'>
+            <button>Teachers</button>
+          </Link>
           {/* <button onClick={logout}> */}
           <Logout />
           {/* </button> */}
@@ -25,10 +35,10 @@ const Slug = () => {
         <h1 className='font-bold lg:text-[35px] text-[28px] mb-5'>{slug}</h1>
 
         <div className='flex justify-between flex-col lg:flex-row'>
-          <UserCard title='' />
+          <UserCard height={500} title='' />
           <div className='bg-white lg:px-[30px] px-5 lg:w-[800px] py-[30px] '>
-            <div className=''>
-              <figure className='lg:w-[110px] h-[110px] w-[110px] mb-2   overflow-hidden rounded-full lg:h-[110px] '>
+            <div className='flex items-center'>
+              <figure className='lg:w-[154px] h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
                 <Image
                   src='https://api.lorem.space/image/movie?w=200&h=280'
                   width={200}
@@ -36,16 +46,18 @@ const Slug = () => {
                   alt='who'
                 />
               </figure>
-              <h2 className='card-title text-14'>Dr Stephen Adegbite</h2>
-              <p className='text-sm -mt-1 mb-2'>Maths and Science</p>
-              <p className='text-sm mb-10'>
-                My teaching approaches enable pupils to easily recall
-                mathematical facts and methods through practice to embed key
-                learning points. I am proficient in teaching Mathematics using
-                practical contexts which learners can easily relate to, while
-                ensuring that they consolidate their learning using tasks and
-                problem solving exercises focussed on deepening understanding.
-              </p>
+              <div className='lg:w-[355px]'>
+                <h2 className='card-title text-14'>Dr Stephen Adegbite</h2>
+                <p className='text-sm -mt-1 mb-2'>Maths and Science</p>
+                <p className='text-sm mb-10'>
+                  My teaching approaches enable pupils to easily recall
+                  mathematical facts and methods through practice to embed key
+                  learning points. I am proficient in teaching Mathematics using
+                  practical contexts which learners can easily relate to, while
+                  ensuring that they consolidate their learning using tasks and
+                  problem solving exercises focussed on deepening understanding.
+                </p>
+              </div>
             </div>
 
             <div>

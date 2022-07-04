@@ -10,10 +10,10 @@ const DocumenCard: FC<Props> = ({documentName}) => {
       <p>{documentName}</p>
 
       <div>
-        <button className='w-[95px] h-[35px] bg-red-600/60 hover:bg-red-600 duration-150  rounded-3xl text-white mr-3'>
+        <button className='w-[95px] h-[35px] bg-[#EF553B] duration-150  rounded-xl text-white mr-3'>
           Reject
         </button>
-        <button className='w-[95px] h-[35px] bg-primary-light/60 hover:bg-primary-mid duration-150  rounded-3xl text-white'>
+        <button className='w-[95px] h-[35px] bg-primary-light  duration-150  rounded-xl text-white'>
           Accept
         </button>
       </div>

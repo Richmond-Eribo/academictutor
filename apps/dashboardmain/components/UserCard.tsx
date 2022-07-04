@@ -5,25 +5,15 @@ type Props = {
   title: string
   link?: string
   height?: number
+  arrayToMap: string[]
 }
-const UserCard: FC<Props> = ({title, link, height = 420}) => {
+const UserCard: FC<Props> = ({title, link, height, arrayToMap}) => {
   return (
-    <div className='bg-white w-[360px] px-[35px] py-[30px] h-[800px] my-10 lg:my-0'>
+    <div className='bg-white w-[360px] px-[35px] py-[30px] h-[600px] my-10 lg:my-0'>
       <h3 className='text-[20px] font-medium mb-5 '>{title} </h3>
 
       <ul className={`scrollbar  h-[${height}px] snap-y overflow-y-scroll`}>
-        {[
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-          'Mrs J. Marie ',
-        ].map((i, index) => (
+        {arrayToMap.map((i, index) => (
           <li
             key={index}
             className='h-[62px] mb-2 mx-1 scroll-my-2 flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'
@@ -37,7 +27,7 @@ const UserCard: FC<Props> = ({title, link, height = 420}) => {
           </li>
         ))}
       </ul>
-      <div className=' flex justify-center '>
+      {/* <div className=' flex justify-center '>
         {link && (
           <Link href={link}>
             <button className='bg-primary-mid  mt-3 rounded-xl text-white py-[21px]  w-[300px] '>
@@ -45,7 +35,7 @@ const UserCard: FC<Props> = ({title, link, height = 420}) => {
             </button>
           </Link>
         )}
-      </div>
+      </div> */}
 
       <style jsx>
         {`
@@ -64,7 +54,7 @@ const UserCard: FC<Props> = ({title, link, height = 420}) => {
           .scrollbar::-webkit-scrollbar-thumb {
             background: rgb(43 200 237 / 0.6);
             border-radius: 100vh;
-            // border: 2px solid #f6f7ed;
+            border: 2px solid #f6f7ed;
           }
 
           .scrollbar::-webkit-scrollbar-thumb:hover {

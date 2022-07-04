@@ -45,12 +45,30 @@ const DashboardAdmin = () => {
             <div className='flex justify-between flex-col lg:flex-row'>
               <RequestCard />
               <UserCard
-                height={420}
+                arrayToMap={[
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                ]}
+                height={460}
                 title='Teachers'
                 link='/DashboardAdmin/teacher?id=1'
               />
               <UserCard
-                height={420}
+                arrayToMap={[
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                  'Mrs J. Marie ',
+                ]}
+                height={460}
                 title='Parents'
                 link='/DashboardAdmin/teacher'
               />

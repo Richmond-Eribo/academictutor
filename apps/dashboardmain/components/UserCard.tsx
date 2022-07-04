@@ -4,7 +4,7 @@ import {FC} from 'react'
 type Props = {
   title: string
   link?: string
-  height?: number
+  height?: string
   arrayToMap: string[]
 }
 const UserCard: FC<Props> = ({title, link, height, arrayToMap}) => {
@@ -12,7 +12,7 @@ const UserCard: FC<Props> = ({title, link, height, arrayToMap}) => {
     <div className='bg-white w-[360px] px-[35px] py-[30px] h-[600px] my-10 lg:my-0'>
       <h3 className='text-[20px] font-medium mb-5 '>{title} </h3>
 
-      <ul className={`scrollbar  h-[${height}px] snap-y overflow-y-scroll`}>
+      <ul className={`scrollbar  h-[${height}] snap-y overflow-y-scroll`}>
         {arrayToMap.map((i, index) => (
           <li
             key={index}

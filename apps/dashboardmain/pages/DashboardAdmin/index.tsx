@@ -54,7 +54,7 @@ const DashboardAdmin = () => {
                   'Mrs J. Marie ',
                   'Mrs J. Marie ',
                 ]}
-                height={460}
+                height={'460px'}
                 title='Teachers'
                 link='/DashboardAdmin/teacher?id=1'
               />
@@ -68,7 +68,7 @@ const DashboardAdmin = () => {
                   'Mrs J. Marie ',
                   'Mrs J. Marie ',
                 ]}
-                height={460}
+                height={'460px'}
                 title='Parents'
                 link='/DashboardAdmin/teacher'
               />

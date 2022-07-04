@@ -50,7 +50,7 @@ const Slug = () => {
               'Mrs J. Marie ',
               'Mrs J. Marie ',
             ]}
-            height={'550px'}
+            height={'h-[550px]'}
             title=''
           />
           <div className='bg-white lg:px-[30px] px-5 lg:w-[800px] py-[30px] '>

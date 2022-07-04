@@ -35,9 +35,8 @@ const Home: NextPage = () => {
   // const router = useRouter()
   // const [loading, setLoading] = useState(true)
   // const {loading, user} = useAuth({
-  //   middleware: 'auth',
+  //   middleware: 'guest',
   // })
-  // const [loggedIn, setLoggedIn] = useState(authCheck)
 
   return (
     <>
@@ -79,7 +78,7 @@ const Home: NextPage = () => {
           </Link>
 
           <Link href='/Login'>
-            <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
+            <button className='bg-[#42B9D1] my-5 button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
               Login Page
             </button>
           </Link>

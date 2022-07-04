@@ -50,7 +50,7 @@ const Slug = () => {
               'Mrs J. Marie ',
               'Mrs J. Marie ',
             ]}
-            height={550}
+            height={500}
             title=''
           />
           <div className='bg-white lg:px-[30px] px-5 lg:w-[800px] py-[30px] '>
@@ -93,9 +93,6 @@ const Slug = () => {
 
       <style jsx>
         {`
-          // .scrollbar {
-          //   height: 40px;
-          // }
           .scrollbar::-webkit-scrollbar {
             width: 8px;
             // height: 0px;

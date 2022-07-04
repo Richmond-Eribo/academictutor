@@ -51,7 +51,6 @@ const Slug = () => {
               'Mrs J. Marie ',
             ]}
             height={'h-[550px]'}
-            title=''
           />
           <div className='bg-white lg:px-[30px] px-5 lg:w-[800px] py-[30px] '>
             <div className='flex flex-col lg:flex-row lg:items-center'>

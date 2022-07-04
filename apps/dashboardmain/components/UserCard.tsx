@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import {FC} from 'react'
 
+type Title = 'Parents' | 'Teachers'
+
 type Props = {
-  title: string
+  title?: Title
   link?: string
   height?: string
   arrayToMap: string[]
@@ -19,11 +21,13 @@ const UserCard: FC<Props> = ({title, link, height, arrayToMap}) => {
             className='h-[62px] mb-2 mx-1 scroll-my-2 flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'
           >
             {i}
-            <Link href={`/DashboardAdmin/${title}`}>
-              <button className='w-[95px] h-[35px] bg-primary-light hover:bg-primary-light duration-150  rounded-xl text-white'>
-                View
-              </button>
-            </Link>
+            {title !== 'Parents' && (
+              <Link href={`/DashboardAdmin/${title}`}>
+                <button className='w-[95px] h-[35px] bg-primary-light hover:bg-primary-light duration-150  rounded-xl text-white'>
+                  View
+                </button>
+              </Link>
+            )}
           </li>
         ))}
       </ul>

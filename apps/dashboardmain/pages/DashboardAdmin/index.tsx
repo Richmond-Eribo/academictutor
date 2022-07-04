@@ -44,8 +44,16 @@ const DashboardAdmin = () => {
 
             <div className='flex justify-between flex-col lg:flex-row'>
               <RequestCard />
-              <UserCard title='Teachers' link='/DashboardAdmin/teacher?id=1' />
-              <UserCard title='Parents' link='/DashboardAdmin/teacher' />
+              <UserCard
+                height={420}
+                title='Teachers'
+                link='/DashboardAdmin/teacher?id=1'
+              />
+              <UserCard
+                height={420}
+                title='Parents'
+                link='/DashboardAdmin/teacher'
+              />
             </div>
           </main>
 

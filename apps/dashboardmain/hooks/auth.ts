@@ -2,6 +2,7 @@ import axios from 'lib/axios'
 import {useRouter} from 'next/router'
 import React, {useEffect, useState} from 'react'
 import useSWR from 'swr'
+// import {fileURLToPath} from 'url'
 
 declare type AuthMiddleware = 'auth' | 'guest'
 
@@ -24,7 +25,7 @@ export const useAuth = (config: IUseAuth) => {
   const {
     middleware,
     redirectIfAuthenticatedTeacher = '/DashboardTeacher',
-    redirectIfAuthenticatedAdmin = '/DashboardAdmin',
+    redirectIfAuthenticatedAdmin = '/DashboardAdmin/',
     redirectIfAuthenticatedParent = '/DashboardParent',
   } = config
 
@@ -48,9 +49,17 @@ export const useAuth = (config: IUseAuth) => {
       .get(`/api/user/`)
       .then(res => res.data)
       .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
+        // if (error.response.status !== 409 || error.response.status === 401)
+        //   throw error
+
+        if (
+          (error.response.status !== 409 || error.response.status === 401) &&
+          router.pathname !== '/Signup'
+        ) {
+          if (router.pathname !== '/AdminSignUpPage') router.push('/Login')
           throw error
-        router.push('/Login')
+        }
+        // console.log(error)
       })
   )
 
@@ -61,12 +70,18 @@ export const useAuth = (config: IUseAuth) => {
 
     // route
     axios
-      .post('/api/user/register', props)
+      .post('/api/user/register', props, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then(response => {
         if (response.status == 200) {
           router.push({
             pathname: '/Login',
-            query: 'registerRedirect',
+            query: {
+              slug: 'registerRedirect',
+            },
           })
           // console.log(response.data)
         }
@@ -88,10 +103,13 @@ export const useAuth = (config: IUseAuth) => {
     // route
     axios
       .post('/login', props)
+      .then(res => res.data)
       .then(() => mutate())
       .catch(error => {
-        if (error.response.status !== 422) throw error
-        setErrors(Object.values(error.response.data.errors).flat())
+        if (error.response.status !== 422 || error.response.status === 401) {
+          setErrors(error.response.data.message)
+          throw error
+        }
       })
   }
 
@@ -99,13 +117,15 @@ export const useAuth = (config: IUseAuth) => {
     if (!error) {
       await axios.post('/logout').then(() => mutate())
     }
-    window.location.pathname = '/Login'
+    window.location.pathname = '/Login' as any
   }
 
+  // this checks if user is true then  checks for user role.
   useEffect(() => {
     if (
       (middleware === 'guest' || middleware === 'auth') &&
-      user?.role === 'parent'
+      user &&
+      user.role === 'parent'
     )
       router.push(redirectIfAuthenticatedParent)
     if (
@@ -116,8 +136,18 @@ export const useAuth = (config: IUseAuth) => {
     if (
       (middleware === 'guest' || middleware === 'auth') &&
       user?.role === 'admin'
-    )
-      router.push(redirectIfAuthenticatedAdmin)
+    ) {
+      if (router.pathname !== `/DashboardAdmin/[slug]`)
+        router.push(redirectIfAuthenticatedAdmin)
+    }
+
+    //  if (router.isReady) {
+    //     if (router.query === {slug: String}) {
+    //       alert('hi')
+    //     } else {
+    //       console.log(router.query)
+    //     }
+    //   }
 
     if (middleware === 'auth' && error) logout()
     setLoading(false)
@@ -126,7 +156,7 @@ export const useAuth = (config: IUseAuth) => {
       setLoading(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [middleware, router, user, error])
+  }, [user!])
 
   return {
     user,

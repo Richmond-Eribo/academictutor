@@ -1,34 +1,86 @@
+import axios from 'lib/axios'
 import Logout from 'components/svg/Logout'
 import Notification from 'components/svg/Notification'
-// import {useAuth} from 'hooks/auth'
+// import { error } from 'console'
+import {useAuth} from 'hooks/auth'
 import Image from 'next/image'
 import Link from 'next/link'
+import {useState} from 'react'
+import useSWR from 'swr'
+// import {mutate} from 'swr'
 
 const DashboardTeacher = () => {
-  // const {loading, user, logout} = useAuth({
-  //   middleware: 'auth',
-  // })
+  const {loading, user, logout} = useAuth({
+    middleware: 'auth',
+  })
 
-  const user = true
+  // const user = true
+
+  const {
+    data: teachers,
+    error: teacherError,
+    mutate: teacherMutate,
+  } = useSWR('/api/teacher/', () =>
+    axios
+      .get('/api/teacher/')
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
+
+  const [selectedFile, setSelectedFile] = useState<any>()
+  const [phone, setPhone] = useState('')
+  // const baseURL = 'http://localhost:8000'
+
+  const submitFile = (e: {preventDefault: () => void}) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('profile_picture', selectedFile)
+    axios
+      .post(`/api/user/update/${user.id}`, formData)
+      .then(res => res.data)
+      .catch(error => {
+        throw error
+      })
+    console.log(selectedFile)
+  }
+
+  const submitUpdate = () => {
+    const formData = new FormData()
+    formData.append('phone', phone)
+
+    axios
+      .post(`/api/user/update/${user.id}`, formData)
+      .then(res => res.data)
+      .catch(error => {
+        throw error
+      })
+    alert('hi')
+  }
 
   return (
     <>
       {user ? (
         <div className='pt-10'>
+          {/* <>{console.log(user)}</> */}
           <nav className='flex flex-col md:flex-row items-center  md:justify-between md:items-center pb-10 px-20'>
             <Link href='/'>
-              <Image src='/logo.png' width={302} height={47} alt='logo' />
+              <a>
+                <Image src='/logo.png' width={302} height={47} alt='logo' />
+              </a>
             </Link>
 
             <div className='flex justify-between px-4 md:mt-2  w-screen md:w-3/12 mt-10'>
-              <button>
+              {/* <button>
                 <Notification />
+              </button> */}
+              <button onClick={logout}>
+                <Logout />
               </button>
-              {/* <button onClick={logout}> */}
-              <Logout />
-              {/* </button> */}
 
-              <p>Welcome teacher {user}</p>
+              <p>Welcome {user.name}</p>
             </div>
           </nav>
 
@@ -36,33 +88,70 @@ const DashboardTeacher = () => {
             <h2>Rejected</h2>
 
             <div className='p-10 m-5 bg-white'>
+              <p>This is your dashboard</p>
+              <p>
+                You will be alerted Via mail if your service is being requested
+                by a teacher
+              </p>
+
+              {/* updating profile picture */}
+              {/* <form
+                className=''
+                encType='multipart/form-data'
+                onSubmit={submitFile}
+              >
+                <p>update</p>
+                <input
+                  type='file'
+                  onChange={e => setSelectedFile(e.target.files![0])}
+                  name='file'
+                  id='file'
+                />
+                <button className='bg-red-500 p-5 mx-10' onClick={submitFile}>
+                  submit
+                </button>
+              </form> */}
+
+              {/* updating phone number */}
+              {/* <div className='my-5 '>
+                <input
+                  type='tel'
+                  value={phone}
+                  placeholder='phone'
+                  onChange={e => setPhone(e.target.value)}
+                />
+                <button className='bg-green-400 p-4' onClick={submitUpdate}>
+                  submit
+                </button>
+              </div> */}
+
               <ol className=' '>
                 <li>
-                  Right to leave and work in the UK <span>(verified)</span>
+                  Right to leave and work in the UK <span>(verifying)</span>
                 </li>
                 <li>
-                  DBS certificate <span>(verified)</span>
+                  DBS certificate <span>(verifying)</span>
                 </li>
                 <li>
-                  Educational qualification <span>(verified)</span>
+                  Educational qualification <span>(verifying)</span>
                 </li>
                 <li>
-                  QTS <span>(verified)</span>
+                  QTS <span>(verifying)</span>
                 </li>
                 <li>
-                  Passport, ID or UK Driver’s License <span>(rejected)</span>
+                  Passport, ID or UK Driver’s License <span>(verifying)</span>
                 </li>
                 <li>
-                  Passport size photo <span>(verified)</span>
+                  Passport size photo <span>(verifying)</span>
                 </li>
                 <li>
-                  Proof of address <span>(verified)</span>
+                  Proof of address <span>(verifying)</span>
                 </li>
                 <li>
-                  National Insurance number <span>(rejected)</span>
+                  National Insurance number <span>(verifying)</span>
                 </li>
                 <li>
-                  Permit or ID <span>(verified)</span>
+                  Permit or ID <span>(verifying)</span>
                 </li>
               </ol>
             </div>

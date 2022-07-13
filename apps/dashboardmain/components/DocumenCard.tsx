@@ -2,20 +2,50 @@ import {FC} from 'react'
 
 type Props = {
   documentName: string
+  isVerified: number
+  verifyDocument: () => void
+  unverifyDocument: () => void
+  downloadDocument: () => void
+  getDocumentUrl?: () => void
+  // ty?: (a: string) => void
 }
 
-const DocumenCard: FC<Props> = ({documentName}) => {
+const DocumenCard: FC<Props> = ({
+  documentName,
+  isVerified,
+  verifyDocument,
+  unverifyDocument,
+  downloadDocument,
+  getDocumentUrl,
+}) => {
   return (
     <div className='my-2 py-3 flex-col lg:flex-row lg:w-[514px] lg:h-[60px] flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'>
       <p>{documentName}</p>
 
-      <div>
-        <button className='w-[95px] h-[35px] bg-[#EF553B] duration-150  rounded-xl text-white mr-3'>
-          Reject
+      <div className='mt-5 lg:mt-0'>
+        <button
+          onClick={getDocumentUrl ? getDocumentUrl : downloadDocument}
+          // onClick={}
+          className='lg:w-[95px] w-[80px] h-[35px] bg-primary-light  duration-150  rounded-xl text-white'
+        >
+          Download
         </button>
-        <button className='w-[95px] h-[35px] bg-primary-light  duration-150  rounded-xl text-white'>
-          Accept
-        </button>
+
+        {isVerified === 0 ? (
+          <button
+            onClick={verifyDocument}
+            className='lg:w-[95px] mx-2 w-[80px] h-[35px] bg-primary-light  duration-150  rounded-xl text-white'
+          >
+            Verify
+          </button>
+        ) : (
+          <button
+            onClick={unverifyDocument}
+            className='lg:w-[95px] mx-2 w-[80px] h-[35px] bg-[#EF553B] duration-150  rounded-xl text-white '
+          >
+            Unverify
+          </button>
+        )}
       </div>
     </div>
   )

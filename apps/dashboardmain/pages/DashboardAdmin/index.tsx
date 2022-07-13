@@ -1,5 +1,6 @@
-// import {useAuth} from 'hooks/auth'
-
+import {useAuth} from 'hooks/auth'
+import useSWR from 'swr'
+import axios from 'lib/axios'
 import RequestCard from 'components/RequestCard'
 import Logout from 'components/svg/Logout'
 import UserCard from 'components/UserCard'
@@ -7,20 +8,72 @@ import UserCard from 'components/UserCard'
 import Image from 'next/image'
 import Link from 'next/link'
 import {Footer} from 'ui'
+import {Requests, User} from 'interfaces/types'
+import {useRouter} from 'next/router'
 
 const DashboardAdmin = () => {
-  // const {loading, user} = useAuth({
-  //   middleware: 'auth',
-  // })
+  const {loading, user, logout} = useAuth({
+    middleware: 'auth',
+  })
 
-  const user = true
+  // const user = true
+  const router = useRouter()
+  const qu = router.query
+  const {
+    data: teachers,
+    error: teacherError,
+    mutate: teacherMutate,
+  } = useSWR('/api/teacher/', () =>
+    axios
+      .get('/api/teacher/')
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
+
+  const {
+    data: parents,
+    error: parentsError,
+    mutate: parentsMutate,
+  } = useSWR('/api/parent/', () =>
+    axios
+      .get('/api/parent/')
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
+
+  // get all requests made by parents
+  const {
+    data: parentsRequests,
+    error: parentsRequestsError,
+    mutate: parentsRequestsMutate,
+  } = useSWR(`/api/admin/requests`, () =>
+    axios
+      .get(`/api/admin/requests`)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
+
+  // const FakeUser: User[]
+
   return (
     <>
+      {/* {console.log(qu)} */}
       {user ? (
         <div className=''>
           <nav className='flex flex-col md:flex-row items-center  md:justify-between md:items-center py-5  px-20'>
             <Link href='/'>
-              <Image src='/logo.png' width={302} height={47} alt='logo' />
+              <a>
+                <Image src='/logo.png' width={302} height={47} alt='logo' />
+              </a>
             </Link>
 
             <div className='flex justify-between px-4 md:mt-2  w-screen md:w-3/12 mt-10'>
@@ -31,9 +84,9 @@ const DashboardAdmin = () => {
               <Link href='/DashboardAdmin/teacher'>
                 <button>Teachers</button>
               </Link>
-              {/* <button onClick={logout}> */}
-              <Logout />
-              {/* </button> */}
+              <button onClick={logout}>
+                <Logout />
+              </button>
             </div>
           </nav>
 
@@ -43,36 +96,34 @@ const DashboardAdmin = () => {
             </h1>
 
             <div className='flex justify-between flex-col lg:flex-row'>
-              <RequestCard />
+              {parentsRequests ? (
+                <RequestCard requests={parentsRequests.data as Requests[]} />
+              ) : (
+                <div>There are currently no parent requests</div>
+              )}
+              {/* <>{teachers && console.log(teachers.data)}</> */}
+              {/* {<>{console.log(1)}</>} */}
+              {teachers ? (
+                <UserCard
+                  users={teachers!.data}
+                  height={'h-[460px]'}
+                  title='Teachers'
+                  // link='/DashboardAdmin/teacher'
+                />
+              ) : (
+                <div>There are currently no Teachers</div>
+              )}
 
-              <UserCard
-                arrayToMap={[
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                ]}
-                height={'h-460px]'}
-                title='Teachers'
-                link='/DashboardAdmin/teacher'
-              />
-              <UserCard
-                arrayToMap={[
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                  'Mrs J. Marie ',
-                ]}
-                height={'h-460px]'}
-                title='Parents'
-                link='/DashboardAdmin/teacher'
-              />
+              {parents ? (
+                <UserCard
+                  users={parents!.data}
+                  height={'h-[460px]'}
+                  title='Parents'
+                  // link='/DashboardAdmin/teacher'
+                />
+              ) : (
+                <div>There are currently no Parents</div>
+              )}
             </div>
           </main>
 

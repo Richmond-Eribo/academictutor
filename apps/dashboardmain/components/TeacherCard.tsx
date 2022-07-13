@@ -1,32 +1,55 @@
+import {Teacher} from 'interfaces/types'
 import Image from 'next/image'
+import {FC} from 'react'
 
-const TeacherCard = () => {
+type Props = {
+  teacher: Teacher
+  request: (id: number) => void
+}
+
+const TeacherCard: FC<Props> = ({teacher, request}) => {
   return (
     <div className='carousel-item flex justify-center items-center  lg:w-[547px] lg:h-[263px] rounded-lg shadow-card text-tertiary-mid-dark'>
-      <div className='card card-side rounded lg:w-[476px] lg:h-[199px] bg-white'>
-        <figure className='lg:w-[156px] lg:h-[199px] bg-red-300'>
+      <div className='card shadow-md  lg:card-side rounded w-[330px] lg:w-[476px] lg:h-[199px] bg-white'>
+        <div className='lg:w-[156px] hidden lg:block rounded-full  lg:h-[199px] bg-blue-500'>
           <Image
             src='https://api.lorem.space/image/movie?w=200&h=280'
             width={200}
             height={280}
             alt='who'
+            className='hidden lg:flex'
           />
-        </figure>
-        <div className='card-body p-0 pl-3 lg:h-[199px] flex flex-col justify-start items-start  '>
-          <div>
-            <h2 className='card-title text-14'>Dr Stephen Adegbite</h2>
-            <p className='text-14 -mt-1'>Maths and Science</p>
+        </div>
+
+        <div className=' rounded-full mx-auto w-[120px] overflow-hidden  h-[120px] lg:hidden bg-blue-500'>
+          {/* <Image
+            src='https://api.lorem.space/image/movie?w=200&h=280'
+            width={200}
+            height={280}
+            alt='who'
+            className='lg:hidden'
+          /> */}
+        </div>
+
+        <div className='card-body text-center lg:text-left p-0 pl-3 lg:h-[199px] flex flex-col justify-start items-start  '>
+          <div className=' mx-auto lg:mx-0'>
+            <h2 className='card-title  truncate   lg:text-left text-14'>
+              {teacher.name}
+            </h2>
+            <p className='text-14 -mt-2'>{teacher.subjects} </p>
           </div>
-          <p className='text-10 lg:w-[300px]'>
-            My teaching approaches enable pupils to easily recall mathematical
-            facts and methods through practice to embed key learning points. I
-            am proficient in teaching Mathematics using practical contexts which
-            learners can easily relate to, while ensuring that they consolidate
-            their learning using tasks and problem solving exercises focussed on
-            deepening understanding.
+          <p className='text-10 lg:w-[300px]  line-clamp-4 '>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
+            officia inventore aut magnam, rerum non saepe expedita modi officiis
+            molestiae eveniet quibusdam! Officiis modi perferendis quisquam
+            quidem nemo.
+            {teacher.profile}
           </p>
-          <div className='card-actions justify-start'>
-            <button className='w-[139px] h-[35px] bg-primary-light rounded-md text-white font-bold text-15'>
+          <div className='card-actions mx-auto lg:mx-0 justify-self-center  lg:justify-start'>
+            <button
+              onClick={() => request(teacher.id)}
+              className='w-[139px] h-[35px]  mb-2 bg-primary-light rounded-md text-white font-bold text-15'
+            >
               Request
             </button>
           </div>

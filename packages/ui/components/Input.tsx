@@ -34,7 +34,8 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={event => setValue(event.target.value)}
-        autoComplete='false'
+        // autoComplete='off'
+        required
       />
     </div>
   )

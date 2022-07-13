@@ -25,28 +25,31 @@ const SignUp: FC = () => {
   const [errors, setErrors] = useState([])
 
   // documents or file for teachers
-  const [rel_name, setRel_name] = useState(null)
-  const [rel_email, setRel_email] = useState(null)
-  const [rel_phone, setRel_phone] = useState(null)
-  const [rel_relationship, setRel_relationship] = useState(null)
-  const [rel_organisation, setRel_organisation] = useState(null)
-  const [rel_position, setRel_position] = useState(null)
-  const [profile_picture, setProfile_picture] = useState(null)
+  const [ref_name, setRel_name] = useState('academictutor')
+  const [ref_email, setRel_email] = useState('academictutor1@gmail.com')
+  const [ref_phone, setRel_phone] = useState(+1249094444422222)
+  const [ref_relationship, setRel_relationship] = useState('tutor')
+  const [ref_organisation, setRel_organisation] = useState('tutor')
+  const [ref_position, setRel_position] = useState('tutor')
+  const [profile_picture, setProfile_picture] = useState()
   const [subjects, setSubjects] = useState('')
-  const [profile, setProfile] = useState(null)
-  const [right_to_work, setRight_to_work] = useState(null)
+  const [profile, setProfile] = useState<any>('')
+  const [right_to_work, setRight_to_work] = useState<any>()
   const [passport_id_or_driver_license, setPassport_id_or_driver_license] =
-    useState(null)
+    useState<any>()
   const [educational_qualification, setEducational_qualification] =
-    useState(null)
-  const [dbs_certificate, setDbs_certificate] = useState(null)
-  const [qts, setQts] = useState(null)
-  const [passport_photo, setPassport_photo] = useState(null)
-  const [proof_of_address, setProof_of_address] = useState(null)
+    useState<any>()
+  const [dbs_certificate, setDbs_certificate] = useState<any>()
+  const [qts, setQts] = useState<any>()
+  const [passport_photo, setPassport_photo] = useState<any>()
+  const [proof_of_address, setProof_of_address] = useState<any>()
   const [national_insurance_number, setNational_insurance_number] =
-    useState(null)
-  const [permit_or_id, setPermit_or_id] = useState(null)
-  const [signature, setSignature] = useState(null)
+    useState<any>()
+  const [permit_or_id, setPermit_or_id] = useState<any>()
+  const [signature, setSignature] = useState<any>()
+
+  // Modal for loading state
+  // const [loadingModal, setLoadingModal] = useState(false)
 
   const submitFormTeacher = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -62,12 +65,12 @@ const SignUp: FC = () => {
       profile,
       // contains reference info
       profile_picture,
-      rel_relationship,
-      rel_organisation,
-      rel_position,
-      rel_phone,
-      rel_name,
-      rel_email,
+      ref_relationship,
+      ref_organisation,
+      ref_position,
+      ref_phone,
+      ref_name,
+      ref_email,
       // contains all the documents
       right_to_work,
       dbs_certificate,
@@ -97,8 +100,8 @@ const SignUp: FC = () => {
   }
 
   return (
-    <>
-      <div className='py-10 px-4'>
+    <div className='relative'>
+      <div className=' py-10 px-4'>
         {/* <div className=''>{console.log('ji')}</div> */}
         {/* {errors.length > 0 && errors.map(error => console.log(error))} */}
 
@@ -167,6 +170,8 @@ const SignUp: FC = () => {
               name={name}
               email={email}
               phone={phone}
+              profile={profile}
+              setProfile={setProfile}
               setProfile_picture={setProfile_picture}
               profile_picture={profile_picture}
               right_to_work={right_to_work}
@@ -185,7 +190,7 @@ const SignUp: FC = () => {
                 setPassport_id_or_driver_license
               }
               setPassport_photo={setPassport_photo}
-              setProof_of_address={setProfile}
+              setProof_of_address={setProof_of_address}
               setNational_insurance_number={setNational_insurance_number}
             />
           </div>
@@ -206,7 +211,7 @@ const SignUp: FC = () => {
           </div>
         </main>
       </div>
-    </>
+    </div>
   )
 }
 

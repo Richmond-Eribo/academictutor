@@ -1,8 +1,8 @@
 import Input from 'ui/components/Input'
 import React, {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-// import {useAuth} from '../hooks/auth'
-// import axios from 'lib/axios'
+import {useAuth} from '../hooks/auth'
+import axios from 'lib/axios'
 import Error from 'components/Error'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -12,13 +12,17 @@ const Login = () => {
 
   const router = useRouter()
 
-  // const {login, loading, user} = useAuth({
-  //   middleware: 'guest',
-  // })
+  const {login, loading, user} = useAuth({
+    middleware: 'guest',
+  })
+
+  useEffect(() => {
+    // console.log(router.query)
+  }, [router])
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState<any>()
+  const [errors, setErrors] = useState<any>(undefined)
   const [status, setStatus] = useState<string | null>(null)
 
   // useEffect(() => {
@@ -29,15 +33,20 @@ const Login = () => {
   //   }
   // }, [errors, router.query])
 
+  // modal loading state
+  // const [loadingModal, setLoadingModal] = useState(false)
+
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // login({setErrors, email, password, setStatus})
+    login({setErrors, email, password, setStatus})
   }
 
   return (
     <div className='lg:grid lg:grid-cols-2 px-10 lg:px-0 md:px-10  h-screen'>
+      {/* <>{errors && console.log(errors)}</> */}
       <div className='lg:w-[728px] hidden lg:block  relative'>
         <Image src='/SignUpImage2.png' layout='fill' alt='sign up Image' />
+        {/* <>{console.log(loading)}</> */}
       </div>
       {/* {user && console.log('user')} */}
       <form
@@ -94,27 +103,16 @@ const Login = () => {
           setValue={setPassword}
         />
 
-        {/* <button type='submit' className='button sign-button mt-10'>
-              Log in
-            </button> */}
-        {/* </section> */}
-        {/* <div className='flex lg:max-w-[420px] w-full justify-between mt-10 text-[#BFC7D3]'>
-          <p className='text-sm lg:text-base'>
-            <input type='checkbox' name='remember' /> Remember me
-          </p>
-
-          <Link href='/'>
-            <a className='text-sm lg:text-base'> Forgot Password? </a>
-          </Link>
-        </div> */}
-        <button type='submit' className='button sign-button  mt-5'>
-          sign in
-        </button>
+        <div>
+          <button type='submit' className='button sign-button  mt-5'>
+            sign in
+          </button>
+        </div>
         <p className='mt-5 text-sm lg:text-base'>
           New on our platform?{' '}
           <Link href='/Signup'>
             <a className='text-[#42B9D1] '>Create an account</a>
-          </Link>{' '}
+          </Link>
         </p>
       </form>
     </div>

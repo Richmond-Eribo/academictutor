@@ -1,35 +1,41 @@
+import {User} from 'interfaces/types'
 import Link from 'next/link'
 import {FC} from 'react'
 
 type Title = 'Parents' | 'Teachers'
 
 type Props = {
-  title?: Title
-  link?: string
-  height?: string
-  arrayToMap: string[]
+  title: Title
+  height: string
+  users: User[]
 }
-const UserCard: FC<Props> = ({title, link, height, arrayToMap}) => {
+const UserCard: FC<Props> = ({title, height, users}) => {
   return (
     <div className='bg-white w-[360px] px-[35px] py-[30px] h-[600px] my-10 lg:my-0'>
       <h3 className='text-[20px] font-medium mb-5 '>{title} </h3>
 
       <ul className={`scrollbars  ${height} snap-y overflow-y-scroll`}>
-        {arrayToMap.map((i, index) => (
-          <li
-            key={index}
-            className='h-[62px] mb-2 mx-1 scroll-my-2 flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'
-          >
-            {i}
-            {title !== 'Parents' && (
-              <Link href={`/DashboardAdmin/${title}`}>
-                <button className='w-[95px] h-[35px] bg-primary-light hover:bg-primary-light duration-150  rounded-xl text-white'>
-                  View
-                </button>
-              </Link>
-            )}
+        {users.length > 0 ? (
+          users.map((user, index) => (
+            <li
+              key={index}
+              className='h-[62px] mb-2 mx-1 scroll-my-2 flex bg-[#F0FBFF] rounded-2xl  items-center justify-between px-3'
+            >
+              {user.name}
+              {title !== 'Parents' && (
+                <Link href={`/DashboardAdmin/${title}?id=${user.id}`}>
+                  <button className='w-[95px] h-[35px] bg-primary-light hover:bg-primary-light duration-150  rounded-xl text-white'>
+                    View
+                  </button>
+                </Link>
+              )}
+            </li>
+          ))
+        ) : (
+          <li className='h-[62px] mb-2 mx-1 scroll-my-2 flex justify-center bg-[#F0FBFF] rounded-2xl  items-center  px-3'>
+            Sorry, there are no <span className='lowercase mx-1'> {title}</span>
           </li>
-        ))}
+        )}
       </ul>
       {/* <div className=' flex justify-center '>
         {link && (

@@ -5,14 +5,12 @@ type Props = {
 const Error = ({errors}: Props) => {
   return (
     <>
-      {errors?.length > 0 && (
+      {errors && (
         <div className=''>
-          <ul className='mt-2'>
-            {errors.map((error: any) => (
-              <li key={error} className='text-red-400'>
-                {error}
-              </li>
-            ))}
+          <ul className='mt-2 '>
+            <li className='text-red-400'>{errors}</li>
+            {/* {errors.map((error: any) => (
+            ))} */}
           </ul>
         </div>
       )}

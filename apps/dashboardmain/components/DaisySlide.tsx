@@ -1,17 +1,25 @@
+import {Teacher} from 'interfaces/types'
 import Image from 'next/image'
+import {FC} from 'react'
 import TeacherCard from './TeacherCard'
 
-interface teacher {}
+type Props = {
+  teachers: Teacher[]
+  request: (id: number) => void
+}
 
-const DaisySlide = () => {
+const DaisySlide: FC<Props> = ({teachers, request}) => {
   return (
     <div className='carousel carousel-center max-screen p-4 space-x-4  rounded-box'>
+      {teachers &&
+        teachers.map((teacher, index) => (
+          <TeacherCard key={index} teacher={teacher} request={request} />
+        ))}
+      {/* <TeacherCard />
       <TeacherCard />
       <TeacherCard />
       <TeacherCard />
-      <TeacherCard />
-      <TeacherCard />
-      <TeacherCard />
+      <TeacherCard /> */}
     </div>
   )
 }

@@ -17,6 +17,7 @@ type Props = {
   phone: number | undefined
   password: number
   subjects: string | undefined
+  profile: string | undefined
   right_to_work: any
   dbs_certificate: any
   educational_qualification: any
@@ -28,6 +29,7 @@ type Props = {
   profile_picture: any
   permit_or_id?: any
   signature?: any
+  setProfile: React.Dispatch<React.SetStateAction<any>>
   setRight_to_work: React.Dispatch<React.SetStateAction<any>>
   setDbs_certificate: React.Dispatch<React.SetStateAction<any>>
   setEducational_qualification: React.Dispatch<React.SetStateAction<any>>
@@ -48,6 +50,8 @@ const TeacherSignUp = ({
   setPassword,
   setSubjects,
   setProfile_picture,
+  setProfile,
+  profile,
   profile_picture,
   password,
   activeInput,
@@ -75,15 +79,16 @@ const TeacherSignUp = ({
 }: Props) => {
   return (
     <form onSubmit={submitFormTeacher}>
+      {/* <>{console.log(profile_picture)}</> */}
       <div className='flex content-around  w-screen lg:flex-row flex-col justify-around items-center'>
-        <section className='lg:w-[400px]  '>
+        <section className='lg:w-[400px] w-[330px]   '>
           <Input
             type='name'
             setActiveInput={setActiveInput}
             activeInput={activeInput}
             activeNumber={1}
             placeholder='Full Name'
-            marginTop={5}
+            marginTop={0}
             value={name}
             setValue={setName}
           />
@@ -143,6 +148,7 @@ const TeacherSignUp = ({
             placeholder='Profile picture'
             value={profile_picture}
             setValue={setProfile_picture}
+            id='profile_picture'
           />
 
           {/* <div className='flex mt-10 mb-2'>
@@ -157,7 +163,7 @@ const TeacherSignUp = ({
           </p> */}
         </section>
 
-        <section className='w-[400px] my-10; lg:my-2;'>
+        <section className='lg:w-[400px] w-[330px] my-10; lg:my-2;  '>
           <label
             className='font-bold text-tertiary-mid-dark '
             htmlFor='experience'
@@ -167,9 +173,10 @@ const TeacherSignUp = ({
           <textarea
             name='experience'
             id='experience'
-            className='border  border-[#C4C4C4] rounded-md p-1 px-5 lg:col-span-2 outline-blue-400'
-            cols={45}
+            className='border  border-[#C4C4C4] rounded-md w-full p-1 px-5 lg:col-span-2 outline-blue-400'
             rows={5}
+            value={profile}
+            onChange={event => setProfile(event.target.value)}
           ></textarea>
 
           <p className=''>Other Document</p>
@@ -177,40 +184,52 @@ const TeacherSignUp = ({
             placeholder='Right to leave and work in the UK'
             value={right_to_work}
             setValue={setRight_to_work}
+            id='right_to_work'
           />
           <DocumentInput
             placeholder='DBS certificate '
             value={dbs_certificate}
             setValue={setDbs_certificate}
+            id='dbs_certificate'
           />
           <DocumentInput
             placeholder='Educational qualification'
             value={educational_qualification}
             setValue={setEducational_qualification}
+            id='educational_qualification'
           />
-          <DocumentInput placeholder='QTS' value={qts} setValue={setQts} />
+          <DocumentInput
+            placeholder='QTS'
+            value={qts}
+            setValue={setQts}
+            id='qts'
+          />
         </section>
 
-        <section className='w-[400px] '>
+        <section className='lg:w-[400px] w-[330px] '>
           <DocumentInput
             placeholder='Passport, ID or UK Driver’s License'
             value={passport_id_or_driver_license}
             setValue={setPassport_id_or_driver_license}
+            id='passport_id'
           />
           <DocumentInput
-            placeholder='Passport size photo'
+            placeholder='Passport photo'
             value={passport_photo}
             setValue={setPassport_photo}
+            id='passport_photo'
           />
           <DocumentInput
             placeholder='Proof of address'
             value={proof_of_address}
             setValue={setProof_of_address}
+            id='proof_of_address'
           />
           <DocumentInput
             placeholder='National Insurance number'
             value={national_insurance_number}
             setValue={setNational_insurance_number}
+            id='national_insurance_number'
           />
           <p className=''>Disclaimer</p>
           <p className='text-xs'>
@@ -229,10 +248,14 @@ const TeacherSignUp = ({
           </p>
         </section>
       </div>
-
-      <button type='submit' className='button sign-button mt-10'>
-        sign up
-      </button>
+      <div className='mx-auto w-[360px]'>
+        <button
+          onClick={() => console.log(profile_picture)}
+          className='button mx-auto sign-button mt-10'
+        >
+          sign up
+        </button>
+      </div>
       <p className='mt-5 text-center'>
         Already have an account?{' '}
         <Link href='/Login'>

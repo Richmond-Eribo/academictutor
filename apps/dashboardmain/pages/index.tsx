@@ -6,8 +6,8 @@ import Image from 'next/image'
 // import SwipeSlider from '../components/SwipeSlider'
 // import DaisySlide from '../components/DaisySlide'
 // import {useEffect, useState} from 'react'
-// import {useRouter} from 'next/router'
-// import {useAuth} from 'hooks/auth'
+import {useRouter} from 'next/router'
+import {useAuth} from 'hooks/auth'
 import Link from 'next/link'
 
 const teacher = [
@@ -34,9 +34,9 @@ const teacher = [
 const Home: NextPage = () => {
   // const router = useRouter()
   // const [loading, setLoading] = useState(true)
-  // const {loading, user} = useAuth({
-  //   middleware: 'guest',
-  // })
+  const {loading, user} = useAuth({
+    middleware: 'guest',
+  })
 
   return (
     <>
@@ -49,33 +49,23 @@ const Home: NextPage = () => {
           className=''
           priority
         />
-        <p className='mt-10 text-center'>
-          Hi, this is a Demo.It is view on all that is happening in the
-          dashboard area of academic tutor
-        </p>
-
-        <p className='text-center'>
-          To take you on a tour, there are three dashboards.{' '}
+        <p className='mt-10 text-center font-bold text-3xl'>
+          Hi, Welcome to Academic Tutor
         </p>
 
         <div className='flex mt-10 flex-col justify-between i'>
-          <Link href='/DashboardParent'>
+          <Link href='/Login'>
             <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
-              Parent Dashboard
+              Login
             </button>
           </Link>
 
-          <Link href='/DashboardTeacher'>
+          <Link href='/Signup'>
             <button className='bg-[#42B9D1] my-5 button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
-              Teacher Dashboard
+              Create account
             </button>
           </Link>
 
-          <Link href='/DashboardAdmin'>
-            <button className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>
-              Admin Dashboard
-            </button>
-          </Link>
           {/* 
           <Link href='/Login'>
             <button className='bg-[#42B9D1] my-5 button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'>

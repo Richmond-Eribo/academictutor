@@ -11,22 +11,22 @@ const AdminSignUpPage = () => {
   const [activeInput, setActiveInput] = useState(0)
   const [errors, setErrors] = useState([])
 
-  // const {register, user} = useAuth({
-  //   middleware: 'guest',
-  // })
+  const {register, user} = useAuth({
+    middleware: 'guest',
+  })
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    // register({
-    //   setErrors,
-    //   name,
-    //   email,
-    //   password,
-    //   phone,
-    //   profile_picture: null,
-    //   role: 'admin',
-    // })
+    register({
+      setErrors,
+      name,
+      email,
+      password,
+      phone,
+      profile_picture: null,
+      role: 'admin',
+    })
   }
   return (
     <div className='flex justify-center items-center flex-col pt-10'>

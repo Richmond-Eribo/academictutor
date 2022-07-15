@@ -11,25 +11,25 @@ import LoadingComponent from 'components/LoadingComponent'
 // import {mutate} from 'swr'
 
 const DashboardTeacher = () => {
-  // const {loading, user, logout} = useAuth({
-  //   middleware: 'auth',
-  // })
+  const {loading, user, logout} = useAuth({
+    middleware: 'auth',
+  })
 
-  const user = true
+  // const user = true
 
-  // const {
-  //   data: teachers,
-  //   error: teacherError,
-  //   mutate: teacherMutate,
-  // } = useSWR('/api/teacher/', () =>
-  //   axios
-  //     .get('/api/teacher/')
-  //     .then(res => res)
-  //     .catch(error => {
-  //       if (error.response.status !== 409 || error.response.status == 401)
-  //         throw error
-  //     })
-  // )
+  const {
+    data: teachers,
+    error: teacherError,
+    mutate: teacherMutate,
+  } = useSWR('/api/teacher/', () =>
+    axios
+      .get('/api/teacher/')
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
 
   const [selectedFile, setSelectedFile] = useState<any>()
   const [phone, setPhone] = useState('')
@@ -37,28 +37,28 @@ const DashboardTeacher = () => {
 
   const submitFile = (e: {preventDefault: () => void}) => {
     e.preventDefault()
-    // const formData = new FormData()
-    // formData.append('profile_picture', selectedFile)
-    // axios
-    //   .post(`/api/user/update/${user.id}`, formData)
-    //   .then(res => res.data)
-    //   .catch(error => {
-    //     throw error
-    //   })
-    // console.log(selectedFile)
+    const formData = new FormData()
+    formData.append('profile_picture', selectedFile)
+    axios
+      .post(`/api/user/update/${user.id}`, formData)
+      .then(res => res.data)
+      .catch(error => {
+        throw error
+      })
+    console.log(selectedFile)
   }
 
   const submitUpdate = () => {
     const formData = new FormData()
     formData.append('phone', phone)
 
-    // axios
-    //   .post(`/api/user/update/${user.id}`, formData)
-    //   .then(res => res.data)
-    //   .catch(error => {
-    //     throw error
-    //   })
-    // alert('hi')
+    axios
+      .post(`/api/user/update/${user.id}`, formData)
+      .then(res => res.data)
+      .catch(error => {
+        throw error
+      })
+    alert('hi')
   }
 
   return (
@@ -77,11 +77,11 @@ const DashboardTeacher = () => {
               {/* <button>
                 <Notification />
               </button> */}
-              {/* <button onClick={logout}> */}
-              <Logout />
-              {/* </button> */}
+              <button onClick={logout}>
+                <Logout />
+              </button>
 
-              {/* <p>Welcome {user.name}</p> */}
+              <p>Welcome {user.name}</p>
             </div>
           </nav>
 

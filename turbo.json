@@ -10,7 +10,5 @@
     "dev": {
       "cache": false
     }
-  },
-
-  "globalDependencies": [".env.local", ".env"]
+  }
 }

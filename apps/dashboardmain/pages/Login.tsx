@@ -12,13 +12,13 @@ const Login = () => {
 
   const router = useRouter()
 
-  // const {login, loading, user} = useAuth({
-  //   middleware: 'guest',
-  // })
+  const {login, loading, user} = useAuth({
+    middleware: 'guest',
+  })
 
-  // useEffect(() => {
-  // console.log(router.query)
-  // }, [router])
+  useEffect(() => {
+    // console.log(router.query)
+  }, [router])
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -38,7 +38,7 @@ const Login = () => {
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // login({setErrors, email, password, setStatus})
+    login({setErrors, email, password, setStatus})
   }
 
   return (

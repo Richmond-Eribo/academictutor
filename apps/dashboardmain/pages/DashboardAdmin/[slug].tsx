@@ -15,39 +15,39 @@ const Slug = () => {
   const router = useRouter()
 
   const {slug, id} = router.query
-  // const {loading, user, logout} = useAuth({
-  //   middleware: 'auth',
-  // })
+  const {loading, user, logout} = useAuth({
+    middleware: 'auth',
+  })
 
   // get all teachers
-  // const {
-  //   data: teachers,
-  //   error: teacherError,
-  //   mutate: teacherMutate,
-  // } = useSWR('/api/teacher/', () =>
-  //   axios
-  //     .get('/api/teacher/')
-  //     .then(res => res)
-  //     .catch(error => {
-  //       if (error.response.status !== 409 || error.response.status == 401)
-  //         throw error
-  //     })
-  // )
+  const {
+    data: teachers,
+    error: teacherError,
+    mutate: teacherMutate,
+  } = useSWR('/api/teacher/', () =>
+    axios
+      .get('/api/teacher/')
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
 
   // get single teacher
-  // const {
-  //   data: singleTeacher,
-  //   error: singleTeacherError,
-  //   mutate: singleTeacherMutate,
-  // } = useSWR(`/api/teacher/${id ? id : 1}`, () =>
-  //   axios
-  //     .get(`/api/teacher/${id ? id : 1}`)
-  //     .then(res => res)
-  //     .catch(error => {
-  //       if (error.response.status !== 409 || error.response.status == 401)
-  //         throw error
-  //     })
-  // )
+  const {
+    data: singleTeacher,
+    error: singleTeacherError,
+    mutate: singleTeacherMutate,
+  } = useSWR(`/api/teacher/${id ? id : 1}`, () =>
+    axios
+      .get(`/api/teacher/${id ? id : 1}`)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
 
   // /teacher-requests/{teacher-id}
 
@@ -82,64 +82,64 @@ const Slug = () => {
   // )
 
   // getting teachers credentials
-  // const {
-  //   data: credentials,
-  //   error: credentialsError,
-  //   mutate: credentialsMutate,
-  // } = useSWR(`/api/admin/credentials/${id}/`, () =>
-  //   axios
-  //     .get(`/api/admin/credentials/${id}/`)
-  //     .then(res => res)
-  //     .catch(error => {
-  //       if (error.response.status !== 409 || error.response.status == 401)
-  //         throw error
-  //     })
-  // )
+  const {
+    data: credentials,
+    error: credentialsError,
+    mutate: credentialsMutate,
+  } = useSWR(`/api/admin/credentials/${id}/`, () =>
+    axios
+      .get(`/api/admin/credentials/${id}/`)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  )
 
   // verify teacher credetial
   const verifyCredentials = (documentName: string) => {
-    // axios
-    //   .post(`/api/admin/verify-teacher/${documentName}/${id}`)
-    //   .then(res => res)
-    //   .catch(error => {
-    //     if (error.response.status !== 409 || error.response.status == 401)
-    //       throw error
-    //   })
+    axios
+      .post(`/api/admin/verify-teacher/${documentName}/${id}`)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
     // alert('hi')
   }
 
   // unverify  teacher credential
   const unverifiedCredentials = (documentName: string) => {
-    // axios
-    //   .post(`/api/admin/unverify-teacher/${documentName}/${id}/`)
-    //   .then(res => res)
-    //   .catch(error => {
-    //     if (error.response.status !== 409 || error.response.status == 401)
-    //       throw error
-    //   })
+    axios
+      .post(`/api/admin/unverify-teacher/${documentName}/${id}/`)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
   }
 
   // download credential
   const downloadCredentials = (documentName: string) => {
-    // axios
-    //   .get(`/api/user/download-file/${documentName}`)
-    //   .then(res => res)
-    //   .catch(error => {
-    //     if (error.response.status !== 409 || error.response.status == 401)
-    //       alert(error.response.message)
-    //     throw error
-    //   })
+    axios
+      .get(`/api/user/download-file/${documentName}`)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          alert(error.response.message)
+        throw error
+      })
   }
 
   const getUrlOfCredentials = (documentName: string) => {
-    // axios
-    //   .get(`/api/user/get-file-url/${documentName}`)
-    //   .then(res => setFileUrl(res.data.fileUrl))
-    //   .catch(error => {
-    //     if (error.response.status !== 409 || error.response.status == 401)
-    //       alert(error.response.message)
-    //     throw error
-    //   })
+    axios
+      .get(`/api/user/get-file-url/${documentName}`)
+      .then(res => setFileUrl(res.data.fileUrl))
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          alert(error.response.message)
+        throw error
+      })
   }
 
   const [fileUrl, setFileUrl] = useState()
@@ -150,7 +150,7 @@ const Slug = () => {
   // } = useSWR(`/api/admin/verify-teacher/${singleTeacher?.data.email}/`, () =>
 
   // )
-  const user = true
+
   return (
     <>
       {/* {singleTeacher && console.log(singleTeacher.data)} */}
@@ -170,9 +170,9 @@ const Slug = () => {
               <Link href='/DashboardAdmin/teacher'>
                 <button>Teachers</button>
               </Link>
-              {/* <button onClick={logout}> */}
-              <Logout />
-              {/* </button> */}
+              <button onClick={logout}>
+                <Logout />
+              </button>
             </div>
           </nav>
 
@@ -182,7 +182,7 @@ const Slug = () => {
             </h1>
 
             <div className='flex bg-white pb-5 justify-between flex-col lg:flex-row'>
-              {/* {teachers ? (
+              {teachers ? (
                 <UserCard
                   users={teachers!.data}
                   height={'h-[460px]'}
@@ -191,10 +191,10 @@ const Slug = () => {
                 />
               ) : (
                 <div>There are currently no Teachers</div>
-              )} */}
+              )}
               <div className='bg-white lg:px-[30px] px-5 lg:w-[800px] py-[30px] '>
                 <>
-                  {/* {singleTeacher && (
+                  {singleTeacher && (
                     <div className='flex flex-col lg:flex-row lg:items-center'>
                       <figure className='lg:w-[154px] h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
                         <Image
@@ -216,13 +216,13 @@ const Slug = () => {
                         </p>
                       </div>
                     </div>
-                  )} */}
+                  )}
                 </>
 
                 <div className='scrollbar snap-y overflow-y-scroll h-[340px] lg:w-[525px]'>
-                  {/* {!credentials && <p>No documents uploaded yet</p>} */}
+                  {!credentials && <p>No documents uploaded yet</p>}
 
-                  {/* {credentials?.data.national_insurance_number && (
+                  {credentials?.data.national_insurance_number && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(
@@ -245,7 +245,7 @@ const Slug = () => {
                       //   )
                       // }
                     />
-                  )} */}
+                  )}
 
                   {/* {fileUrl && (
                     <Image
@@ -256,7 +256,7 @@ const Slug = () => {
                     />
                   )} */}
 
-                  {/* {credentials?.data.qts && (
+                  {credentials?.data.qts && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(credentials.data.qts)
@@ -266,9 +266,9 @@ const Slug = () => {
                       documentName='qts'
                       isVerified={credentials?.data.qts_isverified}
                     />
-                  )} */}
+                  )}
 
-                  {/* {credentials?.data.dbs_certificate && (
+                  {credentials?.data.dbs_certificate && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(credentials.data.dbs_certificate)
@@ -282,9 +282,9 @@ const Slug = () => {
                       documentName='dbs certificate'
                       isVerified={credentials?.data.dbs_certificate_isverified}
                     />
-                  )} */}
+                  )}
 
-                  {/* {credentials?.data.educational_qualification && (
+                  {credentials?.data.educational_qualification && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(
@@ -302,9 +302,9 @@ const Slug = () => {
                         credentials?.data.educational_qualification_isverified
                       }
                     />
-                  )} */}
+                  )}
 
-                  {/* {credentials?.data.passport_id_or_driver_license && (
+                  {credentials?.data.passport_id_or_driver_license && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(
@@ -323,9 +323,9 @@ const Slug = () => {
                           .passport_id_or_driver_license_isverified
                       }
                     />
-                  )} */}
+                  )}
 
-                  {/* {credentials?.data.passport_photo && (
+                  {credentials?.data.passport_photo && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(credentials.data.passport_photo)
@@ -337,9 +337,9 @@ const Slug = () => {
                       documentName='passport photo'
                       isVerified={credentials?.data.passport_photo_isverified}
                     />
-                  )} */}
+                  )}
 
-                  {/* {credentials?.data.proof_of_address && (
+                  {credentials?.data.proof_of_address && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(credentials.data.proof_of_address)
@@ -353,9 +353,9 @@ const Slug = () => {
                       documentName='proof of address'
                       isVerified={credentials?.data.proof_of_address_isverified}
                     />
-                  )} */}
+                  )}
 
-                  {/* {credentials?.data.right_to_work && (
+                  {credentials?.data.right_to_work && (
                     <DocumenCard
                       downloadDocument={() =>
                         downloadCredentials(credentials.data.right_to_work)
@@ -367,7 +367,7 @@ const Slug = () => {
                       documentName='right to work'
                       isVerified={credentials?.data.right_to_work_isverified}
                     />
-                  )} */}
+                  )}
                   {/* <DocumenCard documentName='R: stringFC' />
                   <DocumenCard documentName='RFC' />
                   <DocumenCard documentName='RFC' />

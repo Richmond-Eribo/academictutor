@@ -13,9 +13,9 @@ const SignUp: FC = () => {
 
   const router = useRouter()
 
-  const {register, user} = useAuth({
-    middleware: 'guest',
-  })
+  // const {register, user} = useAuth({
+  //   middleware: 'guest',
+  // })
 
   // Values from the form are stored here.
   const [name, setName] = useState('')
@@ -54,49 +54,49 @@ const SignUp: FC = () => {
   const submitFormTeacher = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    register({
-      setErrors,
-      name,
-      email,
-      password,
-      phone,
-      subjects,
-      role: 'teacher',
-      profile,
-      // contains reference info
-      profile_picture,
-      ref_relationship,
-      ref_organisation,
-      ref_position,
-      ref_phone,
-      ref_name,
-      ref_email,
-      // contains all the documents
-      right_to_work,
-      dbs_certificate,
-      educational_qualification,
-      qts,
-      passport_id_or_driver_license,
-      passport_photo,
-      proof_of_address,
-      national_insurance_number,
-      permit_or_id,
-      signature,
-    })
+    // register({
+    //   setErrors,
+    //   name,
+    //   email,
+    //   password,
+    //   phone,
+    //   subjects,
+    //   role: 'teacher',
+    //   profile,
+    //   // contains reference info
+    //   profile_picture,
+    //   ref_relationship,
+    //   ref_organisation,
+    //   ref_position,
+    //   ref_phone,
+    //   ref_name,
+    //   ref_email,
+    //   // contains all the documents
+    //   right_to_work,
+    //   dbs_certificate,
+    //   educational_qualification,
+    //   qts,
+    //   passport_id_or_driver_license,
+    //   passport_photo,
+    //   proof_of_address,
+    //   national_insurance_number,
+    //   permit_or_id,
+    //   signature,
+    // })
   }
 
   const submitFormParent = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    register({
-      setErrors,
-      name,
-      email,
-      password,
-      phone,
-      profile_picture: null,
-      role: 'parent',
-    })
+    // register({
+    //   setErrors,
+    //   name,
+    //   email,
+    //   password,
+    //   phone,
+    //   profile_picture: null,
+    //   role: 'parent',
+    // })
   }
 
   return (

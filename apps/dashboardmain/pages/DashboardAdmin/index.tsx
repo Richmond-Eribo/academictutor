@@ -13,55 +13,55 @@ import {useRouter} from 'next/router'
 import LoadingComponent from 'components/LoadingComponent'
 
 const DashboardAdmin = () => {
-  const {loading, user, logout} = useAuth({
-    middleware: 'auth',
-  })
+  // const {loading, user, logout} = useAuth({
+  //   middleware: 'auth',
+  // })
 
-  // const user = true
+  const user = true
   const router = useRouter()
   const qu = router.query
-  const {
-    data: teachers,
-    error: teacherError,
-    mutate: teacherMutate,
-  } = useSWR('/api/teacher/', () =>
-    axios
-      .get('/api/teacher/')
-      .then(res => res)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  )
+  // const {
+  //   data: teachers,
+  //   error: teacherError,
+  //   mutate: teacherMutate,
+  // } = useSWR('/api/teacher/', () =>
+  //   axios
+  //     .get('/api/teacher/')
+  //     .then(res => res)
+  //     .catch(error => {
+  //       if (error.response.status !== 409 || error.response.status == 401)
+  //         throw error
+  //     })
+  // )
 
-  const {
-    data: parents,
-    error: parentsError,
-    mutate: parentsMutate,
-  } = useSWR('/api/parent/', () =>
-    axios
-      .get('/api/parent/')
-      .then(res => res)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  )
+  // const {
+  //   data: parents,
+  //   error: parentsError,
+  //   mutate: parentsMutate,
+  // } = useSWR('/api/parent/', () =>
+  //   axios
+  //     .get('/api/parent/')
+  //     .then(res => res)
+  //     .catch(error => {
+  //       if (error.response.status !== 409 || error.response.status == 401)
+  //         throw error
+  //     })
+  // )
 
   // get all requests made by parents
-  const {
-    data: parentsRequests,
-    error: parentsRequestsError,
-    mutate: parentsRequestsMutate,
-  } = useSWR(`/api/admin/requests`, () =>
-    axios
-      .get(`/api/admin/requests`)
-      .then(res => res)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  )
+  // const {
+  //   data: parentsRequests,
+  //   error: parentsRequestsError,
+  //   mutate: parentsRequestsMutate,
+  // } = useSWR(`/api/admin/requests`, () =>
+  //   axios
+  //     .get(`/api/admin/requests`)
+  //     .then(res => res)
+  //     .catch(error => {
+  //       if (error.response.status !== 409 || error.response.status == 401)
+  //         throw error
+  //     })
+  // )
 
   // const FakeUser: User[]
 
@@ -85,9 +85,9 @@ const DashboardAdmin = () => {
               <Link href='/DashboardAdmin/teacher'>
                 <button>Teachers</button>
               </Link>
-              <button onClick={logout}>
-                <Logout />
-              </button>
+              {/* <button onClick={logout}> */}
+              <Logout />
+              {/* </button> */}
             </div>
           </nav>
 
@@ -97,14 +97,14 @@ const DashboardAdmin = () => {
             </h1>
 
             <div className='flex justify-between flex-col lg:flex-row'>
-              {parentsRequests ? (
+              {/* {parentsRequests ? (
                 <RequestCard requests={parentsRequests.data as Requests[]} />
               ) : (
                 <div>There are currently no parent requests</div>
-              )}
+              )} */}
               {/* <>{teachers && console.log(teachers.data)}</> */}
               {/* {<>{console.log(1)}</>} */}
-              {teachers ? (
+              {/* {teachers ? (
                 <UserCard
                   users={teachers!.data}
                   height={'h-[460px]'}
@@ -113,9 +113,9 @@ const DashboardAdmin = () => {
                 />
               ) : (
                 <div>There are currently no Teachers</div>
-              )}
+              )} */}
 
-              {parents ? (
+              {/* {parents ? (
                 <UserCard
                   users={parents!.data}
                   height={'h-[460px]'}
@@ -124,7 +124,7 @@ const DashboardAdmin = () => {
                 />
               ) : (
                 <div>There are currently no Parents</div>
-              )}
+              )} */}
             </div>
           </main>
 

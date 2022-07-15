@@ -10,49 +10,49 @@ import DaisySlide from 'components/DaisySlide'
 import LoadingComponent from 'components/LoadingComponent'
 
 const DashboardParent = () => {
-  const {loading, user, logout} = useAuth({
-    middleware: 'auth',
-  })
+  // const {loading, user, logout} = useAuth({
+  //   middleware: 'auth',
+  // })
 
-  const {
-    data: teachers,
-    error: teachersError,
-    mutate: teachersMutate,
-  } = useSWR('/api/teacher/', () =>
-    axios
-      .get('/api/teacher/')
-      .then(res => res)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  )
+  // const {
+  //   data: teachers,
+  //   error: teachersError,
+  //   mutate: teachersMutate,
+  // } = useSWR('/api/teacher/', () =>
+  //   axios
+  //     .get('/api/teacher/')
+  //     .then(res => res)
+  //     .catch(error => {
+  //       if (error.response.status !== 409 || error.response.status == 401)
+  //         throw error
+  //     })
+  // )
 
-  const {
-    data: requests,
-    error: requestsError,
-    mutate: requestsMutate,
-  } = useSWR('/api/parent/requests', () =>
-    axios
-      .get('/api/parent/requests/')
-      .then(res => res)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  )
+  // const {
+  //   data: requests,
+  //   error: requestsError,
+  //   mutate: requestsMutate,
+  // } = useSWR('/api/parent/requests', () =>
+  //   axios
+  //     .get('/api/parent/requests/')
+  //     .then(res => res)
+  //     .catch(error => {
+  //       if (error.response.status !== 409 || error.response.status == 401)
+  //         throw error
+  //     })
+  // )
 
-  const request = (teacherID: number) => {
-    axios
-      .post(`/api/parent/request-teacher`, {teacher_id: teacherID})
-      .then(res => res)
-      .then(() => requestsMutate())
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  }
-  // const user = true
+  // const request = (teacherID: number) => {
+  //   axios
+  //     .post(`/api/parent/request-teacher`, {teacher_id: teacherID})
+  //     .then(res => res)
+  //     .then(() => requestsMutate())
+  //     .catch(error => {
+  //       if (error.response.status !== 409 || error.response.status == 401)
+  //         throw error
+  //     })
+  // }
+  const user = true
 
   return (
     <>
@@ -69,11 +69,11 @@ const DashboardParent = () => {
                 <Notification />
               </button> */}
 
-              <button onClick={logout}>
-                <Logout />
-              </button>
+              {/* <button onClick={logout}> */}
+              <Logout />
+              {/* </button> */}
 
-              <p>Welcome {user.name} </p>
+              {/* <p>Welcome {user.name} </p> */}
             </div>
           </nav>
 
@@ -82,12 +82,12 @@ const DashboardParent = () => {
               available teachers
             </p>
 
-            {!teachers?.data && (
+            {/* {!teachers?.data && (
               <div className='font-bold text-2xl'>
                 There are currently no teachers
               </div>
             )}
-            <DaisySlide teachers={teachers?.data} request={request} />
+            <DaisySlide teachers={teachers?.data} request={request} /> */}
 
             {/* <p>There are no Available Teachers</p> */}
           </section>

@@ -7,7 +7,7 @@ import Image from 'next/image'
 // import DaisySlide from '../components/DaisySlide'
 // import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
-import {useAuth} from 'hooks/auth'
+// import {useAuth} from 'hooks/auth'
 import Link from 'next/link'
 
 const teacher = [
@@ -34,9 +34,9 @@ const teacher = [
 const Home: NextPage = () => {
   // const router = useRouter()
   // const [loading, setLoading] = useState(true)
-  const {loading, user} = useAuth({
-    middleware: 'guest',
-  })
+  // const {loading, user} = useAuth({
+  //   middleware: 'guest',
+  // })
 
   return (
     <>

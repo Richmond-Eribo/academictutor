@@ -10,6 +10,7 @@ import Link from 'next/link'
 import {Footer} from 'ui'
 import {Requests, User} from 'interfaces/types'
 import {useRouter} from 'next/router'
+import LoadingComponent from 'components/LoadingComponent'
 
 const DashboardAdmin = () => {
   const {loading, user, logout} = useAuth({
@@ -130,7 +131,7 @@ const DashboardAdmin = () => {
           <Footer />
         </div>
       ) : (
-        <p>Loading</p>
+        <LoadingComponent />
       )}
     </>
   )

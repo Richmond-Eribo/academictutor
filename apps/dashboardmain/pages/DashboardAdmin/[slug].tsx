@@ -9,6 +9,7 @@ import useSWR from 'swr'
 import axios from 'lib/axios'
 import {Credentials} from 'interfaces/types'
 import {useState} from 'react'
+import LoadingComponent from 'components/LoadingComponent'
 
 const Slug = () => {
   const router = useRouter()
@@ -404,7 +405,7 @@ const Slug = () => {
           </style>
         </div>
       ) : (
-        <p>loading.....</p>
+        <LoadingComponent />
       )}
     </>
   )

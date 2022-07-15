@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {useState} from 'react'
 import useSWR from 'swr'
+import LoadingComponent from 'components/LoadingComponent'
 // import {mutate} from 'swr'
 
 const DashboardTeacher = () => {
@@ -191,9 +192,7 @@ const DashboardTeacher = () => {
           </style>
         </div>
       ) : (
-        <div>
-          <p>loading</p>
-        </div>
+        <LoadingComponent />
       )}
     </>
   )

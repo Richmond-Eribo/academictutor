@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {GetInTouchForm} from 'ui'
 import DaisySlide from 'components/DaisySlide'
+import LoadingComponent from 'components/LoadingComponent'
 
 const DashboardParent = () => {
   const {loading, user, logout} = useAuth({
@@ -55,7 +56,7 @@ const DashboardParent = () => {
 
   return (
     <>
-      {requests && console.log(requests.data, 'hi')}
+      {/* {requests && console.log(requests.data, 'hi')} */}
       {user ? (
         <div className='pt-10 '>
           <nav className='flex flex-col md:flex-row items-center  md:justify-between md:items-center pb-10 px-20'>
@@ -81,7 +82,11 @@ const DashboardParent = () => {
               available teachers
             </p>
 
-            {!teachers?.data && <div>There are currently no teachers</div>}
+            {!teachers?.data && (
+              <div className='font-bold text-2xl'>
+                There are currently no teachers
+              </div>
+            )}
             <DaisySlide teachers={teachers?.data} request={request} />
 
             {/* <p>There are no Available Teachers</p> */}
@@ -94,7 +99,7 @@ const DashboardParent = () => {
           </section>
         </div>
       ) : (
-        <p>loading</p>
+        <LoadingComponent />
       )}
     </>
   )

@@ -65,7 +65,7 @@ export const useAuth = (config: IUseAuth) => {
 
   // Register new user
   const register = async ({setErrors, ...props}: IApiRequest) => {
-    await csrf()
+    // await csrf()
     setErrors([])
 
     // route

@@ -49,16 +49,16 @@ export const useAuth = (config: IUseAuth) => {
       .get(`/api/user/`)
       .then(res => res.data)
       .catch(error => {
-        if (error.response.status !== 409 || error.response.status === 401)
-          throw error
-
-        // if (
-        //   (error.response.status !== 409 || error.response.status === 401) &&
-        //   router.pathname !== '/Signup'
-        // ) {
-        //   if (router.pathname !== '/AdminSignUpPage') router.push('/Login')
+        // if (error.response.status !== 409 || error.response.status === 401)
         //   throw error
-        // }
+
+        if (
+          (error.response.status !== 409 || error.response.status === 401) &&
+          router.pathname !== '/Signup'
+        ) {
+          if (router.pathname !== '/AdminSignUpPage') router.push('/Login')
+          throw error
+        }
         // console.log(error)
       })
   )
@@ -122,7 +122,6 @@ export const useAuth = (config: IUseAuth) => {
 
   // this checks if user is true then  checks for user role.
   useEffect(() => {
-    if (!user) router.push('/Login')
     if (
       (middleware === 'guest' || middleware === 'auth') &&
       user &&

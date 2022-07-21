@@ -44,7 +44,7 @@ export const useAuth = (config: IUseAuth) => {
     data: user,
     error,
     mutate,
-  } = useSWR('/api/user/', () =>
+  } = useSWR('/api/user', () =>
     axios
       .get(`/api/user`)
       .then(res => res.data)

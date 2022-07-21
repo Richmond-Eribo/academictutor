@@ -24,9 +24,9 @@ const Slug = () => {
     data: teachers,
     error: teacherError,
     mutate: teacherMutate,
-  } = useSWR('/api/teacher/', () =>
+  } = useSWR('/api/teacher', () =>
     axios
-      .get('/api/teacher/')
+      .get('/api/teacher')
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
@@ -86,9 +86,9 @@ const Slug = () => {
     data: credentials,
     error: credentialsError,
     mutate: credentialsMutate,
-  } = useSWR(`/api/admin/credentials/${id}/`, () =>
+  } = useSWR(`/api/admin/credentials/${id}`, () =>
     axios
-      .get(`/api/admin/credentials/${id}/`)
+      .get(`/api/admin/credentials/${id}`)
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
@@ -111,7 +111,7 @@ const Slug = () => {
   // unverify  teacher credential
   const unverifiedCredentials = (documentName: string) => {
     axios
-      .post(`/api/admin/unverify-teacher/${documentName}/${id}/`)
+      .post(`/api/admin/unverify-teacher/${documentName}/${id}`)
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)

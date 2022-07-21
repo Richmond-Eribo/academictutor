@@ -49,7 +49,7 @@ const Home: NextPage = () => {
           className=''
           priority
         />
-        <p className='mt-10 text-center font-bold text-3xl'>
+        <p className='mt-10 w-screen text-center font-bold text-3xl'>
           Hi, Welcome to Academic Tutor
         </p>
 

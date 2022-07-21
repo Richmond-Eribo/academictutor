@@ -21,9 +21,9 @@ const DashboardTeacher = () => {
     data: teachers,
     error: teacherError,
     mutate: teacherMutate,
-  } = useSWR('/api/teacher/', () =>
+  } = useSWR('/api/teacher', () =>
     axios
-      .get('/api/teacher/')
+      .get('/api/teacher')
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)

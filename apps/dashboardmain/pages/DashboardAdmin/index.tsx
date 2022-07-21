@@ -24,9 +24,9 @@ const DashboardAdmin = () => {
     data: teachers,
     error: teacherError,
     mutate: teacherMutate,
-  } = useSWR('/api/teacher/', () =>
+  } = useSWR('/api/teacher', () =>
     axios
-      .get('/api/teacher/')
+      .get('/api/teacher')
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
@@ -38,9 +38,9 @@ const DashboardAdmin = () => {
     data: parents,
     error: parentsError,
     mutate: parentsMutate,
-  } = useSWR('/api/parent/', () =>
+  } = useSWR('/api/parent', () =>
     axios
-      .get('/api/parent/')
+      .get('/api/parent')
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)

@@ -209,7 +209,7 @@ const Home: NextPage = () => {
           {[
             {
               name: 'Dr Stephen Adegbite',
-              subjects: 'Maths | Science | English',
+              subjects: 'Maths | Science',
               bio: 'I have the competence and experience to engage and inspire learnersin the teaching and learning of Mathematics so that they can develop confidence and achieve their full potentials. I use good questioning strategies to assess students&apos; understanding and progress. My students make significant progress in understanding Mathematics, evidenced by their increased confidence in answering questions and performance improvements in assessments',
               image: '/teacherspic/stephen.png',
             },

@@ -82,7 +82,7 @@ const DashboardParent = () => {
               available teachers
             </p>
 
-            {teachers?.data.length > 1 && (
+            {teachers?.data.length < 1 && (
               <div className='font-bold text-2xl'>
                 There are currently no teachers
               </div>

@@ -15,6 +15,9 @@ const DashboardTeacher = () => {
     middleware: 'auth',
   })
 
+  const [selectedFileName, setSelectedFileName] = useState<any>()
+  const [selectedFile, setSelectedFile] = useState<any>()
+  const [phone, setPhone] = useState('')
   // const user = true
 
   const {
@@ -31,35 +34,38 @@ const DashboardTeacher = () => {
       })
   )
 
-  const [selectedFile, setSelectedFile] = useState<any>()
-  const [phone, setPhone] = useState('')
   // const baseURL = 'http://localhost:8000'
 
   const submitFile = (e: {preventDefault: () => void}) => {
     e.preventDefault()
+
+    const selectedFileId = documentsArray.find(
+      document => document.name === selectedFileName
+    )
+
     const formData = new FormData()
-    formData.append('profile_picture', selectedFile)
+    formData.append(selectedFileId?.id!, selectedFile)
     axios
       .post(`/api/user/update/${user.id}`, formData)
       .then(res => res.data)
       .catch(error => {
         throw error
       })
-    console.log(selectedFile)
+    // console.log(selectedFileId?.id)
   }
 
-  const submitUpdate = () => {
-    const formData = new FormData()
-    formData.append('phone', phone)
+  // const submitUpdate = () => {
+  //   const formData = new FormData()
+  //   formData.append('phone', phone)
 
-    axios
-      .post(`/api/user/update/${user.id}`, formData)
-      .then(res => res.data)
-      .catch(error => {
-        throw error
-      })
-    alert('hi')
-  }
+  //   axios
+  //     .post(`/api/user/update/${user.id}`, formData)
+  //     .then(res => res.data)
+  //     .catch(error => {
+  //       throw error
+  //     })
+  //   alert('hi')
+  // }
 
   return (
     <>
@@ -86,7 +92,7 @@ const DashboardTeacher = () => {
           </nav>
 
           <section className='main h-[72vh]'>
-            <h2>Rejected</h2>
+            {/* <h2>Rejected</h2> */}
 
             <div className='p-10 m-5 bg-white'>
               <p className='text-center font-medium text-xl my-4'>
@@ -95,22 +101,73 @@ const DashboardTeacher = () => {
               </p>
 
               {/* updating profile picture */}
-              {/* <form
-                className=''
-                encType='multipart/form-data'
-                onSubmit={submitFile}
-              >
-                <p>update</p>
+              <>
+                <div className='form-control  flex justify-center'>
+                  <div className='input-group mx-auto  w-[25%]'>
+                    <select
+                      className='select select-bordered'
+                      value={selectedFileName}
+                      onChange={e => {
+                        setSelectedFileName(e.target.value)
+                      }}
+                    >
+                      <option disabled selected>
+                        Choose your document to upload
+                      </option>
+                      {documentsArray.map(document => (
+                        <option
+                          key={document.id}
+                          // onSelect={() => console.log(document.id)}
+                        >
+                          {document.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label
+                      htmlFor={selectedFileName ? 'my-modal-3' : ''}
+                      className={`btn bg-primary-mid `}
+                    >
+                      Go
+                    </label>
+                  </div>
+                </div>
+                {/* <!-- The button to open modal --> */}
+
+                {/* <!-- Put this part before </body> tag --> */}
                 <input
-                  type='file'
-                  onChange={e => setSelectedFile(e.target.files![0])}
-                  name='file'
-                  id='file'
+                  type='checkbox'
+                  id='my-modal-3'
+                  className='modal-toggle'
                 />
-                <button className='bg-red-500 p-5 mx-10' onClick={submitFile}>
-                  submit
-                </button>
-              </form> */}
+                <div className='modal'>
+                  <div className='modal-box relative'>
+                    <label
+                      htmlFor='my-modal-3'
+                      className='btn btn-sm border-none bg-primary-mid btn-circle absolute right-2 top-2'
+                    >
+                      ✕
+                    </label>
+                    <form
+                      className=''
+                      encType='multipart/form-data'
+                      onSubmit={submitFile}
+                    >
+                      <input
+                        type='file'
+                        onChange={e => setSelectedFile(e.target.files![0])}
+                        name='file'
+                        id='file'
+                      />
+                      <button
+                        className='bg-primary-mid border-none btn '
+                        onClick={submitFile}
+                      >
+                        submit
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </>
 
               {/* updating phone number */}
               {/* <div className='my-5 '>
@@ -125,42 +182,20 @@ const DashboardTeacher = () => {
                 </button>
               </div> */}
 
-              <div>
+              <div className=' flex flex-col lg:flex-row items-center lg:items-start   justify-around'>
                 {teachersRequest ? (
                   <RequestCard requests={teachersRequest.data as Requests[]} />
                 ) : (
                   ''
                 )}
+
+                <ol className=' '>
+                  <p className='text-center'>List of Documents</p>
+                  {documentsArray.map(document => (
+                    <li>{document.name}</li>
+                  ))}
+                </ol>
               </div>
-              <ol className=' '>
-                <li>
-                  Right to leave and work in the UK <span>(verifying)</span>
-                </li>
-                <li>
-                  DBS certificate <span>(verifying)</span>
-                </li>
-                <li>
-                  Educational qualification <span>(verifying)</span>
-                </li>
-                <li>
-                  QTS <span>(verifying)</span>
-                </li>
-                <li>
-                  Passport, ID or UK Driver’s License <span>(verifying)</span>
-                </li>
-                <li>
-                  Passport size photo <span>(verifying)</span>
-                </li>
-                <li>
-                  Proof of address <span>(verifying)</span>
-                </li>
-                <li>
-                  National Insurance number <span>(verifying)</span>
-                </li>
-                <li>
-                  Permit or ID <span>(verifying)</span>
-                </li>
-              </ol>
             </div>
           </section>
 
@@ -203,5 +238,49 @@ const DashboardTeacher = () => {
     </>
   )
 }
+
+const documentsArray = [
+  {
+    name: 'DBS certificate',
+    id: 'dbs_certificate',
+  },
+
+  {
+    name: 'Educational qualification',
+    id: 'educational_qualification',
+  },
+  {
+    name: 'QTS',
+    id: 'qts',
+  },
+  {
+    name: 'Passport, ID or UK Driver’s License',
+    id: 'passport_id_or_driver_license',
+  },
+  {
+    name: 'Passport size photo',
+    id: 'passport_photo',
+  },
+  {
+    name: 'Proof of address',
+    id: 'proof_of_address',
+  },
+  {
+    name: 'National Insurance number',
+    id: 'national_insurance_number',
+  },
+  {
+    name: 'Permit or ID',
+    id: 'permit_or_id',
+  },
+  // {
+  //   name: 'Permit or ID',
+  //   id: 'permit_or_id',
+  // },
+  {
+    name: 'signature',
+    id: 'signature',
+  },
+]
 
 export default DashboardTeacher

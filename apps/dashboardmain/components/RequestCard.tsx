@@ -43,28 +43,32 @@ const RequestCard: FC<Props> = ({requests, admin}) => {
 
       {/* Modal */}
 
-      <input type='checkbox' id='my-modal-3' className='modal-toggle' />
-      <div className='modal'>
-        <div className='modal-box bg-white relative'>
-          <label
-            htmlFor='my-modal-3'
-            className='btn btn-sm border-none bg-primary-mid btn-circle absolute right-2 top-2'
-          >
-            ✕
-          </label>
-          <div className='text-center py-2'>
-            <p className='font-semibold'>{modalData?.parent_name}</p>
-            <p>{modalData?.parent_phone} </p>
-            <p>{modalData?.parent_email} </p>
-          </div>
+      {admin && (
+        <div className=''>
+          <input type='checkbox' id='my-modal-3' className='modal-toggle' />
+          <div className='modal'>
+            <div className='modal-box bg-white relative'>
+              <label
+                htmlFor='my-modal-3'
+                className='btn btn-sm border-none bg-primary-mid btn-circle absolute right-2 top-2'
+              >
+                ✕
+              </label>
+              <div className='text-center py-2'>
+                <p className='font-semibold'>{modalData?.parent_name}</p>
+                <p>{modalData?.parent_phone} </p>
+                <p>{modalData?.parent_email} </p>
+              </div>
 
-          <div className='text-center py-2'>
-            <p className='font-semibold'>{modalData?.teacher_name} </p>
-            <p>{modalData?.teacher_phone} </p>
-            <p>{modalData?.teacher_email} </p>
+              <div className='text-center py-2'>
+                <p className='font-semibold'>{modalData?.teacher_name} </p>
+                <p>{modalData?.teacher_phone} </p>
+                <p>{modalData?.teacher_email} </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <style jsx>
         {`

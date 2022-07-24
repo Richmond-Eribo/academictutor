@@ -19,7 +19,7 @@ const SignUp: FC = () => {
 
   // Values from the form are stored here.
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('parent1@gmail.com')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState<number>()
   const [phone, setPhone] = useState<number>()
   const [errors, setErrors] = useState([])
@@ -205,9 +205,9 @@ const SignUp: FC = () => {
             />
           </div>
           <div className={`${tab == 1 ? 'hidden' : 'block'} `}>
-            <button className='btn ' onClick={checkEmailUniqueness}>
+            {/* <button className='btn ' onClick={checkEmailUniqueness}>
               click me please
-            </button>
+            </button> */}
             <ParentSignUp
               submitFormParent={submitFormParent}
               setActiveInput={setActiveInput}

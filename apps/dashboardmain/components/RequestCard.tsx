@@ -4,9 +4,10 @@ import {FC, useState} from 'react'
 
 type Props = {
   requests: Requests[]
+  admin?: boolean
 }
 
-const RequestCard: FC<Props> = ({requests}) => {
+const RequestCard: FC<Props> = ({requests, admin}) => {
   const [modalData, setModalData] =
     useState<Omit<Requests, 'id' | 'created_at' | 'teacher_id' | 'parent_id'>>()
 
@@ -25,7 +26,9 @@ const RequestCard: FC<Props> = ({requests}) => {
               onClick={() => setModalData(request)}
               className='modal-button'
             >
-              {`${request.parent_name} requested for ${request.teacher_name}`}
+              {admin
+                ? `${request.parent_name} requested for ${request.teacher_name}`
+                : `${request.parent_name} requested for your service`}
             </label>
           </li>
         ))}

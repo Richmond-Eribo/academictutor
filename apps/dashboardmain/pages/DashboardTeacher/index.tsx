@@ -1,14 +1,14 @@
 import axios from 'lib/axios'
 import Logout from 'components/svg/Logout'
 import Notification from 'components/svg/Notification'
-// import { error } from 'console'
 import {useAuth} from 'hooks/auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useState} from 'react'
 import useSWR from 'swr'
 import LoadingComponent from 'components/LoadingComponent'
-// import {mutate} from 'swr'
+import RequestCard from 'components/RequestCard'
+import {Requests} from 'interfaces/types'
 
 const DashboardTeacher = () => {
   const {loading, user, logout} = useAuth({
@@ -18,12 +18,12 @@ const DashboardTeacher = () => {
   // const user = true
 
   const {
-    data: teachers,
-    error: teacherError,
-    mutate: teacherMutate,
-  } = useSWR('/api/teacher', () =>
+    data: teachersRequest,
+    error: teacherRequestError,
+    mutate: teacherRequestMutate,
+  } = useSWR('api/teacher/requests', () =>
     axios
-      .get('/api/teacher')
+      .get('api/teacher/requests')
       .then(res => res)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
@@ -89,8 +89,7 @@ const DashboardTeacher = () => {
             <h2>Rejected</h2>
 
             <div className='p-10 m-5 bg-white'>
-              <p>This is your dashboard</p>
-              <p>
+              <p className='text-center font-medium text-xl my-4'>
                 You will be alerted Via mail if your service is being requested
                 by a teacher
               </p>
@@ -126,6 +125,13 @@ const DashboardTeacher = () => {
                 </button>
               </div> */}
 
+              <div>
+                {teachersRequest ? (
+                  <RequestCard requests={teachersRequest.data as Requests[]} />
+                ) : (
+                  ''
+                )}
+              </div>
               <ol className=' '>
                 <li>
                   Right to leave and work in the UK <span>(verifying)</span>

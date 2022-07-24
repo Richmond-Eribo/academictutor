@@ -98,7 +98,10 @@ const DashboardAdmin = () => {
 
             <div className='flex justify-between flex-col lg:flex-row'>
               {parentsRequests ? (
-                <RequestCard requests={parentsRequests.data as Requests[]} />
+                <RequestCard
+                  admin
+                  requests={parentsRequests.data as Requests[]}
+                />
               ) : (
                 <div>There are currently no parent requests</div>
               )}

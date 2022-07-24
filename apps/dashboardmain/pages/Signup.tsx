@@ -19,7 +19,7 @@ const SignUp: FC = () => {
 
   // Values from the form are stored here.
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('parent1@gmail.com')
   const [password, setPassword] = useState<number>()
   const [phone, setPhone] = useState<number>()
   const [errors, setErrors] = useState([])
@@ -50,6 +50,16 @@ const SignUp: FC = () => {
 
   // Modal for loading state
   // const [loadingModal, setLoadingModal] = useState(false)
+
+  const checkEmailUniqueness = () => {
+    axios
+      .get(`/api/user/exist/${email}`)
+      .then(res => console.log(res))
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          throw error
+      })
+  }
 
   const submitFormTeacher = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -195,6 +205,9 @@ const SignUp: FC = () => {
             />
           </div>
           <div className={`${tab == 1 ? 'hidden' : 'block'} `}>
+            <button className='btn ' onClick={checkEmailUniqueness}>
+              click me please
+            </button>
             <ParentSignUp
               submitFormParent={submitFormParent}
               setActiveInput={setActiveInput}

@@ -80,7 +80,7 @@ const TeacherSignUp = ({
   return (
     <form onSubmit={submitFormTeacher}>
       {/* <>{console.log(profile_picture)}</> */}
-      <div className='flex content-around  w-screen lg:flex-row flex-col justify-around items-center'>
+      <div className='flex content-around  w-screen flex-col justify-around items-center'>
         <section className='lg:w-[400px] w-[330px]   '>
           <Input
             type='name'
@@ -144,12 +144,12 @@ const TeacherSignUp = ({
             />
           </div>
 
-          <DocumentInput
+          {/* <DocumentInput
             placeholder='Profile picture'
             value={profile_picture}
             setValue={setProfile_picture}
             id='profile_picture'
-          />
+          /> */}
 
           {/* <div className='flex mt-10 mb-2'>
             <p className='text-text-light'>
@@ -179,7 +179,7 @@ const TeacherSignUp = ({
             onChange={event => setProfile(event.target.value)}
           ></textarea>
 
-          <p className=''>Other Document</p>
+          {/* <p className=''>Other Document</p>
           <DocumentInput
             placeholder='Right to leave and work in the UK'
             value={right_to_work}
@@ -203,11 +203,11 @@ const TeacherSignUp = ({
             value={qts}
             setValue={setQts}
             id='qts'
-          />
+          /> */}
         </section>
 
         <section className='lg:w-[400px] w-[330px] '>
-          <DocumentInput
+          {/* <DocumentInput
             placeholder='Passport, ID or UK Driver’s License'
             value={passport_id_or_driver_license}
             setValue={setPassport_id_or_driver_license}
@@ -230,7 +230,7 @@ const TeacherSignUp = ({
             value={national_insurance_number}
             setValue={setNational_insurance_number}
             id='national_insurance_number'
-          />
+          /> */}
           <p className=''>Disclaimer</p>
           <p className='text-xs'>
             Academic tutors are required by law to safeguard our tutees, and we

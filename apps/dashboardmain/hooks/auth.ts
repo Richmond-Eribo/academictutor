@@ -67,31 +67,43 @@ export const useAuth = (config: IUseAuth) => {
   const register = async ({setErrors, ...props}: IApiRequest) => {
     // await csrf()
     setErrors([])
+    const checkEmail = await axios.get(`/api/user/exist/${props.email}`)
+    const checkPhone = await axios.get(`/api/user/exist/${props.phone}`)
 
-    // route
-    axios
-      .post('/api/user/register', props, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then(response => {
-        if (response.status == 200) {
-          router.push({
-            pathname: '/Login',
-            query: {
-              slug: 'registerRedirect',
-            },
-          })
-          // console.log(response.data)
-        }
-      })
-      .then(() => mutate())
-      .catch(error => {
-        if (error.response.status !== 422) throw error
+    const checkEmailData = await checkEmail.data
+    const checkPhoneData = await checkPhone.data
 
-        setErrors(Object.values(error.response.data.errors).flat())
-      })
+    if (checkEmailData === 1) {
+      setErrors('Email already exist, try again')
+    }
+    if (checkPhoneData === 1) {
+      setErrors('Phone Number already exist, try again')
+    }
+
+    if (checkEmailData === 0 || checkPhoneData === 0) {
+      axios
+        .post('/api/user/register', props, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(response => {
+          if (response.status == 200) {
+            router.push({
+              pathname: '/Login',
+              query: {
+                slug: 'registerRedirect',
+              },
+            })
+          }
+        })
+        .then(() => mutate())
+        .catch(error => {
+          if (error.response.status !== 422) throw error
+
+          setErrors(Object.values(error.response.data.errors).flat())
+        })
+    }
   }
 
   // Login user

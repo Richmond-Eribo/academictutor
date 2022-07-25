@@ -6,6 +6,7 @@ import TeacherSignUp from 'components/SignUp/TeacherSignUp'
 import axios from 'lib/axios'
 import Link from 'next/link'
 import Image from 'next/image'
+import Error from 'components/Error'
 
 const SignUp: FC = () => {
   const [activeInput, setActiveInput] = useState(0)
@@ -51,19 +52,10 @@ const SignUp: FC = () => {
   // Modal for loading state
   // const [loadingModal, setLoadingModal] = useState(false)
 
-  const checkEmailUniqueness = () => {
-    axios
-      .get(`/api/user/exist/${email}`)
-      .then(res => console.log(res))
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
-      })
-  }
-
   const submitFormTeacher = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
+    //  const checkEmail =  await checkEmailUniqueness()
     register({
       setErrors,
       name,
@@ -164,7 +156,8 @@ const SignUp: FC = () => {
           </p>
         </div>
 
-        <main className='flex justify-center'>
+        <main className='flex flex-col items-center justify-center'>
+          <Error errors={errors} />
           <div className={`${tab == 2 ? 'hidden' : 'block'}`}>
             <TeacherSignUp
               submitFormTeacher={submitFormTeacher}

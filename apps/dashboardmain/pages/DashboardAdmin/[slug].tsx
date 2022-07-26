@@ -10,6 +10,7 @@ import axios from 'lib/axios'
 import {Credentials} from 'interfaces/types'
 import {useState} from 'react'
 import LoadingComponent from 'components/LoadingComponent'
+import DestroyUserModal from 'components/DestroyUserModal'
 
 const Slug = () => {
   const router = useRouter()
@@ -142,14 +143,23 @@ const Slug = () => {
       })
   }
 
-  const [fileUrl, setFileUrl] = useState()
-  // const {
-  //   data: credentialsVerify,
-  //   error: credentialsVerifyError,
-  //   mutate: credentialsVerifyMutate,
-  // } = useSWR(`/api/admin/verify-teacher/${singleTeacher?.data.email}/`, () =>
+  const deleteTeachers = () => {
+    axios
+      .post(`/api/admin/delete-user/${id}`)
+      .then(res => {
+        if (res.status == 200) {
+          alert('user deleted')
+          router.reload()
+        }
+      })
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401)
+          alert(error.response.message)
+        throw error
+      })
+  }
 
-  // )
+  const [fileUrl, setFileUrl] = useState()
 
   return (
     <>
@@ -196,13 +206,13 @@ const Slug = () => {
                 <>
                   {singleTeacher && (
                     <div className='flex flex-col lg:flex-row lg:items-center'>
-                      <figure className='lg:w-[154px] h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
-                        <Image
+                      <figure className='lg:w-[154px] bg-tertiary-mid-dark h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
+                        {/* <Image
                           src='https://api.lorem.space/image/movie?w=200&h=280'
                           width={200}
                           height={280}
                           alt='who'
-                        />
+                        /> */}
                       </figure>
                       <div className='lg:w-[355px]'>
                         <h2 className='card-title text-14'>
@@ -374,6 +384,8 @@ const Slug = () => {
                   <DocumenCard documentName='RFC' />
                   <DocumenCard documentName='RFC' /> */}
                 </div>
+
+                <DestroyUserModal deleteUser={deleteTeachers} />
               </div>
             </div>
           </main>

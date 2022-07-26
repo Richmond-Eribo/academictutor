@@ -10,7 +10,7 @@ import axios from 'lib/axios'
 import {Credentials} from 'interfaces/types'
 import {useState} from 'react'
 import LoadingComponent from 'components/LoadingComponent'
-import DestroyUserModal from 'components/DestroyUserModal'
+import DestroyUserModal from 'components/Modals/DestroyUserModal'
 
 const Slug = () => {
   const router = useRouter()

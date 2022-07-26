@@ -24,7 +24,9 @@ const Input = ({
   return (
     <div
       className={` border-b-2   py-2 w-[330px] lg:w-[390px] mt-${marginTop} ${
-        activeInput === activeNumber ? 'border-blue-500  ' : 'border-[#BFC7D3]'
+        activeInput === activeNumber
+          ? 'border-primary-mid  '
+          : 'border-[#BFC7D3]'
       } `}
       onClick={() => setActiveInput(activeNumber)}
     >

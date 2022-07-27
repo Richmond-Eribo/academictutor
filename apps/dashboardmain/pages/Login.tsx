@@ -116,11 +116,11 @@ const Login = () => {
             value={password}
             setValue={setPassword}
           />
-        </form>
-        <div className='flex flex-col justify-between'>
           <button type='submit' className='button sign-button  my-5'>
             sign in
           </button>
+        </form>
+        <div className='flex flex-col justify-between'>
           <ForgetPasswordModal
             setEmail={setForgetEmail}
             email={forgetEmail}

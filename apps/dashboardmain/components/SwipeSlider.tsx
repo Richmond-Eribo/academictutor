@@ -1,41 +1,67 @@
 import {FC} from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'
+import {Teacher} from 'interfaces/types'
+import TeacherCard from './TeacherCard'
+
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
 
 // import required modules
-import {Grid, Pagination} from 'swiper'
+import {Autoplay, Navigation, Pagination} from 'swiper'
 
 type TeacherProps = {
-  TeacherCard: {name: string; subject: string; bio: string; imageUrl: string}[]
+  teachers: Teacher[]
+  request: (id: number) => void
 }
 
-const SwipeSlider: FC<TeacherProps> = ({TeacherCard}) => {
+const SwipeSlider: FC<TeacherProps> = ({teachers, request}) => {
   return (
     <>
-      {console.log('hi')}
-      <p>swiper</p>
-      {/* <Swiper
-        slidesPerView={3.5}
-        // grid={{
-        //   rows: 4,
-        // }}
-        spaceBetween={30}
-        freeMode={true}
+      {/* {console.log('hi')} */}
+      <Swiper
+        slidesPerView={1.5}
+        spaceBetween={10}
+        slidesPerGroup={3}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 80,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 320,
+          },
+        }}
+        loop={true}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: true,
+        }}
+        loopFillGroupWithBlank={true}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
-        className='mySwiper '
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className='mySwiper'
       >
-        {TeacherCard.map(n => (
-          <SwiperSlide className=' shadow-card w-[647px] lg:h-[263px] bg-primary-mid'>
-            hi this is me
-          </SwiperSlide>
-        ))}
-      </Swiper> */}
+        {teachers &&
+          teachers.map(teacher => (
+            <SwiperSlide key={teacher.id} className='shadow-card'>
+              <TeacherCard teacher={teacher} request={request} />
+              {/* <p>hi</p> */}
+              {/* <div className=' mb-3 w-[330px] lg:w-[476px] lg:h-[199px]  bg-red-300'>
+                hellow
+              </div> */}
+            </SwiperSlide>
+          ))}
+      </Swiper>
     </>
   )
 }

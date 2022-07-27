@@ -8,6 +8,7 @@ import Link from 'next/link'
 import {GetInTouchForm} from 'ui'
 import DaisySlide from 'components/DaisySlide'
 import LoadingComponent from 'components/LoadingComponent'
+import SwipeSlider from 'components/SwipeSlider'
 
 const DashboardParent = () => {
   const {loading, user, logout} = useAuth({
@@ -87,7 +88,8 @@ const DashboardParent = () => {
                 There are currently no teachers
               </div>
             )}
-            <DaisySlide teachers={teachers?.data} request={request} />
+            {/* <DaisySlide teachers={teachers?.data} request={request} /> */}
+            <SwipeSlider teachers={teachers?.data} request={request} />
 
             {/* <p>There are no Available Teachers</p> */}
           </section>

@@ -54,9 +54,9 @@ const ForgetPassword = () => {
     <div>
       <div className='flex flex-col justify-center items-center  h-screen'>
         <form onSubmit={submitForm}>
-          <Link href='/'>
-            <>
-              <a className='hidden lg:block'>
+          <>
+            <Link href='/Login'>
+              <a className='hidden lg:block cursor-pointer'>
                 <Image
                   src='/logo.png'
                   height={42}
@@ -66,8 +66,9 @@ const ForgetPassword = () => {
                   priority
                 />
               </a>
-
-              <a className='block lg:hidden'>
+            </Link>
+            <Link href='/Login'>
+              <a className='block lg:hidden cursor-pointer'>
                 <Image
                   src='/logo.png'
                   height={42 / 1.2}
@@ -77,8 +78,8 @@ const ForgetPassword = () => {
                   priority
                 />
               </a>
-            </>
-          </Link>
+            </Link>
+          </>
 
           {/* <section className='lg:w-[400px]  '> */}
 

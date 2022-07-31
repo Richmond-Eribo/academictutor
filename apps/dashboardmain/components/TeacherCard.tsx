@@ -7,18 +7,20 @@ type Props = {
   request: (id: number) => void
 }
 
+const loaderProp = ({src}: any) => {
+  return src
+}
 const TeacherCard: FC<Props> = ({teacher, request}) => {
   return (
     <div className='carousel-item  flex justify-center items-center  lg:w-[547px] lg:h-[263px] rounded-lg shadow-card text-tertiary-mid-dark'>
       <div className='card shadow-md  lg:card-side rounded w-[330px] lg:w-[476px] lg:h-[199px] bg-white'>
-        <div className='lg:w-[156px] hidden lg:block   lg:h-[199px] bg-tertiary-mid-dark'>
-          {/* <Image
-            src='https://api.lorem.space/image/movie?w=200&h=280'
-            width={200}
-            height={280}
-            alt='who'
-            className='hidden lg:flex'
-          /> */}
+        <div className='lg:w-[156px] hidden lg:block relative  lg:h-[199px] bg-tertiary-mid-dark'>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/get-file/${teacher.profile_picture}`}
+            layout='fill'
+            alt='hi'
+            loader={loaderProp}
+          />
         </div>
 
         <div className=' rounded-full mx-auto w-[120px] overflow-hidden  h-[120px] lg:hidden bg-blue-500'>

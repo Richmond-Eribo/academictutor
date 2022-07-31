@@ -48,20 +48,20 @@ const SwipeSlider: FC<TeacherProps> = ({teachers, request}) => {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Pagination, Navigation]}
         className='mySwiper'
       >
         {teachers &&
           teachers.map(teacher => (
             <SwiperSlide key={teacher.id} className='shadow-card'>
               <TeacherCard teacher={teacher} request={request} />
-              {/* <p>hi</p> */}
-              {/* <div className=' mb-3 w-[330px] lg:w-[476px] lg:h-[199px]  bg-red-300'>
-                hellow
-              </div> */}
             </SwiperSlide>
           ))}
       </Swiper>
+      {/* <p>hi</p> */}
+      {/* <div className=' mb-3 w-[330px] lg:w-[476px] lg:h-[199px]  bg-red-300'>
+            hellow
+          </div> */}
     </>
   )
 }

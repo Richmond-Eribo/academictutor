@@ -132,17 +132,6 @@ const Slug = () => {
       })
   }
 
-  const getUrlOfCredentials = (documentName: string) => {
-    axios
-      .get(`/api/user/get-file-url/${documentName}`)
-      .then(res => setFileUrl(res.data.fileUrl))
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          alert(error.response.message)
-        throw error
-      })
-  }
-
   const deleteTeachers = () => {
     axios
       .post(`/api/admin/delete-user/${id}`)
@@ -160,6 +149,11 @@ const Slug = () => {
   }
 
   const [fileUrl, setFileUrl] = useState()
+
+  // this loader helps next/image fetch url from the backend
+  const loaderProp = ({src}: any) => {
+    return src
+  }
 
   return (
     <>
@@ -206,13 +200,13 @@ const Slug = () => {
                 <>
                   {singleTeacher && (
                     <div className='flex flex-col lg:flex-row lg:items-center'>
-                      <figure className='lg:w-[154px] bg-tertiary-mid-dark h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
-                        {/* <Image
-                          src='https://api.lorem.space/image/movie?w=200&h=280'
-                          width={200}
-                          height={280}
-                          alt='who'
-                        /> */}
+                      <figure className='lg:w-[154px] relative bg-tertiary-mid-dark h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/get-file/${singleTeacher.data.profile_picture}`}
+                          layout='fill'
+                          alt='hi'
+                          loader={loaderProp}
+                        />
                       </figure>
                       <div className='lg:w-[355px]'>
                         <h2 className='card-title text-14'>

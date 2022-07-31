@@ -4,7 +4,7 @@ const withTM = require('next-transpile-modules')(['ui'])
 module.exports = withTM({
   reactStrictMode: true,
   images: {
-    domains: ['api.lorem.space', 'localhost'],
+    domains: ['api.lorem.space', 'localhost', 'localhost:8000', 'th.bing.com'],
   },
   // async redirects() {
   //   return [

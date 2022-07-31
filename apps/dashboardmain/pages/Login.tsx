@@ -28,18 +28,6 @@ const Login = () => {
   const [errors, setErrors] = useState<any>(undefined)
   const [status, setStatus] = useState<string | null>(null)
 
-  // useEffect(() => {
-
-  //   if (router.query.reset?.length! > 0 && errors?.length === 0) {
-  //     setStatus(window.atob(router.query.reset as string))
-  //   } else {
-  //     setStatus(null)
-  //   }
-  // }, [errors, router.query])
-
-  // modal loading state
-  // const [loadingModal, setLoadingModal] = useState(false)
-
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     login({setErrors, email, password, setStatus})
@@ -49,12 +37,12 @@ const Login = () => {
     event.preventDefault()
     const email = forgetEmail
     axios
-      .post('/api/user/forgot-password', email)
-      .then(res => console.log(res))
+      .post('/api/user/forgot-password', {email: forgetEmail})
+      .then(res => alert(res.data.status))
       .catch(error => {
         if (error.response.status !== 422) throw error
       })
-    // console.log('hi')
+    console.log('email')
   }
 
   return (
@@ -111,7 +99,7 @@ const Login = () => {
             setActiveInput={setActiveInput}
             activeInput={activeInput}
             activeNumber={3}
-            placeholder='password'
+            placeholder='Password'
             marginTop={5}
             value={password}
             setValue={setPassword}

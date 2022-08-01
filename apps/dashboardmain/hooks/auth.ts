@@ -87,7 +87,7 @@ export const useAuth = (config: IUseAuth) => {
           },
         })
         .then(response => {
-          if (response.status == 200) {
+          if (response.status) {
             router.push({
               pathname: '/Login',
               query: {

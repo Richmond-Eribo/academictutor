@@ -57,7 +57,7 @@ export const useAuth = (config: IUseAuth) => {
           router.pathname !== '/Signup'
         ) {
           if (router.pathname !== '/AdminSignUpPage') router.push('/Login')
-          throw error
+          // throw error
         }
         // console.log(error)
       })
@@ -73,7 +73,7 @@ export const useAuth = (config: IUseAuth) => {
     const checkEmailData = await checkEmail.data
     const checkPhoneData = await checkPhone.data
 
-    console.log(checkPhoneData, checkEmailData)
+    // console.log(checkPhoneData, checkEmailData)
 
     if (checkEmailData === 1) {
       setErrors('Email already exist, try again')

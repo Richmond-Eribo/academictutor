@@ -73,7 +73,7 @@ export const useAuth = (config: IUseAuth) => {
     const checkEmailData = await checkEmail.data
     const checkPhoneData = await checkPhone.data
 
-    // console.log(checkPhoneData, checkEmailData)
+    console.log(checkPhoneData, checkEmailData)
 
     if (checkEmailData === 1) {
       setErrors('Email already exist, try again')
@@ -82,7 +82,7 @@ export const useAuth = (config: IUseAuth) => {
       setErrors('Phone Number already exist, try again')
     }
 
-    if (checkEmailData === '' || checkPhoneData === '') {
+    if (checkEmailData !== 1 || checkPhoneData !== 1) {
       axios
         .post('/api/user/register', props, {
           headers: {

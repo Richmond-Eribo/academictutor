@@ -77,12 +77,9 @@ export const useAuth = (config: IUseAuth) => {
 
     if (checkEmailData === 1) {
       setErrors('Email already exist, try again')
-    }
-    if (checkPhoneData === 1) {
+    } else if (checkPhoneData === 1) {
       setErrors('Phone Number already exist, try again')
-    }
-
-    if (checkEmailData !== 1 || checkPhoneData !== 1) {
+    } else {
       axios
         .post('/api/user/register', props, {
           headers: {
@@ -209,4 +206,7 @@ export const useAuth = (config: IUseAuth) => {
   //     .post('/api/user/reset-password', {token: router.query.token, ...props})
   //     .then(response => router.push(''))
   // }
+}
+function elseif(arg0: boolean) {
+  throw new Error('Function not implemented.')
 }

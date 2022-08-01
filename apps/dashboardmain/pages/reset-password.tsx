@@ -6,7 +6,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import Input from 'ui/components/Input'
 
-const ForgetPassword = () => {
+const ResetPassword = () => {
   const router = useRouter()
   const query = router.query
 
@@ -83,7 +83,7 @@ const ForgetPassword = () => {
 
           {/* <section className='lg:w-[400px]  '> */}
 
-          <>{errors && console.log(errors)}</>
+          {/* <>{errors && console.log(errors)}</> */}
           <Error errors={errors} />
 
           <Input
@@ -132,4 +132,4 @@ const ForgetPassword = () => {
   )
 }
 
-export default ForgetPassword
+export default ResetPassword

@@ -1,5 +1,5 @@
 import {type} from 'os'
-import Button from './Button'
+import Button from '../Button'
 
 type Props = {
   dashboard?: boolean

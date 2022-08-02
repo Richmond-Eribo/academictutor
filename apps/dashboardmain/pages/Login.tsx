@@ -49,7 +49,7 @@ const Login = () => {
       {/* <>{errors && console.log(errors)}</> */}
       <div className='lg:w-[728px] hidden lg:block  relative'>
         <Image src='/SignUpImage2.png' layout='fill' alt='sign up Image' />
-        <>{console.log(loading)}</>
+        {/* <>{console.log(loading)}</> */}
       </div>
       {/* {user && console.log('user')} */}
       <div className='flex flex-col justify-center items-center  h-screen'>

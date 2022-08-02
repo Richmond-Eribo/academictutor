@@ -18,7 +18,7 @@ const Login = () => {
     // console.log(router.query)
   }, [router])
 
-  const [loadingState, setLoadingState] = useState(false)
+  // const [loadingState, setLoadingState] = useState(false)
 
   const [activeInput, setActiveInput] = useState(0)
   const [forgetEmail, setForgetEmail] = useState('')
@@ -105,7 +105,7 @@ const Login = () => {
           />
           <Button
             text='sign in'
-            setLoading={setLoadingState}
+            // setLoading={setLoadingState}
             loadingState={loading}
             classname={['button', 'sign-button', 'my-5']}
             type='submit'

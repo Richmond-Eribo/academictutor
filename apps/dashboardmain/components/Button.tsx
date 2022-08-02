@@ -5,17 +5,23 @@ type Type = 'button' | 'submit' | 'reset' | undefined
 type Props = {
   text: string
   loadingState: boolean
-  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+  onClickFunction?: () => void
   classname: string[]
   type: Type
 }
 
-const Button = ({text, loadingState, setLoading, classname, type}: Props) => {
+const Button = ({
+  text,
+  loadingState,
+  onClickFunction,
+  classname,
+  type,
+}: Props) => {
   // const [loading, setLoading] = useState(false)
   const classnames = classname.join(' ')
   return (
     <button
-      onClick={() => setLoading && setLoading(true)}
+      onClick={onClickFunction}
       disabled={loadingState}
       type={type}
       className={`${classnames}`}

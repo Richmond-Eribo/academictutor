@@ -179,6 +179,7 @@ export const useAuth = (config: IUseAuth) => {
     login,
     logout,
     loading,
+    setLoading,
     config,
   }
   // forgot password

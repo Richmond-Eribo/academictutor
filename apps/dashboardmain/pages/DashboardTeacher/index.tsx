@@ -10,6 +10,7 @@ import LoadingComponent from 'components/LoadingComponent'
 import RequestCard from 'components/RequestCard'
 import {Requests} from 'interfaces/types'
 import Button from 'components/Button'
+import GetInTouch from 'components/GetInTouch'
 
 const DashboardTeacher = () => {
   const {loading, setLoading, user, logout} = useAuth({
@@ -22,6 +23,9 @@ const DashboardTeacher = () => {
   const [selectedFile, setSelectedFile] = useState<any>()
   const [phone, setPhone] = useState('')
   // const user = true
+
+  const [messageInput, setMessage] = useState('')
+  const [sentGetInTouch, setSentGetInTouch] = useState(false)
 
   const {
     data: teachersRequest,
@@ -85,9 +89,36 @@ const DashboardTeacher = () => {
         })
   )
 
+  const GetInTouchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // console.log('hi')
+    setLoading(true)
+    axios
+      .post(`/api/user/mail-to-admin`, {
+        name: user.name,
+        email: user.email,
+        message: messageInput,
+      })
+      .then(res => {
+        setLoading(false)
+        setSentGetInTouch(true)
+        setMessage('')
+        return res.data
+      })
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401) {
+          setLoading(false)
+          setMessage('')
+          alert('Hey, your request could not be processed')
+          throw error
+        }
+      })
+  }
+
   const loaderProp = ({src}: any) => {
     return src
   }
+
   // ;('/get-file-url/{email}/{name}')
   return (
     <>
@@ -245,6 +276,30 @@ const DashboardTeacher = () => {
                 </ol>
               </div>
             </div>
+          </section>
+
+          <section className='flex mt-20 flex-col justify-center items-center'>
+            <p className='px-28 font-bold text-[20px] capitalize'>
+              Get in Touch
+            </p>
+            {sentGetInTouch ? (
+              <div className='bg-primary-light/20 rounded-lg p-5'>
+                <p className='text-center mb-3'>Request sent</p>
+                <button
+                  onClick={() => setSentGetInTouch(false)}
+                  className='button sign-button'
+                >
+                  Send Another Feedback
+                </button>
+              </div>
+            ) : (
+              <GetInTouch
+                messageInput={messageInput}
+                setMessage={setMessage}
+                GetInTouch={GetInTouchSubmit}
+                loadingState={loading}
+              />
+            )}
           </section>
 
           <style jsx>

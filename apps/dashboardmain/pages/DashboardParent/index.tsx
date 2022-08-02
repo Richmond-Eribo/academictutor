@@ -9,7 +9,8 @@ import DaisySlide from 'components/DaisySlide'
 import LoadingComponent from 'components/LoadingComponent'
 import SwipeSlider from 'components/SwipeSlider'
 import {useState} from 'react'
-import GetInTouchForm from 'components/GetInTouchForm'
+import GetInTouchForm from 'components/GetInTouch/GetInTouchForm'
+import GetInTouch from 'components/GetInTouch'
 
 const DashboardParent = () => {
   const {loading, user, logout, setLoading} = useAuth({
@@ -57,7 +58,7 @@ const DashboardParent = () => {
       })
   }
 
-  const GetInTouch = (event: React.FormEvent<HTMLFormElement>) => {
+  const GetInTouchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     // console.log('hi')
     setLoading(true)
@@ -73,7 +74,6 @@ const DashboardParent = () => {
         setMessage('')
         return res.data
       })
-      .then(() => requestsMutate())
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401) {
           setLoading(false)
@@ -138,11 +138,10 @@ const DashboardParent = () => {
                 </button>
               </div>
             ) : (
-              <GetInTouchForm
-                message={messageInput}
+              <GetInTouch
+                messageInput={messageInput}
                 setMessage={setMessage}
-                submit={e => GetInTouch(e)}
-                dashboard
+                GetInTouch={GetInTouchSubmit}
                 loadingState={loading}
               />
             )}

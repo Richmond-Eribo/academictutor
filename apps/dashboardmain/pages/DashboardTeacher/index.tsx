@@ -9,12 +9,14 @@ import useSWR from 'swr'
 import LoadingComponent from 'components/LoadingComponent'
 import RequestCard from 'components/RequestCard'
 import {Requests} from 'interfaces/types'
+import Button from 'components/Button'
 
 const DashboardTeacher = () => {
-  const {loading, user, logout} = useAuth({
+  const {loading, setLoading, user, logout} = useAuth({
     middleware: 'auth',
   })
 
+  const [fileUploaded, setFileUploaded] = useState<string | undefined>()
   // console.log(user)
   const [selectedFileName, setSelectedFileName] = useState<any>()
   const [selectedFile, setSelectedFile] = useState<any>()
@@ -37,8 +39,10 @@ const DashboardTeacher = () => {
 
   // const baseURL = 'http://localhost:8000'
 
+  // submitFile
   const submitFile = (e: {preventDefault: () => void}) => {
     e.preventDefault()
+    setLoading(true)
 
     const selectedFileId = documentsArray.find(
       document => document.name === selectedFileName
@@ -46,12 +50,21 @@ const DashboardTeacher = () => {
 
     const formData = new FormData()
     formData.append(selectedFileId?.id!, selectedFile)
+
     axios
       .post(`/api/user/update/${user.id}`, formData)
-      .then(res => res.data)
+      .then(res => {
+        setLoading(false)
+        const data = res.data
+        setFileUploaded('Uploaded succesfully.')
+        return res.data
+      })
       .catch(error => {
+        setLoading(false)
+        setFileUploaded('This is sad, your file upload was unsuccessful.')
         throw error
       })
+
     // console.log(selectedFileId?.id)
   }
 
@@ -167,29 +180,52 @@ const DashboardTeacher = () => {
                 <div className='modal'>
                   <div className='modal-box relative'>
                     <label
+                      onClick={() => setFileUploaded(undefined)}
                       htmlFor='my-modal-3'
                       className='btn btn-sm border-none bg-primary-mid btn-circle absolute right-2 top-2'
                     >
                       ✕
                     </label>
-                    <form
-                      className=''
-                      encType='multipart/form-data'
-                      onSubmit={submitFile}
-                    >
-                      <input
-                        type='file'
-                        onChange={e => setSelectedFile(e.target.files![0])}
-                        name='file'
-                        id='file'
-                      />
-                      <button
-                        className='bg-primary-mid border-none btn '
+                    {fileUploaded ? (
+                      <div className=''>
+                        <p className='font-bold py-4'>{fileUploaded}</p>
+                        <p
+                          onClick={() => setFileUploaded(undefined)}
+                          className='text-primary-mid underline'
+                        >
+                          Try again
+                        </p>
+                      </div>
+                    ) : (
+                      <form
+                        className=''
+                        encType='multipart/form-data'
+                        onSubmit={submitFile}
+                      >
+                        <input
+                          type='file'
+                          onChange={e => setSelectedFile(e.target.files![0])}
+                          name='file'
+                          id='file'
+                        />
+
+                        <Button
+                          text='submit'
+                          // setLoading={setLoadingState}
+                          onClickFunction={() => submitFile}
+                          loadingState={loading}
+                          classname={['button', 'sign-button', 'mt-5']}
+                          type='submit'
+                        />
+
+                        {/* <button
+                        className='bg-primary-mid  button sign-button'
                         onClick={submitFile}
                       >
                         submit
-                      </button>
-                    </form>
+                      </button> */}
+                      </form>
+                    )}
                   </div>
                 </div>
               </>

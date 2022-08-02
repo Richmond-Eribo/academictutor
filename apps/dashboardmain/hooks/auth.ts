@@ -30,7 +30,7 @@ export const useAuth = (config: IUseAuth) => {
   } = config
 
   // isLoading
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   // Getting cookie from sanctum
   const csrf = () => axios.get('/sanctum/csrf-cookie')
@@ -64,8 +64,10 @@ export const useAuth = (config: IUseAuth) => {
   )
 
   // Register new user
+
   const register = async ({setErrors, ...props}: IApiRequest) => {
     // await csrf()
+    setLoading(true)
     setErrors([])
     const checkEmail = await axios.get(`/api/user/exist/${props.email}`)
     const checkPhone = await axios.get(`/api/user/exist/${props.phone}`)
@@ -88,6 +90,7 @@ export const useAuth = (config: IUseAuth) => {
         })
         .then(response => {
           if (response.status) {
+            setLoading(false)
             router.push({
               pathname: '/Login',
               query: {
@@ -99,7 +102,7 @@ export const useAuth = (config: IUseAuth) => {
         .then(() => mutate())
         .catch(error => {
           if (error.response.status !== 422) throw error
-
+          setLoading(false)
           setErrors(Object.values(error.response.data.errors).flat())
         })
     }
@@ -108,17 +111,22 @@ export const useAuth = (config: IUseAuth) => {
   // Login user
   const login = async ({setErrors, setStatus, ...props}: IApiRequest) => {
     await csrf()
+    setLoading(true)
     setErrors([])
     setStatus!(null)
 
     // route
     axios
       .post('/login', props)
-      .then(res => res.data)
+      .then(res => {
+        setLoading(false)
+        return res.data
+      })
       .then(() => mutate())
       .catch(error => {
         if (error.response.status !== 422 || error.response.status === 401) {
           setErrors(error.response.data.message)
+          setLoading(false)
           throw error
         }
       })
@@ -161,11 +169,7 @@ export const useAuth = (config: IUseAuth) => {
     //   }
 
     if (middleware === 'auth' && error) logout()
-    setLoading(false)
 
-    return () => {
-      setLoading(true)
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user!])
 

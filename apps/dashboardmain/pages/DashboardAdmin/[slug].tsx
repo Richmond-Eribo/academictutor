@@ -43,7 +43,7 @@ const Slug = () => {
   } = useSWR(`/api/teacher/${id ? id : 1}`, () =>
     axios
       .get(`/api/teacher/${id ? id : 1}`)
-      .then(res => res)
+      .then(res => res.data)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
           throw error
@@ -124,7 +124,7 @@ const Slug = () => {
   const downloadCredentials = (documentName: string) => {
     axios
       .get(`/api/user/download-file/${documentName}`)
-      .then(res => res)
+      .then(res => res.data)
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
           alert(error.response.message)
@@ -202,7 +202,7 @@ const Slug = () => {
                     <div className='flex flex-col lg:flex-row lg:items-center'>
                       <figure className='lg:w-[154px] relative bg-tertiary-mid-dark h-[110px] w-[110px] mb-2 mr-5  overflow-hidden rounded-full lg:h-[154px] '>
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/get-file/${singleTeacher.data.profile_picture}`}
+                          src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/get-file/${singleTeacher?.profile_picture}`}
                           layout='fill'
                           alt='hi'
                           loader={loaderProp}
@@ -210,14 +210,12 @@ const Slug = () => {
                       </figure>
                       <div className='lg:w-[355px]'>
                         <h2 className='card-title text-14'>
-                          {singleTeacher.data.name}
+                          {singleTeacher.name}
                         </h2>
                         <p className='text-sm -mt-1 mb-2'>
-                          {singleTeacher.data.subjects}
+                          {singleTeacher.subjects}
                         </p>
-                        <p className='text-sm mb-10'>
-                          {singleTeacher.data.profile}
-                        </p>
+                        <p className='text-sm mb-10'>{singleTeacher.profile}</p>
                       </div>
                     </div>
                   )}
@@ -243,11 +241,6 @@ const Slug = () => {
                       isVerified={
                         credentials?.data.national_insurance_number_isverified
                       }
-                      // getDocumentUrl={() =>
-                      //   getUrlOfCredentials(
-                      //     credentials.data.national_insurance_number
-                      //   )
-                      // }
                     />
                   )}
 
@@ -269,6 +262,7 @@ const Slug = () => {
                       unverifyDocument={() => unverifiedCredentials('qts')}
                       documentName='qts'
                       isVerified={credentials?.data.qts_isverified}
+                      // url={`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/download-file${credentials.data.qts}`}
                     />
                   )}
 

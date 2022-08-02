@@ -7,22 +7,21 @@ import Error from 'components/Error'
 import Link from 'next/link'
 import Image from 'next/image'
 import ForgetPasswordModal from 'components/Modals/ForgetPasswordModal'
+import Button from 'components/Button'
 
 const Login = () => {
-  const [activeInput, setActiveInput] = useState(0)
-
-  const router = useRouter()
-
-  const {login, loading, user} = useAuth({
+  const {login, loading} = useAuth({
     middleware: 'guest',
   })
-
+  const router = useRouter()
   useEffect(() => {
     // console.log(router.query)
   }, [router])
 
-  const [forgetEmail, setForgetEmail] = useState('')
+  const [loadingState, setLoadingState] = useState(false)
 
+  const [activeInput, setActiveInput] = useState(0)
+  const [forgetEmail, setForgetEmail] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState<any>(undefined)
@@ -50,7 +49,7 @@ const Login = () => {
       {/* <>{errors && console.log(errors)}</> */}
       <div className='lg:w-[728px] hidden lg:block  relative'>
         <Image src='/SignUpImage2.png' layout='fill' alt='sign up Image' />
-        {/* <>{console.log(loading)}</> */}
+        <>{console.log(loading)}</>
       </div>
       {/* {user && console.log('user')} */}
       <div className='flex flex-col justify-center items-center  h-screen'>
@@ -104,9 +103,16 @@ const Login = () => {
             value={password}
             setValue={setPassword}
           />
-          <button type='submit' className='button sign-button  my-5'>
+          <Button
+            text='sign in'
+            setLoading={setLoadingState}
+            loadingState={loading}
+            classname={['button', 'sign-button', 'my-5']}
+            type='submit'
+          />
+          {/* <button type='submit' className=''>
             sign in
-          </button>
+          </button> */}
         </form>
         <div className='flex flex-col justify-between'>
           <ForgetPasswordModal

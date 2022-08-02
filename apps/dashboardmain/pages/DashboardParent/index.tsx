@@ -5,16 +5,19 @@ import Logout from 'components/svg/Logout'
 import Notification from 'components/svg/Notification'
 import Image from 'next/image'
 import Link from 'next/link'
-import {GetInTouchForm} from 'ui'
 import DaisySlide from 'components/DaisySlide'
 import LoadingComponent from 'components/LoadingComponent'
 import SwipeSlider from 'components/SwipeSlider'
+import {useState} from 'react'
+import GetInTouchForm from 'components/GetInTouchForm'
 
 const DashboardParent = () => {
-  const {loading, user, logout} = useAuth({
+  const {loading, user, logout, setLoading} = useAuth({
     middleware: 'auth',
   })
 
+  const [messageInput, setMessage] = useState('')
+  const [sentGetInTouch, setSentGetInTouch] = useState(false)
   const {
     data: teachers,
     error: teachersError,
@@ -51,6 +54,33 @@ const DashboardParent = () => {
       .catch(error => {
         if (error.response.status !== 409 || error.response.status == 401)
           throw error
+      })
+  }
+
+  const GetInTouch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // console.log('hi')
+    setLoading(true)
+    axios
+      .post(`/api/user/mail-to-admin`, {
+        name: user.name,
+        email: user.email,
+        message: messageInput,
+      })
+      .then(res => {
+        setLoading(false)
+        setSentGetInTouch(true)
+        setMessage('')
+        return res.data
+      })
+      .then(() => requestsMutate())
+      .catch(error => {
+        if (error.response.status !== 409 || error.response.status == 401) {
+          setLoading(false)
+          setMessage('')
+          alert('Hey, your request could not be processed')
+          throw error
+        }
       })
   }
   // const user = true
@@ -97,7 +127,25 @@ const DashboardParent = () => {
             <p className='px-28 font-bold text-[20px] capitalize'>
               Get in Touch
             </p>
-            <GetInTouchForm />
+            {sentGetInTouch ? (
+              <div className='bg-primary-light/20 rounded-lg p-5'>
+                <p className='text-center mb-3'>Request sent</p>
+                <button
+                  onClick={() => setSentGetInTouch(false)}
+                  className='button sign-button'
+                >
+                  Send Another Feedback
+                </button>
+              </div>
+            ) : (
+              <GetInTouchForm
+                message={messageInput}
+                setMessage={setMessage}
+                submit={e => GetInTouch(e)}
+                dashboard
+                loadingState={loading}
+              />
+            )}
           </section>
         </div>
       ) : (

@@ -1,14 +1,25 @@
+import {type} from 'os'
 import Button from './Button'
 
 type Props = {
   dashboard?: boolean
-  submit?(): void
+  submit?(e: React.FormEvent<HTMLFormElement>): void
   message?: string
   setMessage?: React.Dispatch<React.SetStateAction<string>>
+  loadingState?: boolean
 }
-const GetInTouchForm = ({dashboard, submit, message, setMessage}: Props) => {
+const GetInTouchForm = ({
+  dashboard,
+  submit,
+  message,
+  setMessage,
+  loadingState,
+}: Props) => {
   return (
-    <form className=' w-[330px] flex flex-col  lg:grid   lg:grid-cols-2 gap-2 lg:gap-y-4 lg:my-5 lg:w-[580px] lg:h-[200px]'>
+    <form
+      onSubmit={submit}
+      className=' w-[330px] flex flex-col  lg:grid   lg:grid-cols-2 gap-2 lg:gap-y-4 lg:my-5 lg:w-[580px] lg:h-[200px]'
+    >
       {!dashboard && (
         <>
           <input
@@ -33,16 +44,31 @@ const GetInTouchForm = ({dashboard, submit, message, setMessage}: Props) => {
         rows={5}
         className='border border-[#C4C4C4] rounded-md p-1 px-5 lg:col-span-2 outline-blue-400'
       />
-
-      <button
+      <Button
+        text='SEND REQUEST'
+        classname={[
+          'bg-[#42B9D1]',
+          'button',
+          'text-15px',
+          'justify-self-end',
+          'p-3',
+          'tracking-wide',
+          'text-white',
+          'rounded-md',
+          'col-start-2',
+        ]}
+        type='submit'
+        loadingState={loadingState!}
+      />
+      {/* <button
         onClick={e => {
           e.preventDefault()
           submit!()
         }}
-        className='bg-[#42B9D1] button text-15px justify-self-end  p-3 px-5 tracking-wide text-white rounded-md   col-start-2'
+        className=''
       >
         SEND REQUEST
-      </button>
+      </button> */}
     </form>
   )
 }

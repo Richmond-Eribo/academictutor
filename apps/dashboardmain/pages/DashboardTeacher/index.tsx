@@ -152,9 +152,9 @@ const DashboardTeacher = () => {
                 />
               ) : (
                 <>
-                  {alert(
-                    'You need to upload your profile picture, click on choose your document to upload'
-                  )}
+                  <p className='text-sm '>
+                    Upload a profile picture to increase you request rate
+                  </p>
                 </>
               )}
             </div>

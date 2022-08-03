@@ -61,6 +61,9 @@ const DashboardParent = () => {
       .post(`/api/parent/request-teacher`, {teacher_id: teacherID})
       .then(res => {
         setRequesting(null)
+        alert(
+          'you successfully requested for a teacher, you will be reached via your mail'
+        )
         return res.data
       })
       .then(() => requestsMutate())

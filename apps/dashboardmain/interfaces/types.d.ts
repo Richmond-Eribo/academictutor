@@ -1,3 +1,7 @@
+type Role = 'parent' | 'teacher' | 'admin'
+export type Type = 'button' | 'submit' | 'reset' | undefined
+export type RequesTeacherButtonText = 'Request' | 'Requested'
+
 export interface User {
   created_at: string
   email: string
@@ -11,8 +15,6 @@ export interface User {
   role: Role
   updated_at: string
 }
-
-type Role = 'parent' | 'teacher' | 'admin'
 
 export interface Parent extends User {}
 

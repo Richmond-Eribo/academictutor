@@ -11,6 +11,7 @@ import SwipeSlider from 'components/SwipeSlider'
 import {useState} from 'react'
 import GetInTouchForm from 'components/GetInTouch/GetInTouchForm'
 import GetInTouch from 'components/GetInTouch'
+import {RequesTeacherButtonText} from 'interfaces/types'
 
 const DashboardParent = () => {
   const {loading, user, logout, setLoading} = useAuth({
@@ -19,6 +20,10 @@ const DashboardParent = () => {
 
   const [messageInput, setMessage] = useState('')
   const [sentGetInTouch, setSentGetInTouch] = useState(false)
+  const [requestButtonText, setRequestButtonText] =
+    useState<RequesTeacherButtonText>('Request')
+
+  // Get all teacher
   const {
     data: teachers,
     error: teachersError,
@@ -33,6 +38,7 @@ const DashboardParent = () => {
       })
   )
 
+  // Get all request made by a parent
   const {
     data: requests,
     error: requestsError,
@@ -119,7 +125,12 @@ const DashboardParent = () => {
               </div>
             )}
             {/* <DaisySlide teachers={teachers?.data} request={request} /> */}
-            <SwipeSlider teachers={teachers?.data} request={request} />
+            <SwipeSlider
+              loadingState={loading}
+              text={requestButtonText}
+              teachers={teachers?.data}
+              request={request}
+            />
 
             {/* <p>There are no Available Teachers</p> */}
           </section>

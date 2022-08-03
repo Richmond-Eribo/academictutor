@@ -1,7 +1,7 @@
+import {Type} from 'interfaces/types'
 import React, {useState} from 'react'
 import SvgLoader from './svg/Loading'
 
-type Type = 'button' | 'submit' | 'reset' | undefined
 type Props = {
   text: string
   loadingState: boolean

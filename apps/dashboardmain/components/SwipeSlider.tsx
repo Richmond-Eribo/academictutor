@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'
-import {Teacher} from 'interfaces/types'
+import {RequesTeacherButtonText, Teacher} from 'interfaces/types'
 import TeacherCard from './TeacherCard'
 
 // Import Swiper styles
@@ -14,9 +14,16 @@ import {Autoplay, Navigation, Pagination} from 'swiper'
 type TeacherProps = {
   teachers: Teacher[]
   request: (id: number) => void
+  loadingState: boolean
+  text: RequesTeacherButtonText
 }
 
-const SwipeSlider: FC<TeacherProps> = ({teachers, request}) => {
+const SwipeSlider: FC<TeacherProps> = ({
+  teachers,
+  request,
+  text,
+  loadingState,
+}) => {
   return (
     <>
       {/* {console.log('hi')} */}
@@ -38,12 +45,12 @@ const SwipeSlider: FC<TeacherProps> = ({teachers, request}) => {
             spaceBetween: 320,
           },
         }}
-        loop={true}
+        // loop={true}
         autoplay={{
           delay: 3500,
           disableOnInteraction: true,
         }}
-        loopFillGroupWithBlank={true}
+        // loopFillGroupWithBlank={true}
         pagination={{
           clickable: true,
         }}
@@ -54,7 +61,13 @@ const SwipeSlider: FC<TeacherProps> = ({teachers, request}) => {
         {teachers &&
           teachers.map(teacher => (
             <SwiperSlide key={teacher.id} className='shadow-card'>
-              <TeacherCard teacher={teacher} request={request} />
+              <TeacherCard
+                text={text}
+                loadingState={loadingState}
+                type='button'
+                teacher={teacher}
+                request={request}
+              />
             </SwiperSlide>
           ))}
       </Swiper>

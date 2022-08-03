@@ -28,7 +28,7 @@ const Login = () => {
   const [forgetEmail, setForgetEmail] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState<any>(undefined)
+  const [errors, setErrors] = useState<any>(null)
   const [status, setStatus] = useState<string | null>(null)
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {

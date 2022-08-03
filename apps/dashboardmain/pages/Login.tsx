@@ -14,9 +14,13 @@ const Login = () => {
     middleware: 'guest',
   })
   const router = useRouter()
+  const params = router.query
   useEffect(() => {
-    // console.log(router.query)
-  }, [router])
+    if (params.slug) {
+      alert('Hey, account created succesfully, you should login')
+      router.push('/', undefined, {shallow: true})
+    }
+  }, [router, params.slug])
 
   // const [loadingState, setLoadingState] = useState(false)
 

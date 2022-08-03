@@ -2,12 +2,13 @@ import {RequesTeacherButtonText, Teacher, Type} from 'interfaces/types'
 import Image from 'next/image'
 import {FC} from 'react'
 import Button from './Button'
+import SvgLoader from './svg/Loading'
 
 type Props = {
   teacher: Teacher
   request: (id: number) => void
   text: RequesTeacherButtonText
-  loadingState: boolean
+  loadingState: number | null
   type: Type
 }
 
@@ -55,7 +56,7 @@ const TeacherCard: FC<Props> = ({
           <div className='card-actions mx-auto lg:mx-0 justify-self-center  lg:justify-start'>
             <Button
               text={text}
-              loadingState={loadingState}
+              // loadingState={loadingState}
               type={type}
               classname={[
                 'w-[139px]',
@@ -68,7 +69,11 @@ const TeacherCard: FC<Props> = ({
                 'text-15',
               ]}
               onClickFunction={() => request(teacher.id)}
-            />
+            >
+              <a className=''>
+                {loadingState === teacher.id ? <SvgLoader /> : <p>{text}</p>}
+              </a>
+            </Button>
             {/* <button onClick={() => request(teacher.id)} className=''></button> */}
           </div>
         </div>

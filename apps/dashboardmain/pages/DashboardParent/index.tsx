@@ -23,6 +23,8 @@ const DashboardParent = () => {
   const [requestButtonText, setRequestButtonText] =
     useState<RequesTeacherButtonText>('Request')
 
+  const [requesting, setRequesting] = useState<number | null>(null)
+
   // Get all teacher
   const {
     data: teachers,
@@ -54,13 +56,19 @@ const DashboardParent = () => {
   )
 
   const request = (teacherID: number) => {
+    setRequesting(teacherID)
     axios
       .post(`/api/parent/request-teacher`, {teacher_id: teacherID})
-      .then(res => res)
+      .then(res => {
+        setRequesting(null)
+        return res.data
+      })
       .then(() => requestsMutate())
       .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
+        if (error.response.status !== 409 || error.response.status == 401) {
+          setRequesting(null)
           throw error
+        }
       })
   }
 
@@ -126,7 +134,7 @@ const DashboardParent = () => {
             )}
             {/* <DaisySlide teachers={teachers?.data} request={request} /> */}
             <SwipeSlider
-              loadingState={loading}
+              loadingState={requesting}
               text={requestButtonText}
               teachers={teachers?.data}
               request={request}

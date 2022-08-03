@@ -1,13 +1,14 @@
 import {Type} from 'interfaces/types'
-import React, {useState} from 'react'
+import React, {ReactNode, useState} from 'react'
 import SvgLoader from './svg/Loading'
 
 type Props = {
-  text: string
-  loadingState: boolean
+  text?: string
+  loadingState?: boolean
   onClickFunction?: () => void
-  classname: string[]
+  classname?: string[]
   type: Type
+  children?: ReactNode
 }
 
 const Button = ({
@@ -16,9 +17,10 @@ const Button = ({
   onClickFunction,
   classname,
   type,
+  children,
 }: Props) => {
   // const [loading, setLoading] = useState(false)
-  const classnames = classname.join(' ')
+  const classnames = classname?.join(' ')
   return (
     <button
       onClick={onClickFunction}
@@ -27,7 +29,11 @@ const Button = ({
       className={`${classnames}`}
     >
       {/* {text} */}
-      {loadingState === true ? <SvgLoader /> : <p>{text}</p>}
+      {children ? (
+        <div>{children}</div>
+      ) : (
+        <div>{loadingState === true ? <SvgLoader /> : <p>{text}</p>}</div>
+      )}
     </button>
   )
 }

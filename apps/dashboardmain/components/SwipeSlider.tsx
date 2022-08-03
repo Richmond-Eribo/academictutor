@@ -14,7 +14,7 @@ import {Autoplay, Navigation, Pagination} from 'swiper'
 type TeacherProps = {
   teachers: Teacher[]
   request: (id: number) => void
-  loadingState: boolean
+  loadingState: number | null
   text: RequesTeacherButtonText
 }
 

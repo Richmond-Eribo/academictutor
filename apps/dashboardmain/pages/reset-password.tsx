@@ -1,3 +1,4 @@
+import Button from 'components/Button'
 import Error from 'components/Error'
 import axios from 'lib/axios'
 import Image from 'next/image'
@@ -16,10 +17,13 @@ const ResetPassword = () => {
   const [activeInput, setActiveInput] = useState(0)
   const [misMatch, setMisMatch] = useState(false)
   const [errors, setErrors] = useState<any>('')
+  const [loading, setloading] = useState(false)
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
-    const token = query.token
     event.preventDefault()
+    const token = query.token
+    setloading(true)
+
     if (token) {
       if (password === password_confirmation) {
         axios
@@ -29,7 +33,11 @@ const ResetPassword = () => {
             password_confirmation,
             token,
           })
-          .then(res => alert(res.data.status))
+          .then(res => {
+            setloading(false)
+            alert(res.data.status)
+            router.push
+          })
           .catch(error => {
             if (
               error.response.status !== 422 ||
@@ -84,6 +92,7 @@ const ResetPassword = () => {
           {/* <section className='lg:w-[400px]  '> */}
 
           {/* <>{errors && console.log(errors)}</> */}
+          <p className='font-semibold text-lg text-center'>Reset Password</p>
           <Error errors={errors} />
 
           <Input
@@ -123,9 +132,12 @@ const ResetPassword = () => {
               Passwords do not match
             </p>
           )}
-          <button type='submit' className='button sign-button  my-5'>
-            sign in
-          </button>
+          <Button
+            text='sign in'
+            type='submit'
+            loadingState={loading}
+            classname={['button', 'sign-button', 'my-5']}
+          />
         </form>
       </div>
     </div>

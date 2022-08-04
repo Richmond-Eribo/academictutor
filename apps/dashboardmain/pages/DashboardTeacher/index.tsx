@@ -152,8 +152,8 @@ const DashboardTeacher = () => {
                 />
               ) : (
                 <>
-                  <p className='text-sm '>
-                    Upload a profile picture to increase you request rate
+                  <p className='text-xs text-white text-center '>
+                    Upload a profile picture
                   </p>
                 </>
               )}

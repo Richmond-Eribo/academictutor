@@ -1,3 +1,4 @@
+import Button from 'components/Button'
 import Link from 'next/link'
 import Input from 'ui/components/Input'
 
@@ -13,6 +14,7 @@ type Props = {
   email: string
   phone: number | undefined
   password: number
+  loading: boolean
 }
 
 const ParentSignUp = ({
@@ -27,6 +29,7 @@ const ParentSignUp = ({
   name,
   email,
   phone,
+  loading,
 }: Props) => {
   return (
     <form onSubmit={submitFormParent}>
@@ -83,6 +86,13 @@ const ParentSignUp = ({
       <button type='submit' className='button sign-button mt-10'>
         sign up
       </button>
+      <Button
+        text='sign in'
+        // setLoading={setLoadingState}
+        loadingState={loading}
+        classname={['button', 'sign-button', 'mt-10']}
+        type='submit'
+      />
 
       <p className='mt-5 text-center'>
         Already have an account?{' '}

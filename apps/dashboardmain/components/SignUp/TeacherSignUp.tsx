@@ -1,3 +1,4 @@
+import Button from 'components/Button'
 import DocumentInput from 'components/DocumentInput'
 import Link from 'next/link'
 import React, {useState} from 'react'
@@ -18,27 +19,28 @@ type Props = {
   password: number
   subjects: string | undefined
   profile: string | undefined
-  right_to_work: any
-  dbs_certificate: any
-  educational_qualification: any
-  qts: any
-  passport_id_or_driver_license: any
-  passport_photo: any
-  proof_of_address: any
-  national_insurance_number: any
-  profile_picture: any
-  permit_or_id?: any
-  signature?: any
   setProfile: React.Dispatch<React.SetStateAction<any>>
-  setRight_to_work: React.Dispatch<React.SetStateAction<any>>
-  setDbs_certificate: React.Dispatch<React.SetStateAction<any>>
-  setEducational_qualification: React.Dispatch<React.SetStateAction<any>>
-  setQts: React.Dispatch<React.SetStateAction<any>>
-  setPassport_id_or_driver_license: React.Dispatch<React.SetStateAction<any>>
-  setPassport_photo: React.Dispatch<React.SetStateAction<any>>
-  setProof_of_address: React.Dispatch<React.SetStateAction<any>>
-  setNational_insurance_number: React.Dispatch<React.SetStateAction<any>>
-  setProfile_picture: React.Dispatch<React.SetStateAction<any>>
+  loading: boolean
+  // right_to_work: any
+  // dbs_certificate: any
+  // educational_qualification: any
+  // qts: any
+  // passport_id_or_driver_license: any
+  // passport_photo: any
+  // proof_of_address: any
+  // national_insurance_number: any
+  // profile_picture: any
+  // permit_or_id?: any
+  // signature?: any
+  // setRight_to_work: React.Dispatch<React.SetStateAction<any>>
+  // setDbs_certificate: React.Dispatch<React.SetStateAction<any>>
+  // setEducational_qualification: React.Dispatch<React.SetStateAction<any>>
+  // setQts: React.Dispatch<React.SetStateAction<any>>
+  // setPassport_id_or_driver_license: React.Dispatch<React.SetStateAction<any>>
+  // setPassport_photo: React.Dispatch<React.SetStateAction<any>>
+  // setProof_of_address: React.Dispatch<React.SetStateAction<any>>
+  // setNational_insurance_number: React.Dispatch<React.SetStateAction<any>>
+  // setProfile_picture: React.Dispatch<React.SetStateAction<any>>
 }
 
 const TeacherSignUp = ({
@@ -49,33 +51,15 @@ const TeacherSignUp = ({
   setEmail,
   setPassword,
   setSubjects,
-  setProfile_picture,
   setProfile,
   profile,
-  profile_picture,
   password,
   activeInput,
   name,
   email,
   phone,
   subjects,
-  right_to_work,
-  dbs_certificate,
-  educational_qualification,
-  qts,
-  passport_id_or_driver_license,
-  passport_photo,
-  proof_of_address,
-  national_insurance_number,
-
-  setRight_to_work,
-  setDbs_certificate,
-  setEducational_qualification,
-  setQts,
-  setPassport_id_or_driver_license,
-  setPassport_photo,
-  setProof_of_address,
-  setNational_insurance_number,
+  loading,
 }: Props) => {
   return (
     <form onSubmit={submitFormTeacher}>
@@ -249,12 +233,14 @@ const TeacherSignUp = ({
         </section>
       </div>
       <div className='mx-auto w-[360px]'>
-        <button
-          onClick={() => console.log(profile_picture)}
-          className='button mx-auto sign-button mt-10'
-        >
-          sign up
-        </button>
+        <Button
+          text='sign in'
+          // setLoading={setLoadingState}
+          loadingState={loading}
+          classname={['button', 'sign-button', 'mt-10', 'mx-auto']}
+          type='submit'
+        />
+        <button className='button mx-auto sign-button mt-10'>sign up</button>
       </div>
       <p className='mt-5 text-center'>
         Already have an account?{' '}
@@ -267,3 +253,23 @@ const TeacherSignUp = ({
 }
 
 export default TeacherSignUp
+
+// setProfile_picture,
+// profile_picture,
+// right_to_work,
+// dbs_certificate,
+// educational_qualification,
+// qts,
+// passport_id_or_driver_license,
+// passport_photo,
+// proof_of_address,
+// national_insurance_number,
+
+// setRight_to_work,
+// setDbs_certificate,
+// setEducational_qualification,
+// setQts,
+// setPassport_id_or_driver_license,
+// setPassport_photo,
+// setProof_of_address,
+// setNational_insurance_number,

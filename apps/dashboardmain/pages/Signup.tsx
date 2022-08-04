@@ -14,7 +14,7 @@ const SignUp: FC = () => {
 
   const router = useRouter()
 
-  const {register, user} = useAuth({
+  const {register, loading} = useAuth({
     middleware: 'guest',
   })
 
@@ -175,26 +175,7 @@ const SignUp: FC = () => {
               phone={phone}
               profile={profile}
               setProfile={setProfile}
-              setProfile_picture={setProfile_picture}
-              profile_picture={profile_picture}
-              right_to_work={right_to_work}
-              dbs_certificate={dbs_certificate}
-              educational_qualification={educational_qualification}
-              qts={qts}
-              passport_id_or_driver_license={passport_id_or_driver_license}
-              passport_photo={passport_photo}
-              proof_of_address={proof_of_address}
-              national_insurance_number={national_insurance_number}
-              setRight_to_work={setRight_to_work}
-              setDbs_certificate={setDbs_certificate}
-              setEducational_qualification={setEducational_qualification}
-              setQts={setQts}
-              setPassport_id_or_driver_license={
-                setPassport_id_or_driver_license
-              }
-              setPassport_photo={setPassport_photo}
-              setProof_of_address={setProof_of_address}
-              setNational_insurance_number={setNational_insurance_number}
+              loading={loading}
             />
           </div>
           <div className={`${tab == 1 ? 'hidden' : 'block'} `}>
@@ -213,6 +194,7 @@ const SignUp: FC = () => {
               name={name}
               email={email}
               phone={phone}
+              loading={loading}
             />
           </div>
         </main>
@@ -222,3 +204,24 @@ const SignUp: FC = () => {
 }
 
 export default SignUp
+
+// setProfile_picture={setProfile_picture}
+// profile_picture={profile_picture}
+// right_to_work={right_to_work}
+// dbs_certificate={dbs_certificate}
+// educational_qualification={educational_qualification}
+// qts={qts}
+// passport_id_or_driver_license={passport_id_or_driver_license}
+// passport_photo={passport_photo}
+// proof_of_address={proof_of_address}
+// national_insurance_number={national_insurance_number}
+// setRight_to_work={setRight_to_work}
+// setDbs_certificate={setDbs_certificate}
+// setEducational_qualification={setEducational_qualification}
+// setQts={setQts}
+// setPassport_id_or_driver_license={
+//   setPassport_id_or_driver_license
+// }
+// setPassport_photo={setPassport_photo}
+// setProof_of_address={setProof_of_address}
+// setNational_insurance_number={setNational_insurance_number}

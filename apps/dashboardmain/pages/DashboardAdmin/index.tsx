@@ -130,8 +130,6 @@ const DashboardAdmin = () => {
               )}
             </div>
           </main>
-
-          <Footer />
         </div>
       ) : (
         <LoadingComponent />

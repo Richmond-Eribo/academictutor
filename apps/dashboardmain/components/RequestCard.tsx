@@ -15,16 +15,16 @@ const RequestCard: FC<Props> = ({requests, admin}) => {
     <div className='bg-white w-[360px] py-[30px] h-[600px] my-10 lg:my-0 '>
       <h3 className='text-[20px] font-medium mb-5 px-[35px]'>Requests</h3>
 
-      <ul className='scrollbars  snap-y overflow-y-scroll'>
+      <ul className='scrollbars h-[480px] px-1  snap-y overflow-y-scroll'>
         {requests?.map((request, index) => (
           <li
             key={index}
-            className='h-[70px] flex  items-center justify-center scroll-my-2'
+            className='h-[70px] bg-[#F0FBFF] rounded-2xl   my-3 overflow-hidden flex  items-center justify-center scroll-my-2'
           >
             <label
               htmlFor='my-modal-3'
               onClick={() => setModalData(request)}
-              className='modal-button'
+              className='modal-button   px-2'
             >
               {admin
                 ? `${request.parent_name} requested for ${request.teacher_name}`

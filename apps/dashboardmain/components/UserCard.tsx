@@ -24,7 +24,7 @@ const UserCard: FC<Props> = ({title, height, users}) => {
               {user.name}
               {title !== 'Parents' && (
                 <Link href={`/DashboardAdmin/${title}?id=${user.id}`}>
-                  <button className='w-[95px] h-[35px] bg-primary-light hover:bg-primary-light duration-150  rounded-xl text-white'>
+                  <button className='w-[95px] h-[35px] bg-primary-light hover:bg-primary-dark duration-150  rounded-xl text-white'>
                     View
                   </button>
                 </Link>

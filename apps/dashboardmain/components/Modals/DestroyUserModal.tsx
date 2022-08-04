@@ -7,7 +7,7 @@ const DestroyUserModal = ({deleteUser}: Props) => {
     <div className='mt-10'>
       <label
         htmlFor='my-modal-3'
-        className='px-4 py-2  h-[35px] bg-red-500 hover:bg-red-700 duration-150  rounded-xl text-white'
+        className='px-4 py-2 cursor-pointer h-[35px] bg-red-500 hover:bg-red-700 duration-150  rounded-xl text-white'
       >
         Destroy Current Teacher
       </label>

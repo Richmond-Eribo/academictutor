@@ -98,37 +98,35 @@ const Slug = () => {
   )
 
   // verify teacher credetial
-  const verifyCredentials = (documentName: string) => {
+  const verifyCredentials = (documentName: string, loadingName: string) => {
     axios
       .post(`/api/admin/verify-teacher/${documentName}/${id}`)
-      .then(res => res)
+      .then(res => {
+        alert(`succesfully unverified  document`)
+        return res.data
+      })
       .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
+        if (error.response.status !== 409 || error.response.status == 401) {
+          alert(`Sorry, a problem occured. `)
           throw error
+        }
       })
     // alert('hi')
   }
 
   // unverify  teacher credential
-  const unverifiedCredentials = (documentName: string) => {
+  const unverifiedCredentials = (documentName: string, loadingName: string) => {
     axios
       .post(`/api/admin/unverify-teacher/${documentName}/${id}`)
-      .then(res => res)
-      .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          throw error
+      .then(res => {
+        alert(`succesfully unverified  document`)
+        return res.data
       })
-  }
-
-  // download credential
-  const downloadCredentials = (documentName: string) => {
-    axios
-      .get(`/api/user/download-file/${documentName}`)
-      .then(res => res.data)
       .catch(error => {
-        if (error.response.status !== 409 || error.response.status == 401)
-          alert(error.response.message)
-        throw error
+        if (error.response.status !== 409 || error.response.status == 401) {
+          alert(`Sorry, a problem occured. `)
+          throw error
+        }
       })
   }
 
@@ -226,16 +224,20 @@ const Slug = () => {
 
                   {credentials?.data.national_insurance_number && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(
+                      downloadDocumentName={
+                        credentials.data.national_insurance_number
+                      }
+                      verifyDocument={() =>
+                        verifyCredentials(
+                          'national-insurane-number',
                           credentials.data.national_insurance_number
                         )
                       }
-                      verifyDocument={() =>
-                        verifyCredentials('national-insurane-number')
-                      }
                       unverifyDocument={() =>
-                        unverifiedCredentials('national-insurance-number')
+                        unverifiedCredentials(
+                          'national-insurance-number',
+                          credentials.data.national_insurance_number
+                        )
                       }
                       documentName='national insurance number'
                       isVerified={
@@ -255,11 +257,13 @@ const Slug = () => {
 
                   {credentials?.data.qts && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(credentials.data.qts)
+                      downloadDocumentName={credentials.data.qts}
+                      verifyDocument={() =>
+                        verifyCredentials('qts', credentials.data.qts)
                       }
-                      verifyDocument={() => verifyCredentials('qts')}
-                      unverifyDocument={() => unverifiedCredentials('qts')}
+                      unverifyDocument={() =>
+                        unverifiedCredentials('qts', credentials.data.qts)
+                      }
                       documentName='qts'
                       isVerified={credentials?.data.qts_isverified}
                       // url={`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/download-file${credentials.data.qts}`}
@@ -268,14 +272,18 @@ const Slug = () => {
 
                   {credentials?.data.dbs_certificate && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(credentials.data.dbs_certificate)
-                      }
+                      downloadDocumentName={credentials.data.dbs_certificate}
                       verifyDocument={() =>
-                        verifyCredentials('dbs-certificate')
+                        verifyCredentials(
+                          'dbs-certificate',
+                          credentials.data.dbs_certificate
+                        )
                       }
                       unverifyDocument={() =>
-                        unverifiedCredentials('dbs-certificate')
+                        unverifiedCredentials(
+                          'dbs-certificate',
+                          credentials.data.dbs_certificate
+                        )
                       }
                       documentName='dbs certificate'
                       isVerified={credentials?.data.dbs_certificate_isverified}
@@ -284,16 +292,20 @@ const Slug = () => {
 
                   {credentials?.data.educational_qualification && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(
+                      downloadDocumentName={
+                        credentials.data.educational_qualification
+                      }
+                      verifyDocument={() =>
+                        verifyCredentials(
+                          'educational-qualification',
                           credentials.data.educational_qualification
                         )
                       }
-                      verifyDocument={() =>
-                        verifyCredentials('educational-qualification')
-                      }
                       unverifyDocument={() =>
-                        unverifiedCredentials('educational-qualification')
+                        unverifiedCredentials(
+                          'educational-qualification',
+                          credentials.data.educational_qualification
+                        )
                       }
                       documentName='educational qualification'
                       isVerified={
@@ -304,16 +316,20 @@ const Slug = () => {
 
                   {credentials?.data.passport_id_or_driver_license && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(
+                      downloadDocumentName={
+                        credentials.data.passport_id_or_driver_license
+                      }
+                      verifyDocument={() =>
+                        verifyCredentials(
+                          'passport-id-or-driver-license',
                           credentials.data.passport_id_or_driver_license
                         )
                       }
-                      verifyDocument={() =>
-                        verifyCredentials('passport-id-or-driver-license')
-                      }
                       unverifyDocument={() =>
-                        unverifiedCredentials('passport-id-or-driver-license')
+                        unverifiedCredentials(
+                          'passport-id-or-driver-license',
+                          credentials.data.passport_id_or_driver_license
+                        )
                       }
                       documentName='passport id or driver license'
                       isVerified={
@@ -325,12 +341,18 @@ const Slug = () => {
 
                   {credentials?.data.passport_photo && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(credentials.data.passport_photo)
+                      downloadDocumentName={credentials.data.passport_photo}
+                      verifyDocument={() =>
+                        verifyCredentials(
+                          'passport-photo',
+                          credentials.data.passport_photo
+                        )
                       }
-                      verifyDocument={() => verifyCredentials('passport-photo')}
                       unverifyDocument={() =>
-                        unverifiedCredentials('passport-photo')
+                        unverifiedCredentials(
+                          'passport-photo',
+                          credentials.data.passport_photo
+                        )
                       }
                       documentName='passport photo'
                       isVerified={credentials?.data.passport_photo_isverified}
@@ -339,14 +361,18 @@ const Slug = () => {
 
                   {credentials?.data.proof_of_address && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(credentials.data.proof_of_address)
-                      }
+                      downloadDocumentName={credentials.data.proof_of_address}
                       verifyDocument={() =>
-                        verifyCredentials('proof-of-address')
+                        verifyCredentials(
+                          'proof-of-address',
+                          credentials.data.proof_of_address
+                        )
                       }
                       unverifyDocument={() =>
-                        unverifiedCredentials('proof-of-address')
+                        unverifiedCredentials(
+                          'proof-of-address',
+                          credentials.data.proof_of_address
+                        )
                       }
                       documentName='proof of address'
                       isVerified={credentials?.data.proof_of_address_isverified}
@@ -355,12 +381,18 @@ const Slug = () => {
 
                   {credentials?.data.right_to_work && (
                     <DocumenCard
-                      downloadDocument={() =>
-                        downloadCredentials(credentials.data.right_to_work)
+                      downloadDocumentName={credentials.data.right_to_work}
+                      verifyDocument={() =>
+                        verifyCredentials(
+                          'right-to-work',
+                          credentials.data.right_to_work
+                        )
                       }
-                      verifyDocument={() => verifyCredentials('right-to-work')}
                       unverifyDocument={() =>
-                        unverifiedCredentials('right-to-work')
+                        unverifiedCredentials(
+                          'right-to-work',
+                          credentials.data.right_to_work
+                        )
                       }
                       documentName='right to work'
                       isVerified={credentials?.data.right_to_work_isverified}

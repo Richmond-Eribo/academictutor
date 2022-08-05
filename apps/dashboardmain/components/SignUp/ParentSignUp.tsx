@@ -82,12 +82,12 @@ const ParentSignUp = ({
         />
       </section>
       {/* </div> */}
-
+      {/* 
       <button type='submit' className='button sign-button mt-10'>
         sign up
-      </button>
+      </button> */}
       <Button
-        text='sign in'
+        text='sign up'
         // setLoading={setLoadingState}
         loadingState={loading}
         classname={['button', 'sign-button', 'mt-10']}

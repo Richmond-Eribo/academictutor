@@ -234,13 +234,13 @@ const TeacherSignUp = ({
       </div>
       <div className='mx-auto w-[360px]'>
         <Button
-          text='sign in'
+          text='sign up'
           // setLoading={setLoadingState}
           loadingState={loading}
           classname={['button', 'sign-button', 'mt-10', 'mx-auto']}
           type='submit'
         />
-        <button className='button mx-auto sign-button mt-10'>sign up</button>
+        {/* <button className='button mx-auto sign-button mt-10'>sign up</button> */}
       </div>
       <p className='mt-5 text-center'>
         Already have an account?{' '}

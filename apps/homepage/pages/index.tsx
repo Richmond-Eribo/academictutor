@@ -1,8 +1,8 @@
+import GetInTouchForm from 'components/GetInTouchForm'
 import GoodTick from 'components/Svg/GoodTick'
 import TeacherCard from 'components/TeacherCard'
 import type {NextPage} from 'next'
 import Image from 'next/image'
-import {GetInTouchForm} from 'ui'
 import {Footer} from 'ui'
 import LandingPageSlide from '../components/LandingPageSlide'
 import Nav from '../components/Nav'
@@ -202,7 +202,9 @@ const Home: NextPage = () => {
           deliver 1:1 online tutoring in Maths, English and Science.
         </p>
         <button className='bg-[#D1644D] capitalize button tracking-wide  button p-2 px-5  text-white rounded-full '>
-          Sign up today
+          <a href='https://dashboard.academictutors.org.uk/Signup'>
+            Sign up today
+          </a>
         </button>
       </section>
 

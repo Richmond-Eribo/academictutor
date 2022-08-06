@@ -101,9 +101,18 @@ export const useAuth = (config: IUseAuth) => {
         })
         .then(() => mutate())
         .catch(error => {
-          if (error.response.status !== 422) throw error
-          setLoading(false)
-          setErrors(Object.values(error.response.data.errors).flat())
+          if (error.response.status !== 422) {
+            setErrors('sorry, there is a problem with your request')
+            setLoading(false)
+            throw error
+          }
+          if (error.response.status === 500) {
+            alert(
+              'sorry, there is a problem with our server. we are working on this'
+            )
+            setLoading(false)
+            throw error
+          }
         })
     }
   }

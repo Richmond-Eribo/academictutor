@@ -77,18 +77,18 @@ const Nav = (props: Props) => {
           </Link>
 
           {/* <Link href='/'> */}
-          <a href='https://dashboard.academictutors.org.uk/Signup'>
-            <button className='bg-[#42B9D1] md:w-[120px] md:h-[35px]  button text-15px md:px-4 lg:px-5 tracking-wide text-white rounded-md md:ml-10 md:mr-4 lg:ml-16 lg:mr-6'>
-              SignUp
-            </button>
-          </a>
+          {/* <a href='https://dashboard.academictutors.org.uk/Signup'> */}
+          <button className='bg-[#42B9D1] md:w-[120px] md:h-[35px]  button text-15px md:px-4 lg:px-5 tracking-wide text-white rounded-md md:ml-10 md:mr-4 lg:ml-16 lg:mr-6'>
+            SignUp
+          </button>
+          {/* </a> */}
           {/* </Link> */}
           {/* <Link href='/'> */}
-          <a href='https://dashboard.academictutors.org.uk/Login'>
-            <button className='bg-[#42B9D1]/20 md:w-[120px] md:h-[35px]  text-15px text-[#42B9D1] border-2 border-[#42B9D1] button  md:px-4 lg:px-5 tracking-wide  rounded-md'>
-              Login
-            </button>
-          </a>
+          {/* <a href='https://dashboard.academictutors.org.uk/Login'> */}
+          <button className='bg-[#42B9D1]/20 md:w-[120px] md:h-[35px]  text-15px text-[#42B9D1] border-2 border-[#42B9D1] button  md:px-4 lg:px-5 tracking-wide  rounded-md'>
+            Login
+          </button>
+          {/* </a> */}
           {/* </Link> */}
         </div>
       </div>
@@ -121,19 +121,19 @@ const Nav = (props: Props) => {
           </Link>
 
           {/* <Link href='/'> */}
-          <a href='https://dashboard.academictutors.org.uk/Signup'>
-            <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white border-none rounded-md  '>
-              SignUp
-            </button>
-          </a>
+          {/* <a href='https://dashboard.academictutors.org.uk/Signup'> */}
+          <button className='bg-[#42B9D1]  w-[120px] h-[35px]  button text-15px  tracking-wide text-white border-none rounded-md  '>
+            SignUp
+          </button>
+          {/* </a> */}
           {/* </Link> */}
 
           {/* <Link href='/'> */}
-          <a href='https://dashboard.academictutors.org.uk/Login'>
-            <button className='bg-secondary-light w-[120px] h-[35px]  text-15px text-[#42B9D1]1 text-white button  tracking-wide  rounded-md'>
-              Login
-            </button>
-          </a>
+          {/* <a href='https://dashboard.academictutors.org.uk/Login'> */}
+          <button className='bg-secondary-light w-[120px] h-[35px]  text-15px text-[#42B9D1]1 text-white button  tracking-wide  rounded-md'>
+            Login
+          </button>
+          {/* </a> */}
           {/* </Link> */}
         </div>
       </div>
